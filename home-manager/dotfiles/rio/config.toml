@@ -1,0 +1,86 @@
+hide-cursor-when-typing = true
+padding-x = 30
+padding-y = [0, 10]
+option-as-alt = 'left'
+confirm-before-quit = false
+
+line-height = 1.2
+
+[editor]
+program = "/etc/profiles/per-user/kenrictee/bin/hx"
+args = []
+
+[window]
+width = 600
+height = 400
+mode = "Windowed"
+opacity = 0.5
+blur = true
+decorations = "Buttonless"
+
+[cursor]
+blinking = true
+blinking-interval = 530
+
+[fonts]
+size = 15
+
+[fonts.regular]
+# family = "JetBrains Mono"
+family = "0xProto Nerd Font Mono"
+style = "Normal"
+weight = 400
+
+[fonts.bold]
+family = "0xProto Nerd Font Mono"
+style = "Normal"
+weight = 800
+
+[fonts.italic]
+family = "0xProto Nerd Font Mono"
+style = "Italic"
+weight = 400
+
+[fonts.bold-italic]
+family = "0xProto Nerd Font Mono"
+style = "Italic"
+weight = 800
+
+[navigation]
+mode = "Bookmark"
+unfocused-split-opacity = 0.8
+
+[colors]
+cursor = '#00af87'
+background = '#171717'
+foreground = '#C5C8C6'
+# cursor = '#F38BA3'
+tabs = '#443d40'
+# tabs-active = '#F38BA3'
+# green = '#0BA95B'
+# red = '#ED203D'
+# blue = '#12B5E5'
+# yellow = '#FCBA28'
+
+[bindings]
+# super is basically mac's command
+keys = [
+  { key = "return", with = "super", action = "ToggleFullscreen" },
+  { key = "\\", with = "super | shift", action = "SplitDown" },
+  { key = "\\", with = "super", action = "SplitRight" },
+
+  { key = "h", with = "control | super", action = "MoveDividerLeft" },
+  { key = "j", with = "control | super", action = "MoveDividerDown" },
+  { key = "k", with = "control | super", action = "MoveDividerUp" },
+  { key = "l", with = "control | super", action = "MoveDividerRight" },
+
+  # EXAMPLES
+  # Bytes[27, 91, 53, 126] is equivalent to "\x1b[5~"
+  { key = "home", with = "super | shift", bytes = [27, 91, 53, 126] },
+  # Remove existing keybind
+  { key = "v", with = "control | shift", action = "none" },
+]
+
+[platform]
+macos.font.size = 15
+linux.font.size = 13

@@ -1,0 +1,12 @@
+{
+	"name": "Glance New Tab",
+	"version": "1.0.0",
+	"manifest_version": 3,
+	"description": "Redirects the new tab page to Glance.",
+	"chrome_url_overrides": {
+		"newtab": "newtab.html"
+	},
+	"icons": {
+		"128": "icon.png"
+	}
+}

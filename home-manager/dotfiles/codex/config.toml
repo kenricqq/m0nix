@@ -1,0 +1,68 @@
+model = "gpt-5.1-codex"
+model_reasoning_effort = "low"
+network_access = true
+notify = ["python3", "./notify.py"]
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+web_search_request = true
+
+[mcp_servers.Context7]
+args = ["-y", "@upstash/context7-mcp"]
+command = "bunx"
+
+# [mcp_servers.autumn-docs]
+# transport = "http"
+# url = "https://docs.useautumn.com/mcp"
+
+# [mcp_servers.chrome-devtools]
+# args = ["-y", "chrome-devtools-mcp@latest"]
+# command = "bunx"
+
+[mcp_servers.convex]
+args = ["-y", "convex@latest", "mcp", "start"]
+command = "bunx"
+
+# [mcp_servers.firecrawl-mcp]
+# args = ["-y", "firecrawl-mcp"]
+# command = "bunx"
+
+[mcp_servers.github]
+args = ["stdio"]
+command = "github-mcp-server"
+
+# [mcp_servers.n8n-mcp]
+# args = ["n8n-mcp"]
+# command = "bunx"
+
+# [mcp_servers.n8n-mcp.env]
+# DISABLE_CONSOLE_OUTPUT = "true"
+# LOG_LEVEL = "error"
+# MCP_MODE = "stdio"
+
+# [mcp_servers.playwright]
+# args = ["@playwright/mcp@latest"]
+# command = "bunx"
+
+
+# [mcp_servers.sentry]
+# args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
+# command = "bunx"
+
+# [mcp_servers.serena]
+# args = [
+#   "--from",
+#   "git+https://github.com/oraios/serena",
+#   "serena",
+#   "start-mcp-server",
+#   "--context",
+#   "codex",
+# ]
+# command = "uvx"
+
+# [mcp_servers.shadcn-ui-mcp-server]
+# args = ["@jpisnice/shadcn-ui-mcp-server", "--framework", "svelte"]
+# command = "bunx"
+
+[mcp_servers.svelte]
+args = ["-y", "@sveltejs/mcp"]
+command = "bunx"

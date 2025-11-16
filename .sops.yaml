@@ -1,0 +1,8 @@
+keys:
+  - &local age1yvc0l9sq75l3r6hacsh4vqfzfeh649lw5jhwkxch5wgg9axq79jq2j6v8y
+
+creation_rules:
+  - path_regex: .*\.(yaml|json|env)$
+    key_groups:
+      - age:
+          - *local

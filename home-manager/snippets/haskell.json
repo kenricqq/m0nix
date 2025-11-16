@@ -1,0 +1,13 @@
+{
+  "multi-line-comment": {
+    "prefix": "mlc",
+    "body": [
+      "{-",
+      "",
+      "${1}",
+      "",
+      "-}"
+    ],
+    "description": "add multiline comment with spacing"
+  }
+}

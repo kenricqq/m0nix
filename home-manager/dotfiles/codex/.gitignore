@@ -1,0 +1,14 @@
+# Ignore everything
+/*
+
+# But these:
+!/prompts/
+!/prompts/**
+
+!/workflows
+!/workflows/**
+
+!/AGENTS.md
+!/config.toml
+
+!/.gitignore

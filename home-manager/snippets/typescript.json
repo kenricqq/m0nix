@@ -1,0 +1,393 @@
+{
+	"Console Log": {
+		"prefix": "clg",
+		"body": [
+			"console.log(${1})",
+			"${2}"
+		]
+	},
+	"Async Function (Arrow)": {
+		"prefix": "afa",
+		"body": [
+			"const ${1} = async (${2}) => {",
+			"  ${3}",
+			"}",
+			"${4}"
+		]
+	},
+	"Async Function": {
+		"prefix": "af",
+		"body": [
+			"async function ${1}(${2}) {",
+			"  ${3}",
+			"}",
+			"${4}"
+		]
+	},
+	"SvelteKit Page": {
+		"prefix": "sk-page",
+		"body": [
+			"<script lang=\"ts\">",
+			"  import type { PageData } from './\\$types';",
+			"",
+			"  const { data }: { data: PageData } = \\$props()",
+			"  ${0}",
+			"</script>"
+		]
+	},
+	"SvelteKit Page Load": {
+		"prefix": "sk-page-load",
+		"body": [
+			"import type { PageLoad } from './\\$types';",
+			"",
+			"export const load: PageLoad = async (${1:event}) => {",
+			"   $2",
+			"   return {",
+			"     $0",
+			"   };",
+			"};"
+		]
+	},
+	"SvelteKit Page params": {
+		"prefix": "sk-page-params",
+		"body": [
+			"import { page } from '\\$app/stores';",
+			"",
+			"const { ${1:id} } = \\$page.params;"
+		]
+	},
+	"SvelteKit Page Server Load": {
+		"prefix": "sk-page-server-load",
+		"body": [
+			"import type { PageServerLoad } from './\\$types';",
+			"",
+			"export const load: PageServerLoad = async (${1:event}) => {",
+			"   $2",
+			"   return {",
+			"     $0",
+			"   };",
+			"};"
+		]
+	},
+	"SvelteKit Layout Load": {
+		"prefix": "sk-layout-load",
+		"body": [
+			"import type { LayoutLoad } from './\\$types';",
+			"",
+			"export const load: LayoutLoad = async (${1:event}) => {",
+			"   $2",
+			"   return {",
+			"     $0",
+			"   };",
+			"};"
+		]
+	},
+	"SvelteKit: Layout Server Load": {
+		"prefix": "sk-layout-server-load",
+		"body": [
+			"import type { LayoutServerLoad } from './\\$types';",
+			"",
+			"export const load: LayoutServerLoad = async (${1:event}) => {",
+			"   $2",
+			"   return {",
+			"     $0",
+			"   };",
+			"};"
+		]
+	},
+	"SvelteKit Page Actions": {
+		"prefix": "sk-actions",
+		"body": [
+			"import type { Actions } from './\\$types';",
+			"",
+			"export const actions: Actions = {",
+			"   async default() {",
+			"     $0",
+			"   }",
+			"};"
+		]
+	},
+	"SvelteKit Hooks": {
+		"prefix": "sk-hooks",
+		"body": [
+			"import type { Handle } from \"@sveltejs/kit\";",
+			"",
+			"export const handle: Handle = async ({ event, resolve }) => {",
+			"   $0",
+			"",
+			"   const response = await resolve(event);",
+			"   return response;",
+			"};"
+		]
+	},
+	"SvelteKit Json": {
+		"prefix": "sk-json",
+		"body": [
+			"json({ data: '' }, { status: 200 })"
+		]
+	},
+	"SvelteKit Error": {
+		"prefix": "sk-error",
+		"body": [
+			"error(404, { message: \"Not found\" });"
+		]
+	},
+	"SvelteKit api GET": {
+		"prefix": "sk-api-get",
+		"body": [
+			"import type { RequestHandler, RequestEvent } from './\\$types';",
+			"import { json } from \"@sveltejs/kit\"",
+			"",
+			"export const GET = (async ({ request }: RequestEvent) => {",
+			"  return json({ message: 'GET' })",
+			"}) satisfies RequestHandler;"
+		]
+	},
+	"SvelteKit api POST": {
+		"prefix": "sk-api-post",
+		"body": [
+			"import type { RequestHandler, RequestEvent } from './\\$types';",
+			"import { json } from \"@sveltejs/kit\"",
+			"",
+			"export const POST = (async ({ request }: RequestEvent) => {",
+			"  return json({ message: 'POST' })",
+			"}) satisfies RequestHandler;"
+		]
+	},
+	"SvelteKit api PUT": {
+		"prefix": "sk-api-put",
+		"body": [
+			"import type { RequestHandler, RequestEvent } from './\\$types';",
+			"import { json } from \"@sveltejs/kit\"",
+			"",
+			"export const PUT = (async ({ request }: RequestEvent) => {",
+			"  return json({ message: 'PUT' })",
+			"}) satisfies RequestHandler;"
+		]
+	},
+	"SvelteKit api DELETE": {
+		"prefix": "sk-api-delete",
+		"body": [
+			"import type { RequestHandler, RequestEvent } from './\\$types';",
+			"import { json } from \"@sveltejs/kit\"",
+			"",
+			"export const DELETE = (async ({ request }: RequestEvent) => {",
+			"  return json({ message: 'DELETE' })",
+			"}) satisfies RequestHandler;"
+		]
+	},
+	"SvelteKit api PATCH": {
+		"prefix": "sk-api-patch",
+		"body": [
+			"import type { RequestHandler, RequestEvent } from './\\$types';",
+			"import { json } from \"@sveltejs/kit\"",
+			"",
+			"export const PATCH = (async ({ request }: RequestEvent) => {",
+			"  return json({ message: 'PATCH' })",
+			"}) satisfies RequestHandler;"
+		]
+	},
+	"SvelteKit browser": {
+		"prefix": "sk-browser",
+		"body": [
+			"import { browser } from \"\\$app/environment\";",
+			"",
+			"if (browser) {",
+			"  ${0}",
+			"}"
+		]
+	},
+	"SvelteKit env private": {
+		"prefix": "sk-env-private",
+		"body": [
+			"import { env } from \"\\$env/dynamic/private\";",
+			"",
+			"${0}"
+		]
+	},
+	"SvelteKit env public": {
+		"prefix": "sk-env-public",
+		"body": [
+			"import { env } from \"\\$env/static/public\";",
+			"",
+			"${0}"
+		]
+	},
+	"Svelte $state()": {
+		"prefix": "s-state",
+		"body": [
+			"let state = \\$state(${0})"
+		]
+	},
+	"Svelte $state.frozen()": {
+		"prefix": "s-state-frozen",
+		"body": [
+			"let state = \\$state.frozen(${0})"
+		]
+	},
+	"Svelte $state.snapshot()": {
+		"prefix": "s-state-snapshot",
+		"body": [
+			"\\$state.snapshot(${0})"
+		]
+	},
+	"Svelte $state.is()": {
+		"prefix": "s-state-is",
+		"body": [
+			"\\$state.is(${1}, ${0})"
+		]
+	},
+	"Svelte $derived()": {
+		"prefix": "s-derived",
+		"body": [
+			"const value = \\$derived(${0});"
+		]
+	},
+	"Svelte $derived.by() ": {
+		"prefix": "s-derived-by",
+		"body": [
+			"const value = \\$derived.by(()=>{",
+			"  ${0}",
+			"})"
+		]
+	},
+	"Svelte $effect()": {
+		"prefix": "s-effect",
+		"body": [
+			"\\$effect(() => {",
+			"  ${0}",
+			"})"
+		]
+	},
+	"Svelte $effect.pre()": {
+		"prefix": "s-effect-pre",
+		"body": [
+			"\\$effect.pre(() => {",
+			"  ${0}",
+			"})"
+		]
+	},
+	"Svelte $effect.tracking()": {
+		"prefix": "s-effect-tracking",
+		"body": [
+			"\\$effect(() => {",
+			"  console.log('in effect:', \\$effect.tracking());",
+			"})"
+		]
+	},
+	"Svelte $effect.root()": {
+		"prefix": "s-effect-root",
+		"body": [
+			"const cleanup = \\$effect.root(() => {",
+			"  \\$effect(() => {",
+			"    ${0}",
+			"  })",
+			"",
+			"  return () => {",
+			"    ",
+			"  };",
+			"});"
+		]
+	},
+	"Svelte Computed": {
+		"prefix": "s-computed",
+		"body": [
+			"let value = \\$state(\"\")",
+			"",
+			"let valueComputed = {",
+			"  get value() {",
+			"    return value;",
+			"  },",
+			"  set value(newValue) {",
+			"    value = newValue;",
+			"  }",
+			"};",
+			"${0}"
+		]
+	},
+	"Svelte $props()": {
+		"prefix": "s-props",
+		"body": [
+			"interface Props {${1}}",
+			"",
+			"let {${0}}: Props = \\$props();"
+		]
+	},
+	"Svelte $host()": {
+		"prefix": "s-host",
+		"body": [
+			"\\$host().dispatchEvent(",
+			"  ${0}",
+			");"
+		]
+	},
+	"Svelte flushSync": {
+		"prefix": "s-flush-sync",
+		"body": [
+			"flushSync(() => {",
+			"  ${0}",
+			"})"
+		]
+	},
+	"Svelte hook": {
+		"prefix": "s-hook",
+		"body": [
+			"export function useCounter() {",
+			"  let count = \\$state(0)",
+			"",
+			"  function increment() {",
+			"    count += 1;",
+			"  }",
+			"",
+			"  return {",
+			"    get count() {",
+			"      return count;",
+			"    },",
+			"    set count(newValue) {",
+			"      count = newValue;",
+			"    },",
+			"    increment",
+			"  };",
+			"}"
+		]
+	},
+	"Svelte store": {
+		"prefix": "s-store",
+		"body": [
+			"import { writable } from 'svelte/store';",
+			"",
+			"export function createCounter() {",
+			"  const { subscribe, update } = writable(0);",
+			"",
+			"  function increment() {",
+			"    update((count) => count + 1);",
+			"  }",
+			"",
+			"  return {",
+			"    subscribe,",
+			"    increment",
+			"  };",
+			"}"
+		]
+	},
+	"Svelte setContext()": {
+		"prefix": "s-set-context",
+		"body": [
+			"setContext(\"${1:key}\", ${0:value});"
+		]
+	},
+	"Svelte getContext()": {
+		"prefix": "s-get-context",
+		"body": [
+			"const context = getContext(${0:key});"
+		]
+	},
+	"Svelte hasContext()": {
+		"prefix": "s-has-context",
+		"body": [
+			"if (hasContext('${1:key}')) {",
+			"  ${0}",
+			"}"
+		]
+	}
+}

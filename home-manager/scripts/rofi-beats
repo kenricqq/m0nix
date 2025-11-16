@@ -1,0 +1,72 @@
+#!/bin/sh
+
+notification(){
+    terminal-notifier -message 'Now Playing: Lofi Radio ☕️🎶'
+}
+
+declare -A stations=(
+    [1]="Lofi Girl|https://play.streamafrica.net/lofiradio"
+    [2]="Chillhop|http://stream.zeno.fm/fyn8eh3h5f8uv"
+    [3]="Box Lofi|http://stream.zeno.fm/f3wvbbqmdg8uv"
+    [4]="The Bootleg Boy|http://stream.zeno.fm/0r0xa792kwzuv"
+    [5]="Radio Spinner|https://live.radiospinner.com/lofi-hip-hop-64"
+    [6]="SmoothChill|https://media-ssl.musicradio.com/SmoothChill"
+
+    [7]="Stop Music"
+)
+
+menu() {
+    for key in "${!stations[@]}"; do
+        description="${stations[$key]%%|*}" # Extract description
+        printf "%d. %s\n" "$key" "$description"
+    done
+}
+
+play_music() {
+    station="${stations[$1]}"
+    if [[ -n $station ]]; then
+        description="${station%%|*}" # Extract description
+        url="${station##*|}" # Extract URL
+        # notification
+        mpv "$url"
+    else
+        echo "Invalid selection."
+    fi
+}
+
+main() {
+    COLOR=f7768e
+    WIDTH=48
+    ROWS=7
+
+    choice=$(menu | choose -b $COLOR -w $WIDTH -n $ROWS | cut -d. -f1)
+
+    # Exit if no choice is made
+    if [[ -z "$choice" ]]; then
+        echo "No choice made, exiting."
+        exit 0
+    fi
+
+    # Load the last choice from a file
+    last_choice_file="./last_music_choice"
+    if [[ -f $last_choice_file ]]; then
+        last_choice=$(cat "$last_choice_file")
+    else
+        last_choice=""
+    fi
+
+    # If the new choice is the same as the last one, exit without playing
+    if [[ "$choice" == "$last_choice" ]]; then
+        echo "Same choice as last time, no action taken."
+        exit 0
+    fi
+
+    # Save the new choice to the file
+    echo "$choice" > "$last_choice_file"
+
+    # Stop any currently playing mpv stream and play the new selection
+    pkill -f mpv
+    play_music "$choice"
+}
+
+main

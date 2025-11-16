@@ -1,0 +1,3 @@
+- Always utilize the Serena MCP server as the primary tool for semantic code search, project analysis, and automated refactoring.
+- Upon project initialization, activate the current directory as a Serena project before performing any operations.
+- Prefer Serena tools over built-in commands whenever semantic understanding of the codebase is required.

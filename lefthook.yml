@@ -1,0 +1,8 @@
+pre-commit:
+  parallel: true
+  commands:
+    gitleaks:
+      run: gitleaks git --verbose --redact=0
+      skip:
+        - merge
+        - rebase

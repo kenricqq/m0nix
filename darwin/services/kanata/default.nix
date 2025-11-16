@@ -1,0 +1,24 @@
+{
+  config,
+  vars,
+  ...
+}:
+
+let
+  kanataPath = "${config.users.users.${vars.defaultUser}.home}/.config/kanata";
+in
+{
+  # key remapper
+  launchd.daemons.kanata = {
+    command = "${kanataPath}/kanata -c ${kanataPath}/personal.kbd";
+    serviceConfig = {
+      Label = "org.nixos.kanata";
+      UserName = "root";
+      GroupName = "root";
+      RunAtLoad = true;
+      KeepAlive = true;
+      StandardOutPath = "/Library/Logs/Kanata/kanata.out.log";
+      StandardErrorPath = "/Library/Logs/Kanata/kanata.err.log";
+    };
+  };
+}

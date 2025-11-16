@@ -1,0 +1,344 @@
+pages:
+  - name: Startpage
+    width: slim
+    # hide-desktop-navigation: true
+    center-vertically: true
+    columns:
+      - size: full
+        widgets:
+          - type: search
+            search-engine: "https://unduck.link/?q={QUERY}"
+            new-tab: true
+            autofocus: true
+            # target: _blank
+            placeholder: "What's your wish? I'm your genie!"
+            bangs:
+              - title: YouTube
+                shortcut: "!yt"
+                url: "https://www.youtube.com/results?search_query={QUERY}"
+              - title: GitHub
+                shortcut: "!gh"
+                url: "https://github.com/search?q={QUERY}"
+              - title: StackOverflow
+                shortcut: "!so"
+                url: "https://stackoverflow.com/search?q={QUERY}"
+
+          - type: monitor
+            cache: 1m
+            title: Services
+            sites:
+              - title: Jellyfin
+                url: https://yourdomain.com/
+                icon: si:jellyfin
+              - title: Gitea
+                url: https://yourdomain.com/
+                icon: si:gitea
+              - title: qBittorrent # only for Linux ISOs, of course
+                url: https://yourdomain.com/
+                icon: si:qbittorrent
+              - title: Immich
+                url: https://yourdomain.com/
+                icon: si:immich
+              - title: AdGuard Home
+                url: https://yourdomain.com/
+                icon: si:adguard
+              - title: Vaultwarden
+                url: https://yourdomain.com/
+                icon: si:vaultwarden
+
+          - type: bookmarks
+            groups:
+              - title: General
+                links:
+                  - title: Gmail
+                    url: https://mail.google.com/mail/u/0/
+                  - title: Amazon
+                    url: https://www.amazon.com/
+                  - title: Github
+                    url: https://github.com/
+              - title: Entertainment
+                links:
+                  - title: YouTube
+                    url: https://www.youtube.com/
+                  - title: Prime Video
+                    url: https://www.primevideo.com/
+                  - title: Disney+
+                    url: https://www.disneyplus.com/
+              - title: Social
+                links:
+                  - title: Reddit
+                    url: https://www.reddit.com/
+                  - title: Twitter
+                    url: https://twitter.com/
+                  - title: Instagram
+                    url: https://www.instagram.com/
+
+  - name: Home
+    # Optionally, if you only have a single page you can hide the desktop navigation for a cleaner look
+    # hide-desktop-navigation: true
+    columns:
+      - size: small
+        widgets:
+          - type: calendar
+            cache: 3m
+            first-day-of-week: monday
+          - type: custom-api
+            title: RAINDROP LATEST LINKS
+            cache: 1h
+            url: https://api.raindrop.io/rest/v1/raindrops/0?perpage=10
+            headers:
+              Authorization: "Bearer ${RAINDROP_TOKEN}"
+            template: |
+              {{ if .JSON.Bool "result" }}
+                <ul class="list list-gap-10 collapsible-container" data-collapse-after="2">
+                  {{ range .JSON.Array "items" }}
+                    <li class="list-item">
+                      <div class="flex items-center gap-10 list-with-seperator">
+                        <a href="{{ .String "link" }}" target="_blank" class="size-h3 color-primary-if-not-visited text-truncate-2">{{ .String "title" }}</a>
+                      </div>
+                      <div class="flex justify-between text-sm">
+                        <ul class="list-horizontal-text">
+                          <li class="color-subdue">{{ .String "created" | parseTime "rfc3339" | toRelativeTime }}</li>
+                          <li>{{ .String "domain" }}</li>
+                          {{ if .Array "tags" }}
+                            <li class="color-highlight">#{{ (index (.Array "tags") 0).String "" | trimPrefix "{" | trimSuffix "}" }}</li>
+                          {{ else }}
+                            <li class="color-subdue">untagged</li>
+                          {{ end }}
+                        </ul>
+                      </div>
+                    </li>
+                  {{ end }}
+                </ul>
+              {{ else }}
+                <div class="color-negative padding-10">
+                  No bookmarks found. Please check your authentication.
+                </div>
+              {{ end }}
+          - type: rss
+            limit: 10
+            collapse-after: 3
+            cache: 12h
+            feeds:
+              - url: https://selfh.st/rss/
+                title: selfh.st
+                limit: 4
+              - url: https://ciechanow.ski/atom.xml
+              - url: https://www.joshwcomeau.com/rss.xml
+                title: Josh Comeau
+              - url: https://samwho.dev/rss.xml
+              - url: https://ishadeed.com/feed.xml
+                title: Ahmad Shadeed
+          - type: custom-api
+            title: RAINDROP DASHBOARD
+            cache: 1d
+            url: https://api.raindrop.io/rest/v1/filters/0
+            headers:
+              Authorization: Bearer ${RAINDROP_TOKEN}
+            template: |
+              {{ $view_type := "cards" }} {{/* Options: "cards" or "list" */}}
+              {{ $show_tags := true }}  {{/* Note: .Parameters.show_tags not working in template, using hardcoded value */}}
+              {{ $show_conten_types := false }}
+              {{ if eq $view_type "cards" }}
+                <div class="grid grid-cols-2 gap-4">
+                  <!-- Stats Cards -->
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="size-h4">Important</h4>
+                      <p class="size-h2 color-primary">{{ .JSON.Int "important.count" }}</p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="size-h4">Broken Links</h4>
+                      <p class="size-h2 color-negative">{{ .JSON.Int "broken.count" }}</p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="size-h4">Duplicates</h4>
+                      <p class="size-h2 color-warning">{{ .JSON.Int "duplicates.count" }}</p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="color-subdue size-h4">Untagged</h4>
+                      <p class="size-h2">{{ .JSON.Int "notag.count" }}</p>
+                    </div>
+                  </div>
+                </div>
+              {{ else }}
+                <div class="margin-top-10">
+                  <h4 class="size-h4 margin-bottom-5">Dashboard Stats</h4>
+                  <ul class="list list-gap-3">
+                    <li class="list-item">
+                      <div class="flex justify-between items-center">
+                        <span class="color-primary">Important</span>
+                        <span class="text-sm color-muted">{{ .JSON.Int "important.count" }} items</span>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="flex justify-between items-center">
+                        <span class="color-negative">Broken Links</span>
+                        <span class="text-sm color-muted">{{ .JSON.Int "broken.count" }} items</span>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="flex justify-between items-center">
+                        <span class="color-warning">Duplicates</span>
+                        <span class="text-sm color-muted">{{ .JSON.Int "duplicates.count" }} items</span>
+                      </div>
+                    </li>
+                    <li class="list-item">
+                      <div class="flex justify-between items-center">
+                        <h4 class="color-subdue size-h4">Untagged</h4>
+                        <span class="text-sm color-muted">{{ .JSON.Int "notag.count" }} items</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              {{ end }}
+
+              {{ if $show_tags }}
+              <hr class="margin-block-15">
+              <!-- Tags Distribution -->
+              <div class="margin-top-10">
+                <h4 class="size-h4 margin-bottom-5">Top Tags</h4>
+                <ul class="list list-gap-3">
+                  {{ $tags := .JSON.Array "tags" }}
+                  {{ range $tags }}
+                    {{ $tagName := .String "_id" }}
+                    {{ $tagCount := .Int "count" }}
+                    <li class="list-item">
+                      <div class="flex justify-between items-center">
+                        <span class="color-highlight">#{{ $tagName }}</span>
+                        <div class="flex items-center gap-2">
+                          <span class="text-sm color-muted">{{ $tagCount }} items</span>
+                          <a href="?tag={{ $tagName }}" class="text-sm">View</a>
+                        </div>
+                      </div>
+                    </li>
+                  {{ end }}
+                </ul>
+              </div>
+              {{ end}}
+
+              <!-- Content Types -->
+              {{ if $show_conten_types }}
+              <hr class="margin-block-15">
+              <div class="margin-top-10">
+                <h4 class="size-h4 margin-bottom-5">Content Types</h4>
+                <ul class="list list-gap-3">
+                  {{ range .JSON.Array "types" }}
+                    <li class="list-item">
+                      <div class="flex justify-between items-center">
+                        <span>{{ .String "_id" }}</span>
+                        <span class="text-sm color-muted">{{ .Int "count" }} items</span>
+                      </div>
+                    </li>
+                  {{ end }}
+                </ul>
+              </div>
+              {{ end }}
+          # - type: twitch-channels
+          #   cache: 3m
+          #   channels:
+          #     - theprimeagen
+          #     - j_blow
+          #     - giantwaffle
+          #     - cohhcarnage
+          #     - christitustech
+          #     - EJ_SA
+      - size: full
+        widgets:
+          - type: group
+            cache: 3m
+            widgets:
+              - type: hacker-news
+              - type: lobsters
+
+          - type: videos
+            channels:
+              # Tech
+              # - UCXuqSBlHAE6Xw-yeJA0Tunw # Linus Tech Tips
+              - UCsBjURrPoezykLs9EqgamOA # Fireship
+              -  # Andrej Karpathy
+              - UCBJycsmduvYEL83R_U4JriQ # Marques Brownlee
+              - UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling: nas + raspberry pi
+
+              # Podcasts
+              -  # Chris Williamson
+              -  # Lewis Howes
+              -  # Lex Fridman
+              -  # PBD Podcast
+              -  # Shawn Ryan Show
+
+              # Business & Life
+              -  # Alex Hormozi
+              -  # Leila Hormozi
+              -  # Grant Cardone
+              -  # Jordan Peterson
+              -  # Simon Sinek
+              -  # Kylie Sakaida
+
+              # Science
+              - UCYO_jab_esuFRV4b17AJtAw # 3Blue1Brown
+              - UCHnyfMqiRRG1u-2MsSQLbXA # Veritasium
+              -  # Big Think
+
+          - type: group
+            widgets:
+              - type: reddit
+                subreddit: technology
+                show-thumbnails: true
+              - type: reddit
+                subreddit: selfhosted
+                show-thumbnails: true
+
+      - size: small
+        widgets:
+          - type: weather
+            location: Santa Cruz, United States
+            units: imperial # alternatively "metric"
+            hour-format: 12h # alternatively "24h"
+            # Optionally hide the location from being displayed in the widget
+            # hide-location: true
+
+          - type: markets
+            markets:
+              - symbol: SPY
+                name: S&P 500
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: NVDA
+                name: NVIDIA
+              - symbol: AAPL
+                name: Apple
+              - symbol: MSFT
+                name: Microsoft
+
+          - type: releases
+            cache: 1d
+            # Without authentication the Github API allows for up to 60 requests per hour. You can create a
+            # read-only token from your Github account settings and use it here to increase the limit.
+            # token: ...
+            repositories:
+              - glanceapp/glance
+              - go-gitea/gitea
+              - immich-app/immich
+              - syncthing/syncthing
+
+  # Add more pages here:
+  # - name: Your page name
+  #   columns:
+  #     - size: small
+  #       widgets:
+  #         # Add widgets here
+
+  #     - size: full
+  #       widgets:
+  #         # Add widgets here
+
+  #     - size: small
+  #       widgets:
+  #         # Add widgets here

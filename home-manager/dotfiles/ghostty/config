@@ -1,0 +1,94 @@
+# theme = Nightfox
+theme = Kanagawa Dragon
+
+# background = 282c34
+# foreground = ffffff
+
+background-image = "~/Documents/Images/deer.png"
+background-image-opacity = 0.5
+
+# custom-shader = shaders/matrix-hallway.glsl
+custom-shader = shaders/starfield-colors.glsl
+custom-shader = shaders/cursor_blaze.glsl
+# custom-shader = shaders/cursor_smear_fade.glsl
+
+# env = SHELL=/bin/zsh
+# initial-command = "/etc/profiles/per-user/kenrictee/bin/fish -lc 'exec zellij attach -c home'"
+# command = "/etc/profiles/per-user/kenrictee/bin/fish -lc 'exec zesh cn $(zesh l | fzf)'"
+
+# contain (def), cover, stretch, none
+background-image-fit = cover
+background-opacity = 0.95
+background-blur = true
+unfocused-split-opacity = 0.8
+
+# cursor
+cursor-style-blink = false
+mouse-hide-while-typing = true
+# shell-integration-features = no-cursor
+
+macos-titlebar-style = hidden
+macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+
+window-padding-x = 20
+# window-padding-y = 5
+# window-padding-color = extend
+
+window-save-state = always
+
+# Empty values reset the configuration to the default value
+# font-family = "0xProto Nerd Font Mono"
+# font-family = "SpaceMono Nerd Font Mono"
+## Krypton (Mech sans)/Radon (Handwriting)/Xenon (serif)/Argon (sans 1)/Neon (sans 2)
+# font-family = "Monaspace Neon"
+# font-family = "IosevkaTerm NFM"
+# font-family = "Source Code Pro"
+font-family = "JetBrainsMono Nerd Font Mono"
+font-size = 14
+
+adjust-cell-height = 20%
+minimum-contrast = 3
+
+confirm-close-surface = false
+# disable to have dropdown term
+quit-after-last-window-closed = false
+
+# keybind = global:cmd+shift+grave_accent=toggle_quick_terminal
+keybind = global:alt+enter=toggle_quick_terminal
+keybind = cmd+\=new_split:right
+keybind = cmd+shift+\=new_split:down
+
+keybind = cmd+shift+f=write_scrollback_file:open
+
+# keyboard scroll
+# keybind = ctrl+shift+k=scroll_page_lines:-30
+# keybind = ctrl+shift+j=scroll_page_lines:30
+keybind = ctrl+shift+u=scroll_page_up
+keybind = ctrl+shift+d=scroll_page_down
+
+# goto split
+keybind = cmd+shift+h=goto_split:left
+keybind = cmd+shift+l=goto_split:right
+keybind = cmd+shift+j=goto_split:bottom
+keybind = cmd+shift+k=goto_split:top
+
+# resize split
+keybind = cmd+ctrl+h=resize_split:left,30
+keybind = cmd+ctrl+l=resize_split:right,30
+keybind = cmd+ctrl+k=resize_split:up,30
+keybind = cmd+ctrl+j=resize_split:down,30
+
+keybind = ctrl+l=clear_screen
+
+# disable
+keybind = cmd+d=unbind
+keybind = ctrl+h=unbind
+keybind = ctrl+j=unbind
+keybind = ctrl+k=unbind
+keybind = ctrl+l=unbind
+keybind = ctrl+shift+h=unbind
+# keybind = ctrl+shift+j=unbind
+# keybind = ctrl+shift+k=unbind
+keybind = ctrl+shift+l=unbind
+keybind = ctrl+tab=unbind

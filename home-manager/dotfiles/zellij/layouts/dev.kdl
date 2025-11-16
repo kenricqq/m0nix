@@ -1,0 +1,40 @@
+layout {
+    default_tab_template {
+        pane {
+            borderless true
+            plugin {
+                location "zellij:tab-bar"
+            }
+            size 1
+        }
+        children
+        pane {
+            borderless true
+            plugin {
+                location "zellij:status-bar"
+            }
+            size 2
+        }
+    }
+    tab focus=true name="Project" {
+        pane {
+            command "hx"
+        }
+    }
+    tab name="Git" {
+        pane {
+            command "lazygit"
+        }
+    }
+    tab name="Files" {
+        pane {
+            command "yazi"
+        }
+    }
+    tab name="Shell" {
+        pane {
+            command "zsh"
+        }
+    }
+}
+

@@ -1,0 +1,408 @@
+start-at-login = true
+
+after-startup-command = [
+  # 'exec-and-forget sketchybar',
+  # 'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+]
+
+exec-on-workspace-change = [
+  # '/bin/bash',
+  # '-c',
+  # 'sketchybar --trigger aerospace_workspace_changed FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = [
+  'move-mouse window-lazy-center',
+  # 'exec-and-forget sketchybar --trigger front_app_switched',
+  # 'exec-and-forget sketchybar --trigger send_message MESSAGE="Focus has changed"',
+]
+
+# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+enable-normalization-flatten-containers = false
+enable-normalization-opposite-orientation-for-nested-containers = false
+
+# You can set 0 to disable the padding feature
+accordion-padding = 100
+
+# Possible values: tiles|accordion
+default-root-container-layout = 'tiles'
+
+# Possible values: horizontal|vertical|auto
+# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
+#               tall monitor (anything higher than wide) gets vertical orientation
+default-root-container-orientation = 'auto'
+
+# Turn off macOS "Hide application" (cmd-h) feature
+automatically-unhide-macos-hidden-apps = true
+
+# Possible values: (qwerty|dvorak)
+[key-mapping]
+preset = 'qwerty'
+
+[gaps]
+inner.horizontal = 0
+inner.vertical = 0
+outer.top = 0
+outer.left = 0
+outer.bottom = 0
+outer.right = 0
+[workspace-to-monitor-force-assignment]
+# any = 'main'       # Monitor sequence number from left to right. 1-based indexing
+# dev = 'main'       # Main monitor
+# term = 'main'      # Main monitor
+# plan = 'secondary' # Non-main monitor in case when there are only two monitors
+# wr = 'secondary'   # Non-main monitor in case when there are only two monitors
+# bwsr = 'built-in'  # Case insensitive regex substring
+1 = 'main'
+2 = 'main'
+3 = 'main'
+4 = 'secondary'
+5 = 'secondary'
+# 6 = '^built-in retina display$'  # Case insensitive regex match
+# 7 = ['secondary', 'dell']        # You can specify multiple patterns.
+#   The first matching pattern will be used
+
+
+[exec]
+inherit-env-vars = true # default: true
+
+[exec.env-vars]
+PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:/Users/kenrictee/.nix-profile/bin:/etc/profiles/per-user/kenrictee/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin'
+
+# 'main' binding mode declaration
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# 'main' binding mode must be always presented
+# Fallback value (if you omit the key): mode.main.binding = {}
+[mode.main.binding]
+cmd-h = []     # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
+alt-semicolon = [
+  'mode service',
+  'exec-and-forget sketchybar --trigger send_message MESSAGE="Aerospace in Service Mode" HOLD="true"',
+]
+
+alt-m = 'exec-and-forget sketchybar --trigger aerospace_switch'
+
+alt-z = [
+  'exec-and-forget brew services list | rg "sketchybar.*started|borders.*started" && brew services stop sketchybar && brew services stop borders || (brew services start sketchybar && brew services start borders',
+  # 'exec-and-forget brew services stop sketchybar',
+  # 'exec-and-forget brew services stop borders'
+]
+
+# All possible keys:
+# - Letters.        a, b, c, ..., z
+# - Numbers.        0, 1, 2, ..., 9
+# - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
+# - F-keys.         f1, f2, ..., f20
+# - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon, backtick,
+#                   leftSquareBracket, rightSquareBracket, space, enter, esc, backspace, tab
+# - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+#                   keypadMinus, keypadMultiply, keypadPlus
+# - Arrows.         left, down, up, right
+
+# All possible modifiers: cmd, alt, ctrl, shift
+
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
+# alt-enter = '''exec-and-forget osascript -e '
+# tell application "Terminal"
+# All possible commands: https://nikitabobko.github.io/AeroSpace/commands
+#     do script
+#     activate
+# end tell'
+# '''
+
+# GUI APPS (hyperkey)
+
+alt-ctrl-cmd-shift-r = 'exec-and-forget open -n /Applications/rio.app'
+alt-ctrl-cmd-shift-enter = 'exec-and-forget open -a /Applications/Ghostty.app'
+alt-ctrl-cmd-shift-h = 'exec-and-forget open -a /Applications/Helium.app'
+alt-ctrl-cmd-shift-c = 'exec-and-forget open -a /Applications/ChatGPT.app'
+alt-ctrl-cmd-shift-z = 'exec-and-forget open -a /Applications/Zen.app'
+alt-ctrl-cmd-shift-d = 'exec-and-forget open -a /Applications/OrbStack.app'
+alt-ctrl-cmd-shift-l = 'exec-and-forget open -a /Applications/Linear.app'
+alt-ctrl-cmd-shift-v = 'exec-and-forget open -a /Applications/zoom.us.app'
+alt-ctrl-cmd-shift-o = 'exec-and-forget open -a /Applications/Obsidian.app'
+alt-ctrl-cmd-shift-y = 'exec-and-forget open -a /Applications/yaak.app'
+# alt-shift-z = 'exec-and-forget open -a /Applications/Zed Preview.app'
+
+
+## USER BINDINGS'
+
+# select and edit config
+alt-e = 'exec-and-forget dir="$HM"; while true; do item=$(cd "$dir" && ls -A | choose); [ -z "$item" ] && break; if [ -d "$dir/$item" ]; then dir="$dir/$item"; else hxbin=$(command -v hx || echo /opt/homebrew/bin/hx); /Applications/rio.app/Contents/MacOS/rio -w "$dir" -e "$hxbin" "$item" && exit; osascript -e "tell application \"Rio\" to activate"; break; fi; done'
+
+
+# select music
+alt-shift-m = 'exec-and-forget nohup $SCRIPTS/rofi-beats > /dev/null 2>&1 &'
+
+# Alt-? : show *all* bindings (main + service) and run the one you pick
+alt-shift-slash = 'exec-and-forget modes=$(aerospace config --get mode --keys); list_cmds() { for m in $modes; do for k in $(aerospace config --get mode.$m.binding --keys); do val=$(aerospace config --get mode.$m.binding.$k | tr "\n" " ; "); val=${val% ; }; printf "%s\t%s\t%s\n" "$m" "$k" "$val"; done; done; }; sel=$(list_cmds | choose); [ -z "$sel" ] && exit 0; mode=$(printf "%s" "$sel" | cut -f1); binding=$(printf "%s" "$sel" | cut -f2); aerospace trigger-binding --mode "$mode" "$binding"'
+
+### Open any app (switch)
+alt-shift-s = 'exec-and-forget aerospace list-windows --all | choose | cut -d"|" -f1 | xargs -I {} aerospace focus --window-id {}'
+
+# toggle sketchybar
+alt-b = 'exec-and-forget sketchybar --bar hidden=toggle'
+
+# golinks
+alt-g = 'exec-and-forget f="$SCRIPTS/golinks.yaml"; key=$(yq -r ".links|keys[]" "$f" | choose) || exit; url=$(KEY="$key" yq -er ".links[env(KEY)]" "$f") || exit; open "$url"'
+
+
+# Window Manager Commands
+
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+alt-shift-h = 'move left'
+# alt-shift-j = 'move down'
+# alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+alt-shift-minus = 'resize smart -50'
+alt-shift-equal = 'resize smart +50'
+
+# alt-a = 'workspace any'
+# alt-b = 'workspace bwsr'
+# alt-d = 'workspace dev'
+# alt-p = 'workspace plan'
+# alt-t = 'workspace term'
+# alt-w = 'workspace wr'
+
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+# alt-6 = 'workspace 6'
+# alt-7 = 'workspace 7'
+
+alt-leftSquareBracket = 'workspace --wrap-around prev'
+alt-rightSquareBracket = 'workspace --wrap-around next'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+# alt-shift-a = ['move-node-to-workspace any', 'workspace any']
+# alt-shift-b = ['move-node-to-workspace bwsr', 'workspace bwsr']
+# alt-shift-d = ['move-node-to-workspace dev', 'workspace dev']
+# alt-shift-p = ['move-node-to-workspace plan', 'workspace plan']
+# alt-shift-t = ['move-node-to-workspace term', 'workspace term']
+# alt-shift-w = ['move-node-to-workspace wr', 'workspace wr']
+alt-shift-1 = ['move-node-to-workspace 1', 'workspace 1']
+alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
+alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
+alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
+alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
+# alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
+# alt-shift-7 = ['move-node-to-workspace 7', 'workspace 7']
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+alt-shift-tab = 'workspace-back-and-forth'
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+alt-shift-esc = 'move-workspace-to-monitor --wrap-around next'
+
+alt-f = 'fullscreen'
+alt-shift-f = 'flatten-workspace-tree'
+
+# 'service' binding mode declaration.
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+[mode.service.binding]
+esc = [
+  'reload-config',
+  'mode main',
+  # 'exec-and-forget sketchybar --reload',
+  # 'exec-and-forget sleep 0.5 && sketchybar --trigger send_message MESSAGE="Aerospace Reloaded"',
+  # 'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=2.0',
+]
+r = [
+  'flatten-workspace-tree',
+  'mode main',
+  # 'exec-and-forget sketchybar --reload',
+  # 'exec-and-forget sleep 0.5 && sketchybar --trigger send_message MESSAGE="Aerospace Reloaded"',
+] # reset layout
+t = ['layout tiles horizontal vertical']
+a = ['layout accordion horizontal vertical']
+f = [
+  # 'exec-and-forget $SCRIPTS/center_floats',
+  'move-mouse window-force-center',
+  'layout floating tiling',
+]
+backspace = [
+  'close-all-windows-but-current',
+  'mode main',
+  # 'exec-and-forget sketchybar --reload',
+  # 'exec-and-forget sleep 0.5 && sketchybar --trigger send_message MESSAGE="Windows Closed"',
+]
+
+# sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+#s = ['layout sticky tiling', 'mode main']
+
+alt-shift-h = ['join-with left']
+alt-shift-j = ['join-with down']
+alt-shift-k = ['join-with up']
+alt-shift-l = ['join-with right']
+
+# https://nikitabobko.github.io/AeroSpace/goodies#popular-apps-ids
+
+## Finder
+[[on-window-detected]]
+if.app-id = "com.apple.finder"
+check-further-callbacks = true
+run = 'layout floating'
+
+## Voice Memos
+[[on-window-detected]]
+if.app-id = 'com.apple.VoiceMemos'
+check-further-callbacks = true
+run = 'layout floating'
+
+## Zen Mini-Window
+[[on-window-detected]]
+if.app-id = 'app.zen-browser.zen'
+check-further-callbacks = true
+if.window-title-regex-substring = 'picture-in-picture'
+run = 'layout floating'
+
+## Todoist
+[[on-window-detected]]
+if.app-id = "com.todoist.mac.Todoist"
+check-further-callbacks = true
+run = 'layout floating'
+
+## Shottr
+[[on-window-detected]]
+if.app-id = "cc.ffitch.shottr"
+check-further-callbacks = true
+run = 'layout floating'
+
+## Lulu
+[[on-window-detected]]
+if.app-id = "com.objective-see.lulu.app"
+check-further-callbacks = true
+run = 'layout floating'
+
+## Proton VPN
+[[on-window-detected]]
+if.app-id = "ch.protonvpn.mac"
+check-further-callbacks = true
+run = 'layout floating'
+
+## Wispr Flow
+[[on-window-detected]]
+if.app-id = "com.electron.wispr-flow"
+check-further-callbacks = true
+run = 'layout floating'
+
+## Ghostty
+[[on-window-detected]]
+if.app-id = "com.mitchellh.ghostty"
+check-further-callbacks = true
+run = "layout floating"
+
+# ANY
+## Find My
+[[on-window-detected]]
+if.app-id = 'com.apple.findmy'
+run = ['move-node-to-workspace 4']
+
+## Apple Shortcuts
+[[on-window-detected]]
+if.app-id = 'com.apple.shortcuts'
+run = ['move-node-to-workspace 4']
+
+## FaceTime
+[[on-window-detected]]
+if.app-id = 'com.apple.FaceTime'
+run = ['move-node-to-workspace 4']
+
+## Signal
+[[on-window-detected]]
+if.app-id = 'org.whispersystems.signal-desktop'
+run = ['move-node-to-workspace 4']
+
+# WRITING
+
+## Apple Notes
+[[on-window-detected]]
+if.app-id = "com.apple.Notes"
+run = ['move-node-to-workspace 5']
+
+## Obsidian
+[[on-window-detected]]
+if.app-id = "md.obsidian"
+run = ['move-node-to-workspace 5']
+
+## Linear
+[[on-window-detected]]
+if.app-id = "com.linear"
+run = ['move-node-to-workspace 5']
+
+## Calendar
+[[on-window-detected]]
+if.app-id = "com.apple.iCal"
+run = ['move-node-to-workspace 5']
+
+## Apple Books
+[[on-window-detected]]
+if.app-id = "com.apple.iBooksX"
+run = ['move-node-to-workspace 5']
+
+
+# CODING
+
+## Wezterm
+[[on-window-detected]]
+if.app-id = "com.github.wez.wezterm"
+run = ['move-node-to-workspace 2']
+
+## Rio
+[[on-window-detected]]
+if.app-id = "com.raphaelamorim.rio"
+check-further-callbacks = true
+run = ['layout floating']
+
+# ## Ghostty
+# [[on-window-detected]]
+# if.app-id = "com.mitchellh.ghostty"
+# run = ['move-node-to-workspace 2']
+
+## Kitty
+[[on-window-detected]]
+if.app-id = "net.kovidgoyal.kitty"
+run = ['move-node-to-workspace 2']
+
+## VS Code
+[[on-window-detected]]
+if.app-id = "com.microsoft.VSCode"
+run = ['move-node-to-workspace 2']
+
+# TOOLING
+
+## Yaak
+[[on-window-detected]]
+if.app-id = "app.yaak.desktop"
+run = ['move-node-to-workspace 3']
+
+## DaVinci Resolve
+[[on-window-detected]]
+if.app-id = "com.blackmagic-design.DaVinciResolveLite"
+run = ['move-node-to-workspace 3']
+
+## OrbStack
+[[on-window-detected]]
+if.app-id = "dev.kdrag0n.MacVirt"
+run = ['move-node-to-workspace 3']
+
+## Xcode
+[[on-window-detected]]
+if.app-id = "com.apple.dt.Xcode"
+run = ['move-node-to-workspace 3']
+
+## IOS Simulator
+[[on-window-detected]]
+if.app-id = "com.apple.iphonesimulator"
+run = ['move-node-to-workspace 3']

@@ -1,0 +1,33 @@
+{
+	"theme": "Zedokai Darker (Filter Spectrum)",
+	"telemetry": {
+		"diagnostics": false,
+		"metrics": false
+	},
+	"vim_mode": true,
+	"vim": {
+		"use_system_clipboard": "always",
+		"use_multiline_find": true,
+		"use_smartcase_find": true
+	},
+	"autosave": "on_focus_change",
+	"cursor_blink": false,
+	"buffer_font_family": "Monaspace Radon",
+	"buffer_font_size": 16,
+	"hard_tabs": true,
+	"ui_font_family": "Monaspace Neon",
+	"ui_font_size": 16,
+	"relative_line_numbers": true,
+	"scrollbar": {
+		"show": "auto"
+	},
+	"vertical_scroll_margin": 10,
+	"inlay_hints": {
+		"enabled": true
+	},
+	"git": {
+		"inline_blame": {
+			"enabled": false
+		}
+	}
+}
