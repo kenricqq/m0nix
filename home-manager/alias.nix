@@ -161,11 +161,14 @@ let
       br = "run";
     };
     cargo = {
-      cb = "cargo build";
-      cc = "cargo check";
-      ci = "cargo binstall";
-      cr = "cargo run";
-      cu = "cargo update";
+      ca = "add";
+      cb = "build";
+      cbi = "binstall";
+      cc = "check";
+      ci = "init";
+      cn = "new";
+      cr = "run";
+      cu = "update";
     };
     git = {
       ga = "add";

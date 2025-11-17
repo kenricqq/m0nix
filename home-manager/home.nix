@@ -128,6 +128,7 @@ in
         # Rust Dev
         rustup
         cargo-watch
+        cargo-make
         dioxus-cli
         cargo-binstall
 

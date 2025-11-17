@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # scls.url = "github:estin/simple-completion-language-server";
+    scls.url = "github:estin/simple-completion-language-server";
   };
 
   outputs =
@@ -38,7 +38,7 @@
       nix-darwin,
       sops-nix,
       home-manager,
-      # scls,
+      scls,
       ...
     }@inputs:
     let
@@ -46,7 +46,7 @@
       inherit (inputs.nixpkgs.lib) attrValues;
 
       system = "aarch64-darwin";
-      # scls-dev = scls.defaultPackage.${system};
+      scls-dev = scls.defaultPackage.${system};
     in
     {
       darwinConfigurations."Kenrics-MacBook-Air" = nix-darwin.lib.darwinSystem {
@@ -100,7 +100,7 @@
                   sops-nix.homeManagerModules.sops
                 ];
               extraSpecialArgs = {
-                # scls = scls-dev;
+                scls = scls-dev;
               };
             };
 
