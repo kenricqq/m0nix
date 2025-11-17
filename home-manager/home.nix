@@ -44,6 +44,7 @@ in
     };
   };
   home = {
+    homeDirectory = home;
     stateVersion = "25.11";
 
     sessionPath =

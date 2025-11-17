@@ -170,6 +170,11 @@ let
       cr = "run";
       cu = "update";
     };
+    rustup = {
+      rt = "toolchain";
+      ru = "update";
+      rd = "default";
+    };
     git = {
       ga = "add";
       gc = "commit -m";
