@@ -133,7 +133,7 @@ alt-ctrl-cmd-shift-y = 'exec-and-forget open -a /Applications/yaak.app'
 ## USER BINDINGS'
 
 # select and edit config
-alt-e = 'exec-and-forget dir="$HM"; while true; do item=$(cd "$dir" && ls -A | choose); [ -z "$item" ] && break; if [ -d "$dir/$item" ]; then dir="$dir/$item"; else hxbin=$(command -v hx || echo /opt/homebrew/bin/hx); /Applications/rio.app/Contents/MacOS/rio -w "$dir" -e "$hxbin" "$item" && exit; osascript -e "tell application \"Rio\" to activate"; break; fi; done'
+alt-shift-e = 'exec-and-forget dir="$HM"; while true; do item=$(cd "$dir" && ls -A | choose); [ -z "$item" ] && break; if [ -d "$dir/$item" ]; then dir="$dir/$item"; else hxbin=$(command -v hx || echo /opt/homebrew/bin/hx); /Applications/rio.app/Contents/MacOS/rio -w "$dir" -e "$hxbin" "$item" && exit; osascript -e "tell application \"Rio\" to activate"; break; fi; done'
 
 
 # select music
@@ -146,7 +146,7 @@ alt-shift-slash = 'exec-and-forget modes=$(aerospace config --get mode --keys); 
 alt-shift-s = 'exec-and-forget aerospace list-windows --all | choose | cut -d"|" -f1 | xargs -I {} aerospace focus --window-id {}'
 
 # toggle sketchybar
-alt-b = 'exec-and-forget sketchybar --bar hidden=toggle'
+alt-shift-b = 'exec-and-forget sketchybar --bar hidden=toggle'
 
 # golinks
 alt-g = 'exec-and-forget f="$SCRIPTS/golinks.yaml"; key=$(yq -r ".links|keys[]" "$f" | choose) || exit; url=$(KEY="$key" yq -er ".links[env(KEY)]" "$f") || exit; open "$url"'
@@ -298,10 +298,10 @@ check-further-callbacks = true
 run = 'layout floating'
 
 ## Ghostty
-[[on-window-detected]]
-if.app-id = "com.mitchellh.ghostty"
-check-further-callbacks = true
-run = "layout floating"
+# [[on-window-detected]]
+# if.app-id = "com.mitchellh.ghostty"
+# check-further-callbacks = true
+# run = "layout floating"
 
 # ANY
 ## Find My

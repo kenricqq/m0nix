@@ -35,6 +35,7 @@
     # shell history
     atuin = {
       enable = true;
+      enableFishIntegration = false;
       settings = {
         ctrl_n_shortcuts = true;
         enter_accept = true;

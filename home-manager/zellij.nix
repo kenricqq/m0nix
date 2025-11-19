@@ -4,8 +4,9 @@
   programs.zellij = {
     enable = true;
     # enableZshIntegration = true;
-    attachExistingSession = false;
-    exitShellOnExit = false;
+    enableFishIntegration = true;
+    attachExistingSession = true;
+    exitShellOnExit = true;
     # extraConfig = ''
     #   keybinds {
     #       // keybinds are divided into modes
@@ -118,34 +119,6 @@
     #       ];
     #     };
     #   };
-    # };
-    # settings = {
-    #   theme = "kanagawa";
-    #   default_mode = "locked";
-    #   ui = {
-    #     pane_frames = {
-    #       rounded_corners = true;
-    #     };
-    #   };
-    #   show_startup_tips = false;
-    #   keybinds._props.clear-defaults = false;
-    #   keybinds.pane._children = [
-    #     {
-    #       bind = {
-    #         _args = [ "e" ];
-    #         _children = [
-    #           { TogglePaneEmbedOrFloating = { }; }
-    #           { SwitchToMode._args = [ "locked" ]; }
-    #         ];
-    #       };
-    #     }
-    #     {
-    #       bind = {
-    #         _args = [ "left" ];
-    #         MoveFocus = [ "left" ];
-    #       };
-    #     }
-    #   ];
     # };
   };
 }
