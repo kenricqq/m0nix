@@ -83,7 +83,7 @@ let
   };
 
   nixAliases = {
-    dhm = "cd $NX/secrets && yq eval 'keys | .[] | select(. != \"sops\")' secrets.yaml > secrets.list && sudo darwin-rebuild switch --flake ../";
+    dhm = "cd $NX && yq eval 'keys | .[] | select(. != \"sops\")' secrets/secrets.yaml > secrets.list && sudo darwin-rebuild switch --flake . && rm secrets.list";
     dhmp = "cd $NX && sudo darwin-rebuild switch --flake . --impure";
     darling = "cd $NX && sudo darwin-rebuild switch --flake . && sudo zsh ~/Documents/KTQQ/m1_backup/backup.zsh && nix store optimise && nix-collect-garbage";
     nfu = "cd $NX && nix flake update";

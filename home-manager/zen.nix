@@ -1,9 +1,9 @@
-{ config, pkgs }:
+{ config, pkgs, ... }:
 
 {
   programs.zen-browser = {
     enable = true;
-    nativeMessagingHosts = [ pkgs.firefoxpwa ];
+    # nativeMessagingHosts = with pkgs; [ ];
     policies =
       let
         mkLockedAttrs = builtins.mapAttrs (
@@ -68,7 +68,7 @@
         };
         Shopping = {
           color = "yellow";
-          icon = "dollarsign";
+          icon = "dollar";
           id = 3;
         };
       };

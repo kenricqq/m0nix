@@ -1,7 +1,6 @@
 {
   # config,
   # lib,
-  dir,
   ...
 }:
 
@@ -256,12 +255,9 @@
       };
       gs = "git status";
       lg = "lazygit";
-      y = "yazi";
+      y = "yy";
 
-      dev = "cd $DEV";
-      proj = "cd $PROJ_DIR";
-
-      update = "nix flake update && home-manager switch";
+      update = "nix flake update && dhm";
     };
 
     # shellAliases = {

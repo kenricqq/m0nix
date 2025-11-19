@@ -237,18 +237,18 @@
         #           script-binding uosc/video   #! Video tracks
         # additional comments
       '';
-      scripts = with pkgs.mpvScripts; [
-        mpris
-        uosc # UI for video player
-        sponsorblock-minimal # for yt videos
-        mpv-playlistmanager
+      #   scripts = with pkgs.mpvScripts; [
+      #     mpris
+      #     uosc # UI for video player
+      #     sponsorblock-minimal # for yt videos
+      #     mpv-playlistmanager
 
-        eisa01.undoredo
-        eisa01.smartskip
-        eisa01.smart-copy-paste-2
-        eisa01.simplehistory
-        eisa01.simplebookmark
-      ];
+      #     eisa01.undoredo
+      #     eisa01.smartskip
+      #     eisa01.smart-copy-paste-2
+      #     eisa01.simplehistory
+      #     eisa01.simplebookmark
+      #   ];
     };
     # fzf cheatsheet for cli, can wrap tldr
     navi = {
@@ -261,7 +261,7 @@
         enable = true;
         onCalendar = "daily";
       };
-      autoreload = false;
+      autoReload = true;
       autoVacuum = {
         enable = true;
         onCalendar = "weekly";

@@ -249,7 +249,6 @@ in
 
         # visuals
         chafa
-        arttime
         onefetch # git repo
         fastfetch
         cbonsai
