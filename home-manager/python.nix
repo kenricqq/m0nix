@@ -7,12 +7,10 @@ let
       ipython
       # toml
       # pymilvus # milvus vector db
-      transformers
 
       uv-build
 
       # TOOLS
-      openai
       # ipykernel
       # langchain
       # gradio
@@ -21,7 +19,6 @@ let
       httpx
       # rich
       # questionary
-      ollama # ollama-python, different from ollama
 
       # SERVER
 

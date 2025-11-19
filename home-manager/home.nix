@@ -14,7 +14,7 @@ let
     ;
 
   shellAliases = import ./alias.nix;
-  python-packages = import ./python.nix;
+  # python-packages = import ./python.nix;
 in
 # user packages, not available in sudo mode
 {
@@ -100,12 +100,14 @@ in
     packages =
       with pkgs;
       [
-        (python313.withPackages python-packages)
+        # (python313.withPackages python-packages)
 
         # helix lsps
         nixd # Nix
         nixfmt-rfc-style # nix official
 
+        circumflex # browse hacker news
+        ticker # cli stock ticker
         zk # note-taking assistant
         typst
         google-cloud-sdk
@@ -178,6 +180,7 @@ in
         termscp # file transfer
         mpc # cli interface for mpd
         # mpd # music player daemon
+        kew # music player
 
         # Task Tracking
 
@@ -245,8 +248,10 @@ in
         puffin # personal finance dashboard
 
         # visuals
+        chafa
+        arttime
         onefetch # git repo
-        screenfetch
+        fastfetch
         cbonsai
         rust-stakeholder # troll: impressive-looking nonsense terminal output
         # macchina

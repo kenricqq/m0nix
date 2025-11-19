@@ -33,6 +33,7 @@ let
     venv = "source $(fd -HI -td .venv \"$(git rev-parse --show-toplevel)\" | head -n 1)/bin/activate";
     music = "mpd && rmpc";
     mdo = "mdbook serve -o";
+    weather = "curl wttr.in/Santa+Cruz";
 
     ## ----- ##
     # alias magic='kt && sudo zsh m1_backup/backup.zsh'
@@ -64,6 +65,7 @@ let
     rg = "rga";
     timer = "timr-tui";
     zed = "zed-preview";
+    ze = "zellij";
   };
 
   navAliases = {

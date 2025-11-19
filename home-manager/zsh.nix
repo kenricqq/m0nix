@@ -23,7 +23,7 @@ in
 {
   sops = {
     defaultSopsFile = secretsFile;
-    age.keyFile = "${path.nix}/keys.txt";
+    age.keyFile = "${path.nix}/secrets/keys.txt";
     secrets = secretsAttrset;
   };
   home.activation = {
