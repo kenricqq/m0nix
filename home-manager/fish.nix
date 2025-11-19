@@ -243,7 +243,7 @@
       # any login-specific env, if needed
     '';
 
-    preferAbbrs = true;
+    preferAbbrs = false;
 
     shellAbbrs = {
       l = "less";
@@ -255,7 +255,6 @@
       };
       gs = "git status";
       lg = "lazygit";
-      y = "yy";
 
       update = "nix flake update && dhm";
     };

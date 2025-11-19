@@ -64,6 +64,7 @@ let
     r = "rust";
     rg = "rga";
     timer = "timr-tui";
+    y = "yy";
     zed = "zed-preview";
     ze = "zellij";
   };
