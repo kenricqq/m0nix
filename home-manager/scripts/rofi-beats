@@ -5,14 +5,18 @@ notification(){
 }
 
 declare -A stations=(
-    [1]="Lofi Girl|https://play.streamafrica.net/lofiradio"
-    [2]="Chillhop|http://stream.zeno.fm/fyn8eh3h5f8uv"
-    [3]="Box Lofi|http://stream.zeno.fm/f3wvbbqmdg8uv"
-    [4]="The Bootleg Boy|http://stream.zeno.fm/0r0xa792kwzuv"
-    [5]="Radio Spinner|https://live.radiospinner.com/lofi-hip-hop-64"
-    [6]="SmoothChill|https://media-ssl.musicradio.com/SmoothChill"
-
-    [7]="Stop Music"
+    [1]="All Classical|https://allclassical-ice.streamguys.com/ac96kmp3mp3"
+    [2]="YourClassical|https://ycradio.stream.publicradio.org/ycradio.aac"
+    [3]="Classical Violin|https://stream.epic-classical.com/classical-violin"
+    [4]="ABC Classic 2|http://www.abc.net.au/res/streaming/audio/mp3/classic_two.pls"
+    [5]="DR P2|http://live-icy.gss.dr.dk/A/A04H.mp3.m3u"
+    [6]="Lofi Girl|https://play.streamafrica.net/lofiradio"
+    [7]="Chillhop|http://stream.zeno.fm/fyn8eh3h5f8uv"
+    [8]="Box Lofi|http://stream.zeno.fm/f3wvbbqmdg8uv"
+    [9]="The Bootleg Boy|http://stream.zeno.fm/0r0xa792kwzuv"
+    [10]="Radio Spinner|https://live.radiospinner.com/lofi-hip-hop-64"
+    [11]="SmoothChill|https://media-ssl.musicradio.com/SmoothChill"
+    [12]="Stop Music"
 )
 
 menu() {
