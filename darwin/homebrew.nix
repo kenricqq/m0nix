@@ -15,6 +15,8 @@
       "nikitabobko/tap" # aerospace
     ]; # ];
     brews = [
+      "humanlog"
+
       # "podman"
       # "kanata"
       # "docker-compose"

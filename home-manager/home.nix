@@ -101,6 +101,25 @@ in
       [
         # (python313.withPackages python-packages)
 
+        curlie # curl
+        procs # ps
+        sd # sed
+        mprocs
+
+        freeze # generate images of code/terminal out
+        dua # disk util of dir (extra? yazi space usage?)
+        kondo # clean deps and build artifacts from proj
+        clipboard-jh
+
+        toolong # log files
+
+        # JSON
+        jnv
+        gojq
+        fx
+        jless
+        jqp
+
         # helix lsps
         nixd # Nix
         nixfmt-rfc-style # nix official
