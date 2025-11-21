@@ -50,7 +50,7 @@
       };
     };
     docker-cli = {
-      enable = true;
+      enable = false;
       # settings = {
       #   "proxies" = {
       #     "default" = {

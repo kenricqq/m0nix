@@ -9,7 +9,7 @@
     <array>
         <string>/opt/homebrew/bin/kanata</string>
         <string>-c</string>
-        <string>/Users/kenrictee/.config/home-manager/scripts/kanata.kbd</string>
+        <string>$HOME/.config/home-manager/scripts/kanata.kbd</string>
     </array>
 
     <key>RunAtLoad</key>

@@ -1,14 +1,13 @@
 { pkgs, ... }:
 
 let
-  homebrew-config = import ./homebrew.nix;
   system-config = import ./system.nix;
 
 in
 {
-  # imports = [
-  #   ./services
-  # ];
+  imports = [
+    ./homebrew.nix
+  ];
 
   environment = {
     systemPackages = with pkgs; [
@@ -48,8 +47,6 @@ in
       experimental-features = "nix-command flakes";
     };
   };
-
-  homebrew = homebrew-config;
 
   system = system-config;
 }
