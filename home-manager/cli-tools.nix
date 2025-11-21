@@ -377,16 +377,16 @@
     #   };
     # };
     # faster tldr, man pages
-    tealdeer = {
-      enable = true;
-      settings = {
-        # display = {
-        #   compact = true;
-        #   use_pager = true;
-        # };
-        # updates.auto_update = true;
-      };
-    };
+    # tealdeer = {
+    #   enable = true;
+    #   settings = {
+    #     # display = {
+    #     #   compact = true;
+    #     #   use_pager = true;
+    #     # };
+    #     # updates.auto_update = true;
+    #   };
+    # };
     # general purpose fuzzy finder
     television = {
       enable = true;
