@@ -54,7 +54,6 @@ in
         ".bun/bin"
         ".nix-profile/bin"
         "go/bin"
-        "/etc/profiles/per-user/kenrictee/bin"
       ])
       ++ [
         "/opt/homebrew/bin"

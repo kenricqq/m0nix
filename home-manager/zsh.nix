@@ -163,7 +163,7 @@ in
         # fi
 
         # for secretive
-        export SSH_AUTH_SOCK=/Users/kenrictee/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+        export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
         # for mkdocs
         # After sourcing the cached brew env earlier, prefer its variables.
