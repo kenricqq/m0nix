@@ -1,7 +1,7 @@
 from pathlib import Path
 
 # Set this to your local clone of the repo
-REPO_PATH = "/Users/kenrictee/SandBox/sketchybar-app-font"
+REPO_PATH = "$HOME/SandBox/sketchybar-app-font"
 MAPPINGS_DIR = Path(REPO_PATH) / "mappings"
 
 app_to_icon = {}

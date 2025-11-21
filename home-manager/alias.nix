@@ -126,6 +126,7 @@ let
     stco = "streamlink.nix";
     yzco = "yazi.nix";
     zco = "zsh.nix";
+    zenco = "zen.nix";
     zexco = "zellij.nix";
 
     clico = "cli-tools.nix";
