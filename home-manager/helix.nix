@@ -735,6 +735,7 @@
 
       keys = {
         normal = {
+          "C-r" = ":reset-diff-change";
           "C-w" = {
             "d" = "wclose";
           };

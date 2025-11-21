@@ -137,7 +137,7 @@ alt-ctrl-cmd-shift-y = 'exec-and-forget open -a /Applications/yaak.app'
 alt-shift-e = 'exec-and-forget dir="$SCRIPTS/../"; rio="/Applications/rio.app/Contents/MacOS/rio"; hxbin=$(command -v hx || echo "/etc/profiles/per-user/$USER/bin/hx"); item=$(cd "$dir" && { for f in *; do [ -f "$f" ] && printf "%s\n" "$f"; done; for d in dotfiles/*; do [ -d "$d" ] && printf "%s/\n" "${d##*/}"; done; } | choose); [ -z "$item" ] && exit 0; case "$item" in */) subdir="$dir/dotfiles/${item%/}"; count=0; last=; for f in "$subdir"/*; do [ -f "$f" ] || continue; count=$((count+1)); last="$f"; done; if [ "$count" -eq 1 ]; then path="$last"; else path="$subdir"; fi ;; *) path="$dir/$item" ;; esac; $rio -e "$hxbin" "$path"'
 
 # select music
-alt-shift-m = 'exec-and-forget nohup $SCRIPTS/rofi-beats > /dev/null 2>&1 &'
+alt-shift-m = 'exec-and-forget zsh $SCRIPTS/rofi-beats > /dev/null 2>&1 &'
 
 # Alt-? : show *all* bindings (main + service) and run the one you pick
 alt-shift-slash = 'exec-and-forget modes=$(aerospace config --get mode --keys); list_cmds() { for m in $modes; do for k in $(aerospace config --get mode.$m.binding --keys); do val=$(aerospace config --get mode.$m.binding.$k | tr "\n" " ; "); val=${val% ; }; printf "%s\t%s\t%s\n" "$m" "$k" "$val"; done; done; }; sel=$(list_cmds | choose); [ -z "$sel" ] && exit 0; mode=$(printf "%s" "$sel" | cut -f1); binding=$(printf "%s" "$sel" | cut -f2); aerospace trigger-binding --mode "$mode" "$binding"'

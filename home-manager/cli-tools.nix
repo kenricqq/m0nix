@@ -227,10 +227,8 @@
         "Alt+0" = "set window-scale 0.5";
       };
       config = {
-        profile = "gpu-hq";
-        force-window = true;
+        # profile = "gpu-hq";
         ytdl-format = "bestvideo+bestaudio";
-        cache-default = 4000000;
       };
       extraInput = ''
         esc         quit                        #! Quit

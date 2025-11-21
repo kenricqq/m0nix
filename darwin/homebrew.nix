@@ -116,7 +116,7 @@
       # "font-commit-mono-nerd-font"
       # "font-iosevka-term-nerd-font"
       #
-      # "font-0xproto-nerd-font"
+      "font-0xproto-nerd-font"
       # "font-monaspace"
       # "font-jetbrains-mono-nerd-font"
       #

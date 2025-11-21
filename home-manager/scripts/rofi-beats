@@ -1,66 +1,131 @@
 #!/bin/sh
 
-notification(){
-    terminal-notifier -message 'Now Playing: Lofi Radio ☕️🎶'
+notification() {
+    # Optional: only notify if terminal-notifier exists
+    if command -v terminal-notifier >/dev/null 2>&1; then
+        terminal-notifier -message 'Now Playing: Lofi Radio ☕️🎶'
+    fi
 }
 
-declare -A stations=(
-    [1]="All Classical|https://allclassical-ice.streamguys.com/ac96kmp3mp3"
-    [2]="YourClassical|https://ycradio.stream.publicradio.org/ycradio.aac"
-    [3]="Classical Violin|https://stream.epic-classical.com/classical-violin"
-    [4]="ABC Classic 2|http://www.abc.net.au/res/streaming/audio/mp3/classic_two.pls"
-    [5]="DR P2|http://live-icy.gss.dr.dk/A/A04H.mp3.m3u"
-    [6]="Lofi Girl|https://play.streamafrica.net/lofiradio"
-    [7]="Chillhop|http://stream.zeno.fm/fyn8eh3h5f8uv"
-    [8]="Box Lofi|http://stream.zeno.fm/f3wvbbqmdg8uv"
-    [9]="The Bootleg Boy|http://stream.zeno.fm/0r0xa792kwzuv"
-    [10]="Radio Spinner|https://live.radiospinner.com/lofi-hip-hop-64"
-    [11]="SmoothChill|https://media-ssl.musicradio.com/SmoothChill"
-    [12]="Stop Music"
-)
-
 menu() {
-    for key in "${!stations[@]}"; do
-        description="${stations[$key]%%|*}" # Extract description
-        printf "%d. %s\n" "$key" "$description"
-    done
+    cat <<EOF
+1. All Classical
+2. YourClassical
+3. Classical Violin
+4. ABC Classic 2
+5. DR P2
+6. Lofi Girl
+7. Chillhop
+8. Box Lofi
+9. The Bootleg Boy
+10. Radio Spinner
+11. SmoothChill
+12. Stop Music
+EOF
 }
 
 play_music() {
-    station="${stations[$1]}"
-    if [[ -n $station ]]; then
-        description="${station%%|*}" # Extract description
-        url="${station##*|}" # Extract URL
-        # notification
-        mpv "$url"
-    else
-        echo "Invalid selection."
-    fi
+    choice="$1"
+
+    case "$choice" in
+        1)
+            description="All Classical"
+            url="https://allclassical-ice.streamguys.com/ac96kmp3mp3"
+            ;;
+        2)
+            description="YourClassical"
+            url="https://ycradio.stream.publicradio.org/ycradio.aac"
+            ;;
+        3)
+            description="Classical Violin"
+            url="https://stream.epic-classical.com/classical-violin"
+            ;;
+        4)
+            description="ABC Classic 2"
+            url="http://www.abc.net.au/res/streaming/audio/mp3/classic_two.pls"
+            ;;
+        5)
+            description="DR P2"
+            url="http://live-icy.gss.dr.dk/A/A04H.mp3.m3u"
+            ;;
+        6)
+            description="Lofi Girl"
+            url="https://play.streamafrica.net/lofiradio"
+            ;;
+        7)
+            description="Chillhop"
+            url="http://stream.zeno.fm/fyn8eh3h5f8uv"
+            ;;
+        8)
+            description="Box Lofi"
+            url="http://stream.zeno.fm/f3wvbbqmdg8uv"
+            ;;
+        9)
+            description="The Bootleg Boy"
+            url="http://stream.zeno.fm/0r0xa792kwzuv"
+            ;;
+        10)
+            description="Radio Spinner"
+            url="https://live.radiospinner.com/lofi-hip-hop-64"
+            ;;
+        11)
+            description="SmoothChill"
+            url="https://media-ssl.musicradio.com/SmoothChill"
+            ;;
+        12)
+            # Stop music only and exit
+            pkill -f mpv 2>/dev/null || true
+            echo "Stopped music."
+            exit 0
+            ;;
+        *)
+            echo "Invalid selection."
+            exit 1
+            ;;
+    esac
+
+    # Uncomment if you want the macOS notification:
+    # notification
+
+    mpv --no-terminal --force-window=no --audio-display=no "$url"
 }
 
 main() {
     COLOR=f7768e
     WIDTH=48
-    ROWS=7
+    ROWS=12
 
-    choice=$(menu | choose -b $COLOR -w $WIDTH -n $ROWS | cut -d. -f1)
+    # Resolve script directory so last_music_choice lives next to this script
+    script_dir=$(cd "$(dirname "$0")" && pwd)
+    last_choice_file="$script_dir/last_music_choice"
+
+    # Show menu via choose
+    choice=$(
+        menu | choose -b "$COLOR" -w "$WIDTH" -n "$ROWS" | cut -d. -f1
+    )
 
     # Exit if no choice is made
-    if [[ -z "$choice" ]]; then
+    if [ -z "$choice" ]; then
         echo "No choice made, exiting."
         exit 0
     fi
 
+    # If the user chose Stop Music, handle it here (don’t store as last choice)
+    if [ "$choice" = "12" ]; then
+        pkill -f mpv 2>/dev/null || true
+        echo "Stopped music."
+        exit 0
+    fi
+
     # Load the last choice from a file
-    last_choice_file="./last_music_choice"
-    if [[ -f $last_choice_file ]]; then
+    if [ -f "$last_choice_file" ]; then
         last_choice=$(cat "$last_choice_file")
     else
         last_choice=""
     fi
 
     # If the new choice is the same as the last one, exit without playing
-    if [[ "$choice" == "$last_choice" ]]; then
+    if [ "$choice" = "$last_choice" ]; then
         echo "Same choice as last time, no action taken."
         exit 0
     fi
@@ -69,7 +134,7 @@ main() {
     echo "$choice" > "$last_choice_file"
 
     # Stop any currently playing mpv stream and play the new selection
-    pkill -f mpv
+    pkill -f mpv 2>/dev/null || true
     play_music "$choice"
 }
 
