@@ -158,7 +158,8 @@
         "nixpkgs": "nixpkgs",
         "scls": "scls",
         "sops-nix": "sops-nix",
-        "zen-browser": "zen-browser"
+        "zen-browser": "zen-browser",
+        "zesh-src": "zesh-src"
       }
     },
     "scls": {
@@ -234,6 +235,22 @@
       "original": {
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
+        "type": "github"
+      }
+    },
+    "zesh-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741321583,
+        "narHash": "sha256-q7iGdZzUw02oOZjqb58NwxtGh9lRtUKEV4JNMHpsvZc=",
+        "owner": "roberte777",
+        "repo": "zesh",
+        "rev": "40b8ab6b7e67b56f8e78150138e4811375fa0652",
+        "type": "github"
+      },
+      "original": {
+        "owner": "roberte777",
+        "repo": "zesh",
         "type": "github"
       }
     }

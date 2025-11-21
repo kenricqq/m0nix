@@ -7,7 +7,7 @@ confirm-before-quit = false
 line-height = 1.2
 
 [editor]
-program = "/etc/profiles/per-user/kenrictee/bin/hx"
+program = "/etc/profiles/per-user/$USER/bin/hx"
 args = []
 
 [window]

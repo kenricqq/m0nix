@@ -59,7 +59,7 @@ in
         "/opt/homebrew/bin"
         "/run/current-system/sw/bin"
         "/nix/var/nix/profiles/default/bin"
-        "/etc/profiles/per-user/kenrictee/bin"
+        "/etc/profiles/per-user/$USER/bin"
       ];
 
     sessionVariables = {

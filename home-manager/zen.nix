@@ -157,6 +157,23 @@
       };
 
     profiles.default = rec {
+      # extensions = {
+      #   packages = with pkgs.nur.repos.rycee.firefox-addons; [
+      #     ublock-origin
+      #   ];
+      #   settings = {
+      #     "uBlock0@raymondhill.net".settings = {
+      #       selectedFilterLists = [
+      #         "ublock-filters"
+      #         "ublock-badware"
+      #         "ublock-privacy"
+      #         "ublock-unbreak"
+      #         "ublock-quick-fixes"
+      #       ];
+      #     };
+      #   };
+      # };
+
       isDefault = true;
 
       settings = {

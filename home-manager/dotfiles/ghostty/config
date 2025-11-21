@@ -13,8 +13,8 @@ custom-shader = shaders/cursor_blaze.glsl
 # custom-shader = shaders/cursor_smear_fade.glsl
 
 # env = SHELL=/bin/zsh
-initial-command = "/etc/profiles/per-user/kenrictee/bin/fish -lc 'exec zellij attach -c home'"
-command = "/etc/profiles/per-user/kenrictee/bin/fish -lc 'exec zesh cn $(zesh l | fzf)'"
+initial-command = "/etc/profiles/per-user/$USER/bin/fish -lc 'exec zellij attach -c home'"
+command = "/etc/profiles/per-user/$USER/bin/fish -lc 'exec zesh cn $(zesh l | fzf)'"
 
 # contain (def), cover, stretch, none
 background-image-fit = cover

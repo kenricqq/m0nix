@@ -26,6 +26,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    scls.url = "github:estin/simple-completion-language-server";
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
@@ -34,7 +36,10 @@
       };
     };
 
-    scls.url = "github:estin/simple-completion-language-server";
+    zesh-src = {
+      url = "github:roberte777/zesh";
+      flake = false; # just a source tree
+    };
   };
 
   outputs =
@@ -46,8 +51,9 @@
       nix-darwin,
       sops-nix,
       home-manager,
-      zen-browser,
       scls,
+      zen-browser,
+      zesh-src,
       ...
     }@inputs:
     let
@@ -58,7 +64,7 @@
       scls-dev = scls.defaultPackage.${system};
     in
     {
-      darwinConfigurations."Kenrics-MacBook-Air" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."DaVinci-Notebook" = nix-darwin.lib.darwinSystem {
         inherit system;
 
         modules = [
@@ -81,7 +87,7 @@
               backupFileExtension = "backup"; # ie a->a.backup
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.kenrictee.imports =
+              users.davinci.imports =
                 (map (f: ./home-manager/${f}) [
                   "paths.nix"
 
@@ -112,6 +118,7 @@
                 ];
               extraSpecialArgs = {
                 scls = scls-dev;
+                zesh-src = zesh-src;
               };
             };
 
@@ -119,7 +126,7 @@
             security.pam.services.sudo_local.touchIdAuth = true;
 
             system = {
-              primaryUser = "kenrictee";
+              primaryUser = "davinci";
               stateVersion = 6;
             };
           }
