@@ -134,8 +134,7 @@ alt-ctrl-cmd-shift-y = 'exec-and-forget open -a /Applications/yaak.app'
 ## USER BINDINGS'
 
 # select and edit config
-alt-shift-e = 'exec-and-forget dir="$SCRIPTS/../"; while true; do item=$(cd "$dir" && ls -A | choose); [ -z "$item" ] && break; if [ -d "$dir/$item" ]; then dir="$dir/$item"; else hxbin=$(command -v hx || echo /opt/homebrew/bin/hx); /Applications/rio.app/Contents/MacOS/rio -w "$dir" -e "$hxbin" "$item" && exit; osascript -e "tell application \"Rio\" to activate"; break; fi; done'
-
+alt-shift-e = 'exec-and-forget dir="$SCRIPTS/../"; rio="/Applications/rio.app/Contents/MacOS/rio"; hxbin=$(command -v hx || echo "/etc/profiles/per-user/$USER/bin/hx"); item=$(cd "$dir" && { for f in *; do [ -f "$f" ] && printf "%s\n" "$f"; done; for d in dotfiles/*; do [ -d "$d" ] && printf "%s/\n" "${d##*/}"; done; } | choose); [ -z "$item" ] && exit 0; case "$item" in */) subdir="$dir/dotfiles/${item%/}"; count=0; last=; for f in "$subdir"/*; do [ -f "$f" ] || continue; count=$((count+1)); last="$f"; done; if [ "$count" -eq 1 ]; then path="$last"; else path="$subdir"; fi ;; *) path="$dir/$item" ;; esac; $rio -e "$hxbin" "$path"'
 
 # select music
 alt-shift-m = 'exec-and-forget nohup $SCRIPTS/rofi-beats > /dev/null 2>&1 &'
