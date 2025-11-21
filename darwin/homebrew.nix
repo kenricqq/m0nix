@@ -26,6 +26,7 @@
       "tgpt"
       # "espeak-ng" # for kokoro stt
       "sevenzip"
+      "fisher"
 
       "sketchybar"
       # "borders"
