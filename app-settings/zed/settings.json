@@ -1,0 +1,199 @@
+{
+ "buffer_line_height": "comfortable",
+ "formatter": [
+		{
+			"code_action": "source.organizeImports.biome"
+		},
+		{
+			"code_action": "source.fixAll.biome"
+		},
+		"language_server"
+	],
+	"icon_theme": "Catppuccin Latte",
+	"agent": {
+		"play_sound_when_agent_done": true,
+		"always_allow_tool_actions": true
+	},
+	"context_servers": {
+		"mcp-server-context7": {
+			"source": "extension",
+			"enabled": true,
+			"settings": {
+				"default_minimum_tokens": "10000"
+			}
+		},
+		"mcp-server-linear": {
+			"source": "custom",
+			"command": "npx",
+			"args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+		},
+		"svelte": {
+			"source": "custom",
+			"command": "npx",
+			"args": ["-y", "@sveltejs/mcp"]
+		}
+	},
+	"autosave": "on_focus_change",
+	"format_on_save": "on",
+	"soft_wrap": "bounded",
+	"languages": {
+		"Zig": {
+			"code_actions_on_format": {
+				"source.organizeImports": true,
+				"source.fixAll": true
+			},
+			"language_servers": ["zls"]
+		},
+		"Svelte": {
+			"format_on_save": "on",
+			"formatter": [
+				{
+					"external": {
+						"command": "dprint",
+						"arguments": ["fmt", "--stdin", "svelte"]
+					}
+				},
+				{
+					"code_action": "source.fixAll.biome"
+				},
+				{
+					"code_action": "source.organizeImports.biome"
+				},
+				{
+					"language_server": {
+						"name": "biome"
+					}
+				}
+			],
+			"completions": {
+				"words_min_length": 2
+			},
+			"inlay_hints": {
+				"enabled": true
+			},
+			"prettier": {
+				"allowed": false
+			}
+		},
+		"Python": {
+			"formatter": [
+				{ "code_action": "source.organizeImports.ruff" },
+				{ "code_action": "source.fixAll.ruff" },
+				{
+					"language_server": {
+						"name": "ruff"
+					}
+				}
+			],
+			"language_servers": ["pyright", "ruff"]
+		},
+		"JavaScript": {
+			"formatter": [
+				{
+					"code_action": "source.fixAll.biome"
+				},
+				{
+					"code_action": "source.organizeImports.biome"
+				},
+				{
+					"language_server": {
+						"name": "biome"
+					}
+				}
+			],
+			"format_on_save": "on"
+		},
+		"TypeScript": {
+			"formatter": [
+				{
+					"code_action": "source.fixAll.biome"
+				},
+				{
+					"code_action": "source.organizeImports.biome"
+				},
+				{
+					"language_server": {
+						"name": "biome"
+					}
+				}
+			],
+			"format_on_save": "on"
+		},
+		"TSX": {
+			"formatter": [
+				{
+					"code_action": "source.fixAll.biome"
+				},
+				{
+					"code_action": "source.organizeImports.biome"
+				},
+				{
+					"language_server": {
+						"name": "biome"
+					}
+				}
+			],
+			"format_on_save": "on"
+		},
+		"JSON": {
+			"formatter": [
+				{
+					"code_action": "source.fixAll.biome"
+				},
+				{
+					"code_action": "source.organizeImports.biome"
+				},
+				{
+					"language_server": {
+						"name": "biome"
+					}
+				}
+			],
+			"format_on_save": "on"
+		},
+		"JSONC": {
+			"formatter": [
+				{
+					"code_action": "source.fixAll.biome"
+				},
+				{
+					"code_action": "source.organizeImports.biome"
+				},
+				{
+					"language_server": {
+						"name": "biome"
+					}
+				}
+			],
+			"format_on_save": "on"
+		}
+	},
+	"lsp": {
+		"biome": {
+			"settings": {
+				"require_config_file": true
+			}
+		}
+	},
+	"base_keymap": "Cursor",
+	"cursor_blink": false,
+	"helix_mode": true,
+	"always_treat_brackets_as_autoclosed": true,
+	"telemetry": {
+		"diagnostics": false,
+		"metrics": false
+	},
+	"theme": "Kanagawa",
+	// "buffer_font_family": "VictorMono Nerd Font Mono",
+	// "buffer_font_family": "SpaceMono Nerd Font Mono",
+	"buffer_font_family": "0xProto Nerd Font Mono",
+	// "buffer_font_family": "Monaspace Neon",
+	"buffer_font_size": 15,
+	"buffer_font_features": {
+		"calt": true,
+		"liga": true
+	},
+	"ui_font_family": "Monaspace Neon",
+	// "ui_font_family": "CommitMono Nerd Font",
+	"ui_font_size": 18
+}

@@ -1,0 +1,81 @@
+{
+  "settingsVersion": "2.3.1",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "mjkcftrdhlg123456789",
+      "pattern": "https?://www.youtube.com/watch*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.overleaf.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://jambox.pages.dev/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https://codio.com"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://codio.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://stackblitz.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://usevia.app/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://colab.research.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://linear.app/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://svelte.dev/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://_rvidal.gitlab.io/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://threlte.xyz/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.usevia.app/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://zty.pe/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://svelte-command-palette.vercel.app/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://makemeunsee.github.io/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.typelit.io/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://monkeytype.com/*"
+    }
+  ]
+}
