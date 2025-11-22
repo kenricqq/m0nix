@@ -762,17 +762,13 @@
           };
           "S-m" = "@mim"; # @ for macro
           "S-d" = [
-            "select_mode"
             "search_selection"
             "search_next"
-            "normal_mode"
           ];
           "Cmd-d" = [
-            "keep_primary_selection"
-            "move_prev_word_start"
-            "move_next_word_end"
             "search_selection"
             "select_mode"
+            "extend_search_next"
           ];
 
           "S-ret" = "goto_word";
