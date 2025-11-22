@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # lix-module = {
-    #   url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     nix-darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,6 +35,11 @@
       url = "github:roberte777/zesh";
       flake = false; # just a source tree
     };
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -52,6 +52,7 @@
       sops-nix,
       home-manager,
       scls,
+      stylix,
       zen-browser,
       zesh-src,
       ...
@@ -64,30 +65,23 @@
       scls-dev = scls.defaultPackage.${system};
     in
     {
-      darwinConfigurations."DaVinci-Notebook" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."Kenrics-MacBook-Air" = nix-darwin.lib.darwinSystem {
         inherit system;
 
         modules = [
-          # lix-module.nixosModules.default
-
-          nix-index-database.darwinModules.nix-index
-
           ./darwin/configuration.nix
 
+          stylix.darwinModules.stylix
+          nix-index-database.darwinModules.nix-index
           sops-nix.darwinModules.sops
-
           home-manager.darwinModules.home-manager
 
           {
-            # home-manager.extraSpecialArgs = specialArgs // {
-            #   homeManagerConfig = buildHomeManagerConfig hostname;
-            # };
-
             home-manager = {
               backupFileExtension = "backup"; # ie a->a.backup
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.davinci.imports =
+              users.kenrictee.imports =
                 (map (f: ./home-manager/${f}) [
                   "paths.nix"
 
@@ -114,7 +108,7 @@
                 ])
                 ++ [
                   zen-browser.homeModules.beta
-                  sops-nix.homeManagerModules.sops
+                  # sops-nix.homeManagerModules.sops
                 ];
               extraSpecialArgs = {
                 scls = scls-dev;
@@ -126,7 +120,7 @@
             security.pam.services.sudo_local.touchIdAuth = true;
 
             system = {
-              primaryUser = "davinci";
+              primaryUser = "kenrictee";
               stateVersion = 6;
             };
           }
