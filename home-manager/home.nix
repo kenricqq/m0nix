@@ -80,21 +80,26 @@ in
     shell.enableFishIntegration = true;
     shellAliases = shellAliases;
 
-    file = lib.mapAttrs (_: path.mkDotFile) {
-      ".config/aerospace" = "aerospace";
-      ".config/glance/glance.yml" = "glance/glance.yml";
-      # ".codex/prompts" = "codex/prompts";
-      # ".codex/AGENTS.md" = "codex/AGENTS.md";
-      ".config/rio" = "rio";
-      ".config/rmpc" = "rmpc";
-      ".config/sketchybar" = "sketchybar";
-      ".config/zellij" = "zellij";
-      ".config/zk" = "zk";
-      ".config/zsh/.p10k.zsh" = "p10k/.p10k.zsh";
-      ".mpd/mpd.conf" = "mpd/mpd.conf";
-      "Library/Application Support/com.mitchellh.ghostty" = "ghostty";
-      # ".config/nushell".source = ~/dotfiles/nushell;
-    };
+    file =
+      lib.mapAttrs (_: path.mkDotFile) {
+        ".config/aerospace" = "aerospace";
+        ".config/glance/glance.yml" = "glance/glance.yml";
+        # ".codex/prompts" = "codex/prompts";
+        # ".codex/AGENTS.md" = "codex/AGENTS.md";
+        ".config/rio" = "rio";
+        ".config/rmpc" = "rmpc";
+        ".config/sketchybar" = "sketchybar";
+        ".config/zellij" = "zellij";
+        ".config/zk" = "zk";
+        ".config/zsh/.p10k.zsh" = "p10k/.p10k.zsh";
+        ".mpd/mpd.conf" = "mpd/mpd.conf";
+        "Library/Application Support/com.mitchellh.ghostty" = "ghostty";
+        # ".config/nushell".source = ~/dotfiles/nushell;
+      }
+      // {
+        # ensure launchd log directory exists so glance can start at login
+        "Library/Logs/glance/.keep".text = "";
+      };
 
     packages =
       with pkgs;
@@ -192,12 +197,8 @@ in
         # rustic # deduplicated and encrypted backup, takes folder snapshots
 
         # MEDIA (audio / video)
-        portaudio # realtime audio i/o
         ffmpeg # cli edit/convert/stream multimedia content
-        switchaudio-osx # macOS cli audio source
         termscp # file transfer
-        mpc # cli interface for mpd
-        # mpd # music player daemon
         kew # music player
 
         # Task Tracking
@@ -253,10 +254,6 @@ in
         postgresql
         sqlc
         turso-cli
-
-        # converter
-        ascii-image-converter
-        imagemagick
 
         # other
         mdbook # create book from md files

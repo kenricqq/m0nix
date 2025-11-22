@@ -7,6 +7,7 @@ in
 {
   imports = [
     ./homebrew.nix
+    ./fonts.nix
   ];
 
   stylix = {

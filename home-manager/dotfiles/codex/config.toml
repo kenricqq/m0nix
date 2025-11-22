@@ -1,4 +1,4 @@
-model = "gpt-5.1-codex"
+model = "gpt-5.1-codex-max"
 model_reasoning_effort = "low"
 network_access = true
 notify = ["python3", "./notify.py"]
@@ -66,3 +66,6 @@ command = "github-mcp-server"
 [mcp_servers.svelte]
 args = ["-y", "@sveltejs/mcp"]
 command = "bunx"
+
+[notice]
+"hide_gpt-5.1-codex-max_migration_prompt" = true

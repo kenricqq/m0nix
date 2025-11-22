@@ -2,9 +2,9 @@
 
 let
   path = rec {
-    home = "/Users/kenrictee";
+    home = "/Users/davinci";
     # home = config.home.homeDirectory;
-    nix = "${home}/.config/m0nix";
+    nix = "${home}/m0nix";
     hm = "${nix}/home-manager";
     cache = config.xdg.cacheHome;
 

@@ -87,6 +87,8 @@
 
                   "cli-tools.nix"
                   "dev-tools.nix"
+                  "media-tools.nix"
+
                   "fish.nix"
                   "helix.nix"
                   "home.nix"

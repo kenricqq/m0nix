@@ -7,8 +7,8 @@
 }:
 
 let
-  cacheDir = "${config.xdg.cacheHome}/zsh";
-  brewEnv = "${cacheDir}/brew-shellenv.zsh";
+  cacheDir = config.xdg.cacheHome;
+  brewEnv = "${cacheDir}/zsh/brew-shellenv.zsh";
 
   secretsFile = ../secrets/secrets.yaml;
   secretList = ../secrets/secrets.list; # generated outside with yq

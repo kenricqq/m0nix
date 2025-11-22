@@ -68,7 +68,7 @@ outer.right = 0
 inherit-env-vars = true # default: true
 
 [exec.env-vars]
-SCRIPTS = "${HOME}/.config/m0nix/home-manager/scripts"
+SCRIPTS = "${HOME}/m0nix/home-manager/scripts"
 PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}"
 
 # 'main' binding mode declaration
