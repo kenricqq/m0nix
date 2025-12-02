@@ -1,0 +1,35 @@
+layout {
+    default_tab_template {
+        children
+        pane {
+            borderless true
+            plugin {
+                location "zellij:tab-bar"
+            }
+            size 1
+        }
+    }
+    tab focus=true name="Notes" cwd="/Users/kenrictee/code/learn-to-code/Rust" {
+        pane {
+            command "yazi"
+        }
+    }
+    tab name="Rustlings" split_direction="horizontal" cwd="/Users/kenrictee/code/learn-to-code/Rust/rustlings" {
+        pane name="rustlings" {
+            size "40%"
+            command "rustlings"
+        }
+        pane name="editor" {
+            size "60%"
+            focus true
+            edit "."
+        }
+    }
+    tab name="Shell" {
+        pane command="open" close_on_exit=true {
+            command "open"
+            args "https://rust-book.cs.brown.edu/ch05-03-method-syntax.html"
+        }
+    }
+}
+

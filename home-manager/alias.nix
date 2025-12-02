@@ -34,6 +34,7 @@ let
     music = "mpd && rmpc";
     mdo = "mdbook serve -o";
     weather = "curl wttr.in/Santa+Cruz";
+    rustbook = "zellij --layout rustbook";
 
     ## ----- ##
     # alias magic='kt && sudo zsh m1_backup/backup.zsh'
@@ -71,6 +72,7 @@ let
     y = "yy";
     zed = "zed-preview";
     ze = "zellij";
+    zel = "zellij --layout";
   };
 
   navAliases = {

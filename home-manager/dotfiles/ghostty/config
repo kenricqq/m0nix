@@ -38,13 +38,13 @@ window-padding-x = 20
 window-save-state = always
 
 # Empty values reset the configuration to the default value
-# font-family = "0xProto Nerd Font Mono"
+font-family = "0xProto Nerd Font Mono"
 # font-family = "SpaceMono Nerd Font Mono"
 ## Krypton (Mech sans)/Radon (Handwriting)/Xenon (serif)/Argon (sans 1)/Neon (sans 2)
 # font-family = "Monaspace Neon"
 # font-family = "IosevkaTerm NFM"
 # font-family = "Source Code Pro"
-font-family = "JetBrainsMono Nerd Font Mono"
+# font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 14
 
 adjust-cell-height = 20%
@@ -92,3 +92,7 @@ keybind = ctrl+shift+h=unbind
 # keybind = ctrl+shift+k=unbind
 keybind = ctrl+shift+l=unbind
 keybind = ctrl+tab=unbind
+
+# for zellij
+keybind = cmd+w=unbind
+keybind = cmd+t=unbind

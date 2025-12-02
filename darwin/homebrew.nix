@@ -13,9 +13,11 @@
     taps = [
       "FelixKratz/formulae" # sketchybar/borders
       "nikitabobko/tap" # aerospace
+      "unhappychoice/tap"
     ]; # ];
     brews = [
       "humanlog"
+      "gittype"
 
       # "podman"
       # "kanata"
@@ -87,7 +89,7 @@
       "secretive" # Store SSH keys in the Secure Enclave
       "karabiner-elements"
       "iina" # open-source media player
-      # "obs" # screen recording
+      "obs" # screen recording
       # "background-music"
       # "keycastr"
 
@@ -114,7 +116,7 @@
       # "font-3270-nerd-font"
 
       # "font-commit-mono-nerd-font"
-      # "font-iosevka-term-nerd-font"
+      "font-iosevka-term-nerd-font"
       #
       "font-0xproto-nerd-font"
       # "font-monaspace"

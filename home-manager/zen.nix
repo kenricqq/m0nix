@@ -181,7 +181,7 @@
         "zen.workspaces.natural-scroll" = true;
         "zen.view.compact.hide-tabbar" = true;
         "zen.view.compact.hide-toolbar" = true;
-        "zen.view.compact.animate-sidebar" = false;
+        "zen.view.compact.animate-sidebar" = true;
         "zen.welcome-screen.seen" = true;
         "zen.urlbar.behavior" = "float";
       };

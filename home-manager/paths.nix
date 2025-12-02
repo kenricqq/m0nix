@@ -2,7 +2,7 @@
 
 let
   path = rec {
-    home = "/Users/davinci";
+    home = "/Users/kenrictee";
     # home = config.home.homeDirectory;
     nix = "${home}/m0nix";
     hm = "${nix}/home-manager";
@@ -14,7 +14,6 @@ let
     snippets = "${hm}/snippets";
 
     share = "${home}/.local/state/nix/profiles/home-manager/home-path/share";
-    secretsEnv = "${cache}/zsh/secrets.env";
 
     mkDotFile = subpath: {
       source = config.lib.file.mkOutOfStoreSymlink "${dot}/${subpath}";

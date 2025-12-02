@@ -372,6 +372,10 @@ keybinds clear-defaults=true {
         bind "Ctrl Shift ]" {
             NextSwapLayout
         }
+        // new tab
+        bind "Super t" {
+            NewTab
+        }
         // nav pane/tab
         bind "Ctrl Shift h" {
             MoveFocus "left"
@@ -474,7 +478,7 @@ keybinds clear-defaults=true {
         }
     }
     shared_except "locked" "tab" {
-        bind "Ctrl t" {
+        bind "Ctrl Shift t" {
             SwitchToMode "tab"
         }
     }

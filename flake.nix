@@ -91,7 +91,6 @@
 
                   "fish.nix"
                   "helix.nix"
-                  "home.nix"
                   # "sketchybar.nix"
                   "streamlink.nix"
                   "wezterm.nix"
@@ -100,6 +99,8 @@
                   "zellij.nix"
                   "zen.nix"
                   "zsh.nix"
+
+                  "home.nix"
 
                   # "chromium.nix"
                   # "ghostty.nix"
@@ -110,7 +111,7 @@
                 ])
                 ++ [
                   zen-browser.homeModules.beta
-                  # sops-nix.homeManagerModules.sops
+                  sops-nix.homeManagerModules.sops
                 ];
               extraSpecialArgs = {
                 scls = scls-dev;

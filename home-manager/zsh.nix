@@ -7,8 +7,11 @@
 }:
 
 let
-  cacheDir = config.xdg.cacheHome;
-  brewEnv = "${cacheDir}/zsh/brew-shellenv.zsh";
+  inherit (path)
+    cache
+    ;
+
+  brewEnv = "${cache}/zsh/brew-shellenv.zsh";
 
   secretsFile = ../secrets/secrets.yaml;
   secretList = ../secrets/secrets.list; # generated outside with yq
@@ -28,7 +31,7 @@ in
   };
   home.activation = {
     renderSecretsEnv = lib.hm.dag.entryAfter [ "writeBoundary" "sops" ] ''
-      out="${cacheDir}/zsh/secrets.env"
+      out="${cache}/zsh/secrets.env"
       umask 077
       {
         ${lib.concatStringsSep "\n" (
@@ -39,8 +42,8 @@ in
     '';
     cacheBrewEnv = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       if [[ -x /opt/homebrew/bin/brew ]]; then
-      mkdir -p "${cacheDir}/zsh"
-      /opt/homebrew/bin/brew shellenv >| "${cacheDir}/zsh/brew-shellenv.zsh"
+      mkdir -p "${cache}/zsh"
+      /opt/homebrew/bin/brew shellenv >| "${cache}/zsh/brew-shellenv.zsh"
       fi
     '';
   };
@@ -62,7 +65,7 @@ in
     enableCompletion = true;
     completionInit = ''
       autoload -Uz compinit
-      dump="${cacheDir}/zsh/zcompdump-$ZSH_VERSION"
+      dump="${cache}/zsh/zcompdump-$ZSH_VERSION"
       mkdir -p "''${dump:h}"
       # -C: skip security checks; -d: versioned dump path
       compinit -C -d "$dump"
@@ -91,10 +94,8 @@ in
       }
     ];
 
-    dotDir = "${path.home}/.config/zsh";
-
     envExtra = ''
-      # export STARSHIP_CACHE="${cacheDir}/starship"
+      # export STARSHIP_CACHE="${cache}/starship"
     '';
 
     initContent = lib.mkMerge [
@@ -106,7 +107,7 @@ in
         fi
       '')
       (lib.mkOrder 500 ''
-        # typeset -g POWERLEVEL9K_GITSTATUS_DIR="${cacheDir}/p10k-gitstatus"
+        # typeset -g POWERLEVEL9K_GITSTATUS_DIR="${cache}/p10k-gitstatus"
         # mkdir -p "$POWERLEVEL9K_GITSTATUS_DIR"
       '')
       (lib.mkOrder 550 ''
@@ -114,9 +115,8 @@ in
       '')
       # source sops secrets file
       (lib.mkOrder 900 ''
-        # [[ -r "${config.xdg.configHome}/secrets/.exports" ]] && source "${config.xdg.configHome}/secrets/.exports"
-        if [[ -r "${cacheDir}/zsh/secrets.env" ]]; then
-          source "${cacheDir}/zsh/secrets.env"
+        if [[ -r "${cache}/zsh/secrets.env" ]]; then
+          source "${cache}/zsh/secrets.env"
         fi
       '')
       (lib.mkOrder 1000 ''
@@ -144,7 +144,7 @@ in
 
         # --- Fix A: compile NEXT TO the source and source the TEXT file ---
         # Clean out any cache-based .zwc from earlier experiments
-        rm -f -- "${cacheDir}/zwc/utils.zsh.zwc" 2>/dev/null || true
+        rm -f -- "${cache}/zwc/utils.zsh.zwc" 2>/dev/null || true
 
         if [[ -n "$SCRIPTS" && -r "$SCRIPTS/utils.zsh" ]]; then
           # Build or refresh $SCRIPTS/utils.zsh.zwc alongside the source
@@ -157,7 +157,7 @@ in
 
         # Enable pay-respects only when nix-index DB exists
         # if command -v pay-respects >/dev/null; then
-        #   if [[ -r "${cacheDir}/nix-index/files" ]]; then
+        #   if [[ -r "${cache}/nix-index/files" ]]; then
         #     eval "$(pay-respects zsh --alias)"
         #   fi
         # fi
