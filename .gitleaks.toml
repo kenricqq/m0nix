@@ -1,0 +1,2 @@
+[allowlist]
+paths = ["app-settings/vimium/vimium-options.json"]
