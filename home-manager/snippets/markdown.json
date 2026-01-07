@@ -1,0 +1,6 @@
+{
+	"rust snippet": {
+		"prefix": "rust",
+		"body": ["```rs", "$0", "```"]
+	}
+}
