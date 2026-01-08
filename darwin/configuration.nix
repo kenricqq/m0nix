@@ -67,6 +67,7 @@ in
   # services.nix-daemon.enable = true;
   users.users.kenrictee = {
     home = "/Users/kenrictee";
+    uid = 501;
   };
 
   nix = {

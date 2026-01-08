@@ -165,6 +165,9 @@ in
         # for secretive
         export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
+        # for espup
+        export LIBCLANG_PATH="/$HOME/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-20.1.1_20250829/esp-clang/lib"
+
         # for mkdocs
         # After sourcing the cached brew env earlier, prefer its variables.
         if [[ -n "$HOMEBREW_PREFIX" ]]; then

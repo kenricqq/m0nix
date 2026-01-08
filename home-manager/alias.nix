@@ -95,6 +95,7 @@ let
     darling = "cd $NX && sudo darwin-rebuild switch --flake . && sudo zsh ~/Documents/KTQQ/m1_backup/backup.zsh && nix store optimise && nix-collect-garbage";
     nfu = "cd $NX && nix flake update";
     nso = "nix store optimise";
+    nca = "nh clean all";
     ndr = "cd $NX && nh darwin switch . && terminal-notifier -message 'darwin-rebuild done!' -sound default";
     clean = "nix-collect-garbage && terminal-notifier -message 'cleaning done!' -sound default";
     search = "nh search --limit 3";
@@ -137,6 +138,7 @@ let
 
     clico = "cli-tools.nix";
     devco = "dev-tools.nix";
+    meco = "media-tools.nix";
 
     # Apps
     kco = "kitty.nix";

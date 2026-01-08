@@ -21,8 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    scls.url = "github:estin/simple-completion-language-server";
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
@@ -51,7 +49,6 @@
       nix-darwin,
       sops-nix,
       home-manager,
-      scls,
       stylix,
       zen-browser,
       zesh-src,
@@ -62,7 +59,6 @@
       inherit (inputs.nixpkgs.lib) attrValues;
 
       system = "aarch64-darwin";
-      scls-dev = scls.defaultPackage.${system};
     in
     {
       darwinConfigurations."Kenrics-MacBook-Air" = nix-darwin.lib.darwinSystem {
@@ -92,8 +88,8 @@
                   "fish.nix"
                   "helix.nix"
                   # "sketchybar.nix"
-                  "streamlink.nix"
-                  "wezterm.nix"
+                  # "streamlink.nix"
+                  # "wezterm.nix"
                   "yazi.nix"
                   # "zed.nix"
                   "zellij.nix"
@@ -114,7 +110,6 @@
                   sops-nix.homeManagerModules.sops
                 ];
               extraSpecialArgs = {
-                scls = scls-dev;
                 zesh-src = zesh-src;
               };
             };

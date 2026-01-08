@@ -66,7 +66,7 @@
       "orbstack" # lightweight docker containers
       # "legcord" # discord desktop client
       "yaak" # api client
-      # "signal"
+      "signal"
       # "tailscale-app"
       "linear-linear"
       # "amazon-q"

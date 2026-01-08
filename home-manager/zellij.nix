@@ -5,7 +5,7 @@
 }:
 
 let
-  zesh = pkgs.rustPlatform.buildRustPackage rec {
+  zesh = pkgs.rustPlatform.buildRustPackage {
     pname = "zesh";
 
     # Version is up to you; you can derive from the git rev if you want

@@ -4,10 +4,6 @@
 
     mpv = {
       enable = true;
-      package = pkgs.mpv-unwrapped.wrapper {
-        mpv = pkgs.mpv-unwrapped.override { vapoursynthSupport = true; };
-        youtubeSupport = true;
-      };
       bindings = {
         WHEEL_UP = "seek 10";
         WHEEL_DOWN = "seek -10";

@@ -43,7 +43,7 @@ in
   };
   home = {
     homeDirectory = home;
-    stateVersion = "25.11";
+    stateVersion = "26.05";
 
     sessionPath =
       (map (f: "$HOME/${f}") [
@@ -52,6 +52,7 @@ in
         ".bun/bin"
         ".nix-profile/bin"
         "go/bin"
+        ".rustup/toolchains/esp/xtensa-esp-elf/esp-15.2.0_20250920/xtensa-esp-elf/bin"
       ])
       ++ [
         "/opt/homebrew/bin"
@@ -66,12 +67,13 @@ in
       DW = path.darwin;
       DOT = dot;
       SCRIPTS = path.scripts;
-      SNIP_PATH = path.snippets;
+      SNIPPETS_PATH = path.snippets; # for scls
       SHARE = path.share;
 
       EDITOR = "hx";
       CODEX_HOME = "${dot}/codex";
       SOPS_AGE_KEY_FILE = "${nix}/secrets/keys.txt"; # sops key location
+      LIBCLANG_PATH = "${home}/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-20.1.1_20250829/esp-clang/lib";
     };
 
     shell.enableZshIntegration = true;
@@ -102,7 +104,7 @@ in
     packages =
       with pkgs;
       [
-        # (python313.withPackages python-packages)
+        # (python314.withPackages python-packages)
 
         curlie # curl
         procs # ps
@@ -116,6 +118,9 @@ in
 
         toolong # log files
 
+        # esp
+        espflash
+
         # JSON
         jnv
         gojq
@@ -123,7 +128,7 @@ in
         jless
         jqp
 
-        # helix lsps
+        # # helix lsps
         nixd # Nix
         nixfmt-rfc-style # nix official
 
@@ -135,10 +140,12 @@ in
         restic # efficient & secure backup
         duckdb # embeddable analytics db
         mediainfo # tag info of audio/video
+
         coreutils-full # gnu core utils
         bagels # tui expense tracker
-        gurk-rs # signal messenger terminal client
+        # gurk-rs # signal messenger terminal client; causes nix error...
         sc-im # spreadsheet calculator
+
         dysk # disk usage
         memos # memo hub
         # texliveFull # comprehensive latex system, pdf engine
@@ -172,11 +179,11 @@ in
         gum # shell script ui
         entr # run command on file change
         nb # cli local note-taking
-        jrnl # collect thoughts and notes in terminal
+        # jrnl # collect thoughts and notes in terminal
         mods # cli llm
         # aichat # cli api llm
         # open-webui # ui for local AI models
-        # tldr # community man
+        tldr # community man
         cht-sh # cli for cheat.sh (comprehensive cheatsheets)
         # tlrc # tldr client in rust
         presenterm # md cli slideshow
@@ -196,7 +203,7 @@ in
 
         # MEDIA (audio / video)
         ffmpeg # cli edit/convert/stream multimedia content
-        termscp # file transfer
+        # termscp # file transfer; error?
         kew # music player
 
         # Task Tracking
@@ -232,6 +239,7 @@ in
         lefthook # git hooks manager (like husky)
         gitleaks # check for secrets
         # claude-code # agentic coding tool in terminal
+        opencode
         cloudflared
         # n8n
         jql # query json from cli
@@ -285,13 +293,13 @@ in
         sqlc # generate type-safe code from SQL
         goose # db migration tool
 
-        # ghc
-        # ghcid
-        # stack # stack has own version of ghc?
-        # haskell-language-server
-        # hlint
+        ghc
+        ghcid
+        stack # stack has own version of ghc?
+        haskell-language-server
+        hlint
 
-        # haskellPackages.cabal-install
+        haskellPackages.cabal-install
       ]
       ++ lib.optionals stdenv.isDarwin [
         # for mac-specific packages

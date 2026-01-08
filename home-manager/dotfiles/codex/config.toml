@@ -1,4 +1,4 @@
-model = "gpt-5.1-codex-max"
+model = "gpt-5.2-codex"
 model_reasoning_effort = "low"
 network_access = true
 notify = ["python3", "./notify.py"]
@@ -18,17 +18,17 @@ command = "bunx"
 # args = ["-y", "chrome-devtools-mcp@latest"]
 # command = "bunx"
 
-[mcp_servers.convex]
-args = ["-y", "convex@latest", "mcp", "start"]
-command = "bunx"
+# [mcp_servers.convex]
+# args = ["-y", "convex@latest", "mcp", "start"]
+# command = "bunx"
 
 # [mcp_servers.firecrawl-mcp]
 # args = ["-y", "firecrawl-mcp"]
 # command = "bunx"
 
-[mcp_servers.github]
-args = ["stdio"]
-command = "github-mcp-server"
+# [mcp_servers.github]
+# args = ["stdio"]
+# command = "github-mcp-server"
 
 # [mcp_servers.n8n-mcp]
 # args = ["n8n-mcp"]
@@ -68,4 +68,3 @@ args = ["-y", "@sveltejs/mcp"]
 command = "bunx"
 
 [notice]
-"hide_gpt-5.1-codex-max_migration_prompt" = true
