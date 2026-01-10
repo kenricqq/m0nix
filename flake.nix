@@ -87,9 +87,6 @@
 
                   "fish.nix"
                   "helix.nix"
-                  # "sketchybar.nix"
-                  # "streamlink.nix"
-                  # "wezterm.nix"
                   "yazi.nix"
                   # "zed.nix"
                   "zellij.nix"
@@ -101,9 +98,12 @@
                   # "chromium.nix"
                   # "ghostty.nix"
                   # "kitty.nix"
-                  # "vscode.nix"
-                  # "starship.nix"
+                  # "sketchybar.nix"
                   # "ssh.nix"
+                  # "starship.nix"
+                  # "streamlink.nix"
+                  # "vscode.nix"
+                  # "wezterm.nix"
                 ])
                 ++ [
                   zen-browser.homeModules.beta

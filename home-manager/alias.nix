@@ -60,6 +60,7 @@ let
     jq = "gojq";
     l = "ls -lah";
     lg = "lazygit";
+    lj = "lazyjj";
     ll = "ls -l";
     ls = "eza";
     lt = "ls -T -L=2 -l --icons --git";
@@ -207,6 +208,25 @@ let
       gtb = "test -bench=.";
       gb = "build";
       gr = "run";
+    };
+    jj = {
+      ja = "abandon";
+      jb = "bookmark set"; # create or move bookmark
+      jbl = "bookmark list";
+      jbr = "bookmark rename";
+      jbo = "backout"; # similar to git revert
+      jc = "commit"; # short for `jj describe; jj new`
+      jd = "diff";
+      je = "edit";
+      jeu = "config edit --user";
+      ji = "git init";
+      jl = "log";
+      jn = "new";
+      js = "status";
+      jsq = "squash";
+      ju = "undo"; # undo last command
+
+      # rebase: jj rebase -b CHANGE-ID-2 -d CHANGE-ID-1, then jj bookmark move BOOKMARK-NAME -r CHANGE-ID-2
     };
     uv = {
       ue = "venv";

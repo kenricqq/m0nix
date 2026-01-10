@@ -214,40 +214,33 @@
       pins = {
         "GitHub" = {
           id = "48e8a119-5a14-4826-9545-91c8e8dd3bf6";
-          workspace = spaces."Rendezvous".id;
+          workspace = spaces."Kosmos".id;
           url = "https://github.com";
           position = 101;
           isEssential = false;
-        };
-        "WhatsApp Web" = {
-          id = "1eabb6a3-911b-4fa9-9eaf-232a3703db19";
-          workspace = spaces."Rendezvous".id;
-          url = "https://web.whatsapp.com/";
-          position = 102;
-          isEssential = false;
-        };
-        "Telegram Web" = {
-          id = "5065293b-1c04-40ee-ba1d-99a231873864";
-          url = "https://web.telegram.org/k/";
-          position = 103;
-          isEssential = true;
         };
       };
 
       containersForce = true;
       containers = {
-        Shopping = {
-          color = "yellow";
-          icon = "dollar";
+        KTQQ = {
+          color = "purple";
+          icon = "tree";
+          id = 1;
+        };
+        Canvas = {
+          color = "blue";
+          icon = "briefcase";
           id = 2;
         };
       };
 
       spacesForce = true;
       spaces = {
-        "Rendezvous" = {
+        "Kosmos" = {
           id = "572910e1-4468-4832-a869-0b3a93e2f165";
-          icon = "🎭";
+          icon = "🍁";
+          container = containers."KTQQ".id;
           position = 1000;
           theme = {
             type = "gradient";
@@ -264,10 +257,11 @@
             texture = 0.5;
           };
         };
-        "Research" = {
+        "Lyceum" = {
           id = "ec287d7f-d910-4860-b400-513f269dee77";
-          icon = "💌";
+          icon = "📚";
           position = 1001;
+          container = containers."Canvas".id;
           theme = {
             type = "gradient";
             colors = [
@@ -282,12 +276,6 @@
             opacity = 0.2;
             texture = 0.5;
           };
-        };
-        "Shopping" = {
-          id = "2441acc9-79b1-4afb-b582-ee88ce554ec0";
-          icon = "💸";
-          container = containers."Shopping".id;
-          position = 1002;
         };
       };
 
