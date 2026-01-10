@@ -64,6 +64,7 @@
       "rio"
       "zed@preview"
       "orbstack" # lightweight docker containers
+      "wispr-flow"
       # "legcord" # discord desktop client
       "yaak" # api client
       "signal"

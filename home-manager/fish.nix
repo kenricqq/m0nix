@@ -19,20 +19,37 @@
         onEvent = "fish_command_not_found";
       };
 
+      ah = ''
+        argparse p/prefill n/no-prefill -- $argv; or return 1
+        set -l args $argv
+
+        set -l q (string join ' ' -- $args)
+
+        set -l selected (
+          alias \
+          | string replace -r '^alias[[:space:]]+([^[:space:]=]+)=?(.*)$' '$1\t$2' \
+          | fzf --query "$q" --delimiter \t --with-nth 1,2
+        )
+        test -n "$selected"; or return 1
+
+        set -l expansion (string split -m1 \t -- $selected)[2]
+        set expansion (string trim -- $expansion)
+        set expansion (string trim -c "'\"" -- $expansion)
+
+        # Always print
+        # echo $expansion
+
+        # Prefill next prompt unless disabled
+        if status --is-interactive
+          if not set -q _flag_no_prefill
+            set -g __ah_next_command $expansion
+          end
+        end
+      '';
+
       gitignore = ''
         set -l templates (string join , -- $argv)
         curl -sL "https://www.gitignore.io/api/$templates"
-      '';
-
-      fzf_alias_widget = ''
-        set -l selected (awk "/^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*=/ { gsub(/^[[:space:]]+/, ""); gsub(/[[:space:]]*;$/, ""); print }" $HM/alias.nix | sort | fzf --prompt="Alias> ")
-        test -n "$selected"; or return
-        set -l alias_name (string split -m1 "=" -- $selected)[1]
-        set alias_name (string replace -a " " "" -- $alias_name)
-        if test -n "$alias_name"
-            commandline -r -- $alias_name
-            commandline -f execute
-        end
       '';
 
       uf = ''
@@ -198,6 +215,14 @@
     interactiveShellInit = ''
       set -gx EDITOR hx
       set -g fish_greeting ""
+
+      # for alias helper prompt prefill
+      function __ah_prefill_next_prompt --on-event fish_prompt
+        if set -q __ah_next_command
+          commandline -r -- $__ah_next_command
+          set -e __ah_next_command
+        end
+      end
 
       # Only source if $SCRIPTS is set and file exists
       # if test -n "$SCRIPTS"; and test -f "$SCRIPTS/utils.fish"

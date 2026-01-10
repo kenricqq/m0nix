@@ -34,6 +34,7 @@ let
     music = "mpd && rmpc";
     mdo = "mdbook serve -o";
     weather = "curl wttr.in/Santa+Cruz";
+    wsh = "which $SHELL";
     rustbook = "zellij --layout rustbook";
 
     ## ----- ##
@@ -56,7 +57,6 @@ let
     du = "dust";
     ex = "exit";
     ff = "fastfetch";
-    j = "just";
     jq = "gojq";
     l = "ls -lah";
     lg = "lazygit";
@@ -209,6 +209,10 @@ let
       gb = "build";
       gr = "run";
     };
+    just = {
+      j = "";
+      jh = "--list";
+    };
     jj = {
       ja = "abandon";
       jb = "bookmark set"; # create or move bookmark
@@ -219,11 +223,13 @@ let
       jd = "diff";
       je = "edit";
       jeu = "config edit --user";
+      jg = "git log --oneline --decorate --graph --all -n 20";
       ji = "git init";
       jl = "log";
       jn = "new";
       js = "status";
       jsq = "squash";
+      jt = "bookmark track";
       ju = "undo"; # undo last command
 
       # rebase: jj rebase -b CHANGE-ID-2 -d CHANGE-ID-1, then jj bookmark move BOOKMARK-NAME -r CHANGE-ID-2

@@ -15,6 +15,13 @@ function zpipe () {
   fi
 }
 
+ah() {
+  local q="$*"
+  alias | sed -E 's/^alias[[:space:]]+([^[:space:]]+)[[:space:]]+/\1|/' \
+    | column -t -s '|' \
+    | fzf --query "$q"
+}
+
 # alias selector, trigger with Ctrl-A
 fzf_alias_widget() {
   local selected alias_name
