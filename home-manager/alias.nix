@@ -65,6 +65,7 @@ let
     ls = "eza";
     lt = "ls -T -L=2 -l --icons --git";
     mp = "multipass";
+    oc = "opencode";
     ps = "procs";
     r = "rust";
     rg = "rga";
@@ -94,7 +95,7 @@ let
     dhm = "cd $NX && yq eval 'keys | .[] | select(. != \"sops\")' secrets/secrets.yaml > secrets.list && sudo darwin-rebuild switch --flake . && rm secrets.list && fish -c 'fisher update'";
     dhmp = "cd $NX && sudo darwin-rebuild switch --flake . --impure";
     darling = "cd $NX && sudo darwin-rebuild switch --flake . && sudo zsh ~/Documents/KTQQ/m1_backup/backup.zsh && nix store optimise && nix-collect-garbage";
-    nfu = "cd $NX && nix flake update";
+    nfu = "cd $NX && sudo nix flake update";
     nso = "nix store optimise";
     nca = "nh clean all";
     ndr = "cd $NX && nh darwin switch . && terminal-notifier -message 'darwin-rebuild done!' -sound default";
@@ -127,6 +128,7 @@ let
     fco = "fish.nix";
     hco = "helix.nix";
     lco = "lazygit.nix";
+    oco = "opencode.nix";
     pco = "python.nix";
     paco = "paths.nix";
     sco = "starship.nix";
@@ -214,25 +216,33 @@ let
       jh = "--list";
     };
     jj = {
+      # Daily flow
       ja = "abandon";
-      jb = "bookmark set"; # create or move bookmark
-      jbl = "bookmark list";
-      jbr = "bookmark rename";
-      jbo = "backout"; # similar to git revert
-      jc = "commit"; # short for `jj describe; jj new`
-      jd = "diff";
+      jc = "commit -m"; # short for `jj describe; jj new`
+      jd = "describe";
       je = "edit";
-      jeu = "config edit --user";
-      jg = "git log --oneline --decorate --graph --all -n 20";
-      ji = "git init";
       jl = "log";
+      jla = "log -r ::";
       jn = "new";
+      jr = "rebase";
       js = "status";
       jsq = "squash";
-      jt = "bookmark track";
       ju = "undo"; # undo last command
 
-      # rebase: jj rebase -b CHANGE-ID-2 -d CHANGE-ID-1, then jj bookmark move BOOKMARK-NAME -r CHANGE-ID-2
+      # Bookmarks
+      jbs = "bookmark set"; # create or move bookmark
+      jbl = "bookmark list";
+      jbr = "bookmark rename";
+      jbt = "bookmark track";
+
+      # Git bridge
+      jf = "git fetch";
+      ji = "git init";
+      jp = "git push";
+
+      # Config/maintenance
+      jeu = "config edit --user";
+      jbo = "backout"; # similar to git revert
     };
     uv = {
       ue = "venv";

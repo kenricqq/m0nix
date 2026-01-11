@@ -35,6 +35,7 @@
         set -l expansion (string split -m1 \t -- $selected)[2]
         set expansion (string trim -- $expansion)
         set expansion (string trim -c "'\"" -- $expansion)
+        set expansion "$expansion "
 
         # Always print
         # echo $expansion
@@ -289,8 +290,8 @@
     #   cd = "z";
     # };
 
-    shellInit = '''';
+    shellInit = "";
 
-    shellInitLast = '''';
+    shellInitLast = "";
   };
 }

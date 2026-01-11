@@ -130,7 +130,7 @@ in
 
         # # helix lsps
         nixd # Nix
-        nixfmt-rfc-style # nix official
+        nixfmt # nix official
 
         circumflex # browse hacker news
         ticker # cli stock ticker
@@ -239,7 +239,6 @@ in
         lefthook # git hooks manager (like husky)
         gitleaks # check for secrets
         # claude-code # agentic coding tool in terminal
-        opencode
         cloudflared
         # n8n
         jql # query json from cli

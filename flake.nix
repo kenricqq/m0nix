@@ -21,6 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    opencode = {
+      url = "github:anomalyco/opencode";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
@@ -49,6 +54,7 @@
       nix-darwin,
       sops-nix,
       home-manager,
+      opencode,
       stylix,
       zen-browser,
       zesh-src,
@@ -87,6 +93,7 @@
 
                   "fish.nix"
                   "helix.nix"
+                  "opencode.nix"
                   "yazi.nix"
                   # "zed.nix"
                   "zellij.nix"
@@ -110,7 +117,7 @@
                   sops-nix.homeManagerModules.sops
                 ];
               extraSpecialArgs = {
-                zesh-src = zesh-src;
+                inherit opencode zesh-src;
               };
             };
 

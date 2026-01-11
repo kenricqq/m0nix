@@ -44,7 +44,7 @@
       pylyzer # static code analyzer (rust)
 
       # nixd # Nix
-      # nixfmt-rfc-style # nix official
+      # nixfmt # nix official
 
       beamMinimal27Packages.elixir-ls # elixir-ls
       lua-language-server
