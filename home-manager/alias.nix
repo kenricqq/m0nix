@@ -29,6 +29,7 @@ let
     ku = "$EDITOR $SCRIPTS/keyboard.zsh";
     zu = "$EDITOR $SCRIPTS/utils.zsh";
     rb = "$EDITOR $SCRIPTS/rofi-beats";
+    be = "$EDITOR $HOME/.config/btca/btca.json";
     links = "$EDITOR $SCRIPTS/golinks.yaml";
     venv = "source $(fd -HI -td .venv \"$(git rev-parse --show-toplevel)\" | head -n 1)/bin/activate";
     music = "mpd && rmpc";
@@ -142,6 +143,7 @@ let
     clico = "cli-tools.nix";
     devco = "dev-tools.nix";
     meco = "media-tools.nix";
+    aico = "ai";
 
     # Apps
     kco = "kitty.nix";

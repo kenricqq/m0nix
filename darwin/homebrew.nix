@@ -65,6 +65,7 @@
       "zed@preview"
       "orbstack" # lightweight docker containers
       "wispr-flow"
+      "superhuman"
       # "legcord" # discord desktop client
       "yaak" # api client
       "signal"
