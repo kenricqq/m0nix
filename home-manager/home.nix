@@ -110,6 +110,7 @@ in
         procs # ps
         sd # sed
         mprocs
+        nix-converter
 
         freeze # generate images of code/terminal out
         dua # disk util of dir (extra? yazi space usage?)
@@ -139,7 +140,6 @@ in
         google-cloud-sdk
         restic # efficient & secure backup
         duckdb # embeddable analytics db
-        mediainfo # tag info of audio/video
 
         coreutils-full # gnu core utils
         bagels # tui expense tracker

@@ -219,6 +219,13 @@
           position = 101;
           isEssential = false;
         };
+        "ChatGPT" = {
+          id = "51e8a119-5a14-4826-9545-91c8e8dd3bf6";
+          workspace = spaces."Kosmos".id;
+          url = "https://chatgpt.com";
+          position = 102;
+          isEssential = false;
+        };
       };
 
       containersForce = true;

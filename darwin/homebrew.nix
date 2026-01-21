@@ -36,7 +36,7 @@
       # "borders"
       "lua"
 
-      # "cocoapods" # for building ios apps
+      "cocoapods" # for building ios apps
       # "switchaudio-osx"
       # "nowplaying-cli"
       "choose-gui"
@@ -69,7 +69,7 @@
       # "legcord" # discord desktop client
       "yaak" # api client
       "signal"
-      # "tailscale-app"
+      "tailscale-app"
       "linear-linear"
       # "amazon-q"
       "shottr" # screenshot tool

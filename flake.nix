@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-bun.url = "github:NixOS/nixpkgs/f665af0cdb70ed27e1bd8f9fdfecaf451260fc55";
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -23,7 +24,7 @@
 
     opencode = {
       url = "github:anomalyco/opencode";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-bun";
     };
 
     zen-browser = {

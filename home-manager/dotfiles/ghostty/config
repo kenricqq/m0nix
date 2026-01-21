@@ -31,8 +31,8 @@ macos-titlebar-style = hidden
 macos-titlebar-style = tabs
 macos-titlebar-proxy-icon = hidden
 
-window-padding-x = 20
-# window-padding-y = 5
+window-padding-x = 30
+window-padding-y = 10
 # window-padding-color = extend
 
 window-save-state = always

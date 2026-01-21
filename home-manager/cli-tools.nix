@@ -94,7 +94,6 @@
     # environment switcher
     direnv = {
       enable = true;
-      # enableZshIntegration = true;
       mise = {
         enable = true;
       };

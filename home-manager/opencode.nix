@@ -24,7 +24,6 @@
     opencode = {
       enable = true;
       enableMcpIntegration = true;
-      package = opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
       agents = {
         animation = ./ai/agents/animation.md;
         btca = ./ai/agents/btca.md;
@@ -66,20 +65,60 @@
         autoupdate = true;
         permission = {
           "edit" = {
-            "*" = "deny";
+            # "*" = "deny";
             "packages/web/src/content/docs/*.mdx" = "allow";
           };
           "bash" = {
             "*" = "ask";
             "git *" = "allow";
+            "jj *" = "allow";
             "bun *" = "allow";
             "rm *" = "deny";
+            "npm *" = "deny";
+          };
+          "permission" = {
+            "skill" = {
+              "*" = "allow";
+              "pr-review" = "allow";
+              "internal-*" = "deny";
+              "experimental-*" = "ask";
+            };
           };
           "webfetch" = "allow";
+        };
+        # built-in agents
+        agent = {
+          plan = {
+            permission = {
+              skill = {
+                "internal-*" = "allow";
+              };
+            };
+            tools = {
+              skill = false;
+            };
+          };
         };
       };
       skills = {
         git-release = ''
+          ---
+          name: git-release
+          description: Create consistent releases and changelogs
+          ---
+
+          ## What I do
+
+          - Draft release notes from merged PRs
+          - Propose a version bump
+          - Provide a copy-pasteable `gh release create` command
+
+          ## When to use me
+
+          Use this when you are preparing a tagged release.
+          Ask clarifying questions if the target versioning scheme is unclear.
+        '';
+        git-2 = ''
           ---
           name: git-release
           description: Create consistent releases and changelogs

@@ -39,6 +39,7 @@
   };
 
   home.packages = with pkgs; [
+    chafa # terminal graphics viewer
     portaudio # realtime audio i/o
     switchaudio-osx # macOS cli audio source
     mpc

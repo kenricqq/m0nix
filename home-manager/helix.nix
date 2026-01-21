@@ -61,7 +61,6 @@
       svelte-language-server
       typescript-language-server
       tailwindcss-language-server
-      stylelint-lsp
       vscode-langservers-extracted # HTML / CSS / JSON / ESLint
       # efm-langserver # Formatter (wraps Prettier)
       prettier
@@ -268,6 +267,7 @@
         }
         {
           name = "markdown";
+          auto-format = true;
           formatter = {
             command = "prettier";
             args = [
@@ -421,8 +421,7 @@
             ];
           };
           language-servers = [
-            "stylelint-ls"
-            "vscode-css-language-server"
+            # "vscode-css-language-server"
             "emmet-ls"
             "tailwindcss-ls"
             "scls"
@@ -466,41 +465,42 @@
             "--no-auto"
           ];
         };
-        stylelint-ls = {
-          command = "stylelint-lsp";
-          args = [ "--stdio" ];
-          config = {
-            stylelintplus = {
-              autoFixOnSave = true;
-              autoFixOnFormat = true;
-              config = {
-                extends = [
-                  "stylelint-config-standard-scss"
-                ];
-                rules = {
-                  function-no-unknown = [
-                    true
-                    { ignoreFunctions = [ "theme" ]; }
-                  ];
-                  at-rule-no-unknown = [
-                    true
-                    {
-                      ignoreAtRules = [
-                        "apply"
-                        "screen"
-                        "tailwind"
-                        "config"
-                        "layer"
-                        "variants"
-                        "responsive"
-                      ];
-                    }
-                  ];
-                };
-              };
-            };
-          };
-        };
+        # stylelint-ls = {
+        #   command = "stylelint-lsp";
+        #   args = [ "--stdio" ];
+        #   config = {
+        #     stylelintplus = {
+        #       autoFixOnSave = true;
+        #       autoFixOnFormat = true;
+        #       config = {
+        #         extends = [
+        #           "stylelint-config-standard-scss"
+        #         ];
+        #         rules = {
+        #           function-no-unknown = [
+        #             true
+        #             { ignoreFunctions = [ "theme" ]; }
+        #           ];
+        #           at-rule-no-unknown = [
+        #             true
+        #             {
+        #               ignoreAtRules = [
+        #                 "apply"
+        #                 "screen"
+        #                 "tailwind"
+        #                 "config"
+        #                 "layer"
+        #                 "variants"
+        #                 "custom-variant"
+        #                 "responsive"
+        #               ];
+        #             }
+        #           ];
+        #         };
+        #       };
+        #     };
+        #   };
+        # };
         biome = {
           command = "biome";
           args = [ "lsp-proxy" ];
