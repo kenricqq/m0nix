@@ -1,36 +1,35 @@
 { pkgs, ... }:
 {
   programs = {
+    # mpv = {
+    #   enable = true;
+    #   bindings = {
+    #     WHEEL_UP = "seek 10";
+    #     WHEEL_DOWN = "seek -10";
+    #     "Alt+0" = "set window-scale 0.5";
+    #   };
+    #   config = {
+    #     # profile = "gpu-hq";
+    #     ytdl-format = "bestvideo+bestaudio";
+    #   };
+    #   extraInput = ''
+    #     esc         quit                        #! Quit
+    #     #           script-binding uosc/video   #! Video tracks
+    #     # additional comments
+    #   '';
+    #   scripts = with pkgs.mpvScripts; [
+    #     mpris
+    #     uosc # UI for video player
+    #     sponsorblock-minimal # for yt videos
+    #     mpv-playlistmanager
 
-    mpv = {
-      enable = true;
-      bindings = {
-        WHEEL_UP = "seek 10";
-        WHEEL_DOWN = "seek -10";
-        "Alt+0" = "set window-scale 0.5";
-      };
-      config = {
-        # profile = "gpu-hq";
-        ytdl-format = "bestvideo+bestaudio";
-      };
-      extraInput = ''
-        esc         quit                        #! Quit
-        #           script-binding uosc/video   #! Video tracks
-        # additional comments
-      '';
-      #   scripts = with pkgs.mpvScripts; [
-      #     mpris
-      #     uosc # UI for video player
-      #     sponsorblock-minimal # for yt videos
-      #     mpv-playlistmanager
-
-      #     eisa01.undoredo
-      #     eisa01.smartskip
-      #     eisa01.smart-copy-paste-2
-      #     eisa01.simplehistory
-      #     eisa01.simplebookmark
-      #   ];
-    };
+    #     eisa01.undoredo
+    #     eisa01.smartskip
+    #     eisa01.smart-copy-paste-2
+    #     eisa01.simplehistory
+    #     eisa01.simplebookmark
+    #   ];
+    # };
 
     # cli for downloading image collections
     gallery-dl = {
@@ -39,16 +38,16 @@
   };
 
   home.packages = with pkgs; [
-    chafa # terminal graphics viewer
-    portaudio # realtime audio i/o
-    switchaudio-osx # macOS cli audio source
-    mpc
+    # chafa # terminal graphics viewer
+    # portaudio # realtime audio i/o
+    # switchaudio-osx # macOS cli audio source
+    # mpc
     # cli interface for mpd
-    mediainfo # tag info of audio/video
+    # mediainfo # tag info of audio/video
     # mpd # music player daemon
 
-    ascii-image-converter
+    # ascii-image-converter
     ffmpeg # cli edit/convert/stream multimedia content
-    imagemagick
+    # imagemagick
   ];
 }

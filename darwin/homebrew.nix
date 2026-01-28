@@ -27,21 +27,21 @@
       #   args = [ "HEAD" ];
       # }
       "uv"
-      "tgpt"
+      # "tgpt"
       # "espeak-ng" # for kokoro stt
       "sevenzip"
       "fisher"
 
-      "sketchybar"
+      # "sketchybar"
       # "borders"
-      "lua"
+      # "lua"
 
       "cocoapods" # for building ios apps
       # "switchaudio-osx"
       # "nowplaying-cli"
       "choose-gui"
       "terminal-notifier"
-      "ollama"
+      # "ollama"
       # "llvm"
       {
         name = "yt-dlp";
@@ -62,13 +62,13 @@
       # "visual-studio-code"
       "ghostty@tip"
       "rio"
-      "zed@preview"
+      # "zed@preview"
       "orbstack" # lightweight docker containers
       "wispr-flow"
       "superhuman"
       # "legcord" # discord desktop client
       "yaak" # api client
-      "signal"
+      # "signal"
       "tailscale-app"
       "linear-linear"
       # "amazon-q"
@@ -88,21 +88,22 @@
       # "zoom"
       # "loom"
       "numi"
-      "secretive" # Store SSH keys in the Secure Enclave
-      "karabiner-elements"
+      # "secretive" # Store SSH keys in the Secure Enclave
+      # "karabiner-elements"
       "iina" # open-source media player
       "obs" # screen recording
       # "background-music"
       # "keycastr"
+      "markedit"
 
       # "google-drive"
       # "syncthing" # secure file sync
       # "multipass"
 
       # NOTES
-      "obsidian"
+      # "obsidian"
       # "excalidrawz"
-      "todoist-app"
+      # "todoist-app"
 
       # browsers
       # "tor-browser"
@@ -134,8 +135,11 @@
       # "font-source-serif-4" # text
       # "font-dm-serif-display" # title / headings
 
-      "font-sketchybar-app-font"
+      # "font-sketchybar-app-font"
       "sf-symbols" # apple icons
+
+      # fun
+      "roblox"
     ];
   };
 }

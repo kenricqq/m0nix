@@ -97,7 +97,7 @@
                   "opencode.nix"
                   "yazi.nix"
                   # "zed.nix"
-                  "zellij.nix"
+                  # "zellij.nix"
                   "zen.nix"
                   "zsh.nix"
 

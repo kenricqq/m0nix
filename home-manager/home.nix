@@ -76,44 +76,88 @@ in
       LIBCLANG_PATH = "${home}/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-20.1.1_20250829/esp-clang/lib";
     };
 
-    shell.enableZshIntegration = true;
-    shell.enableFishIntegration = true;
+    shell = {
+      enableZshIntegration = true;
+      enableFishIntegration = true;
+    };
     shellAliases = shellAliases;
 
     file =
-      lib.mapAttrs (_: path.mkDotFile) {
-        ".config/aerospace" = "aerospace";
-        ".config/glance/glance.yml" = "glance/glance.yml";
-        # ".codex/prompts" = "codex/prompts";
-        # ".codex/AGENTS.md" = "codex/AGENTS.md";
-        ".config/rio" = "rio";
-        ".config/rmpc" = "rmpc";
-        ".config/sketchybar" = "sketchybar";
-        ".config/zellij" = "zellij";
-        ".config/zk" = "zk";
-        ".config/zsh/.p10k.zsh" = "p10k/.p10k.zsh";
-        ".mpd/mpd.conf" = "mpd/mpd.conf";
-        "Library/Application Support/com.mitchellh.ghostty" = "ghostty";
-        # ".config/nushell".source = ~/dotfiles/nushell;
-      }
+      let
+        dotfiles = builtins.listToAttrs (
+          (lib.mapAttrsToList (k: v: lib.nameValuePair ".config/${k}" v) {
+            "aerospace" = "aerospace";
+            "glance/glance.yml" = "glance/glance.yml";
+            "opencode/AGENTS.md" = "AI/AGENTS.md";
+            "opencode/agents" = "AI/agents";
+            "opencode/skills" = "AI/skills";
+            # "codex/prompts" = "codex/prompts";
+            # "codex/AGENTS.md" = "codex/AGENTS.md";
+            "rio" = "rio";
+            "rmpc" = "rmpc";
+            "sketchybar" = "sketchybar";
+            "zellij" = "zellij";
+            "zk" = "zk";
+            "zsh/.p10k.zsh" = "p10k/.p10k.zsh";
+            # "nushell".source = ~/dotfiles/nushell;
+          })
+          ++ (lib.mapAttrsToList lib.nameValuePair {
+            ".mpd/mpd.conf" = "mpd/mpd.conf";
+            "Library/Application Support/com.mitchellh.ghostty" = "ghostty";
+          })
+        );
+      in
+      (lib.mapAttrs (_: path.mkDotFile) dotfiles)
       // {
         # ensure launchd log directory exists so glance can start at login
         "Library/Logs/glance/.keep".text = "";
       };
 
+    # file =
+    #   lib.mapAttrs (_: path.mkDotFile) {
+    #     ".config/aerospace" = "aerospace";
+    #     ".config/glance/glance.yml" = "glance/glance.yml";
+    #     ".config/opencode/AGENTS.md" = "ai/AGENTS.md";
+    #     ".config/opencode/agent" = "ai/agents";
+    #     # ".codex/prompts" = "codex/prompts";
+    #     # ".codex/AGENTS.md" = "codex/AGENTS.md";
+    #     ".config/rio" = "rio";
+    #     ".config/rmpc" = "rmpc";
+    #     ".config/sketchybar" = "sketchybar";
+    #     ".config/zellij" = "zellij";
+    #     ".config/zk" = "zk";
+    #     ".config/zsh/.p10k.zsh" = "p10k/.p10k.zsh";
+    #     ".mpd/mpd.conf" = "mpd/mpd.conf";
+    #     "Library/Application Support/com.mitchellh.ghostty" = "ghostty";
+    #     # ".config/nushell".source = ~/dotfiles/nushell;
+    #   }
+    #   // {
+    #     # ensure launchd log directory exists so glance can start at login
+    #     "Library/Logs/glance/.keep".text = "";
+    #   };
+
     packages =
       with pkgs;
       [
         # (python314.withPackages python-packages)
+        (pkgs.writeShellApplication {
+          name = "ns";
+          runtimeInputs = with pkgs; [
+            fzf
+            nix-search-tv
+          ];
+          text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+        })
 
         curlie # curl
         procs # ps
         sd # sed
         mprocs
         nix-converter
+        ghostscript # pdf utility (ex. merge)
 
         freeze # generate images of code/terminal out
-        dua # disk util of dir (extra? yazi space usage?)
+        # dua # disk util of dir (extra? yazi space usage?)
         kondo # clean deps and build artifacts from proj
         clipboard-jh
 
@@ -127,7 +171,6 @@ in
         gojq
         fx
         jless
-        jqp
 
         # # helix lsps
         nixd # Nix
@@ -137,22 +180,21 @@ in
         ticker # cli stock ticker
         zk # note-taking assistant
         typst
-        google-cloud-sdk
         restic # efficient & secure backup
-        duckdb # embeddable analytics db
 
         coreutils-full # gnu core utils
-        bagels # tui expense tracker
+        # bagels # tui expense tracker
         # gurk-rs # signal messenger terminal client; causes nix error...
-        sc-im # spreadsheet calculator
+        # sc-im # spreadsheet calculator
 
         dysk # disk usage
         memos # memo hub
         # texliveFull # comprehensive latex system, pdf engine
         glance # self-hosted browser dashboard
-        mas # mac app store cli
+        # mas # mac app store cli
         sqlfluff
         tigerbeetle # high performance transactional db
+        duckdb # embeddable analytics db
 
         dprint
 
@@ -160,7 +202,7 @@ in
         rustup
         cargo-watch
         cargo-make
-        dioxus-cli
+        # dioxus-cli
         cargo-binstall
 
         # RSS
@@ -171,6 +213,7 @@ in
         tokei # count lines of code
         rsync # backup & two-way sync
 
+        # cli tools
         age # encryption tool
         sops # manage secrets
         # crush
@@ -179,6 +222,9 @@ in
         gum # shell script ui
         entr # run command on file change
         nb # cli local note-taking
+        serpl # global search and replace
+        dust # faster du
+        duf # better df
         # jrnl # collect thoughts and notes in terminal
         mods # cli llm
         # aichat # cli api llm
@@ -186,46 +232,42 @@ in
         tldr # community man
         cht-sh # cli for cheat.sh (comprehensive cheatsheets)
         # tlrc # tldr client in rust
-        presenterm # md cli slideshow
+        # presenterm # md cli slideshow
         macmon # apple silicon performance monitoring
-        gping # ping with a graph
-        github-mcp-server
+        # gping # ping with a graph
 
         dnscrypt-proxy
-        openapi-tui
-        sshs
+        # openapi-tui
+        # sshs
 
-        # GO
         envsubst
         sttr # text transformation
 
         # rustic # deduplicated and encrypted backup, takes folder snapshots
 
         # MEDIA (audio / video)
-        ffmpeg # cli edit/convert/stream multimedia content
         # termscp # file transfer; error?
-        kew # music player
+        # kew # music player
 
         # Task Tracking
 
         # Jujutsu
-        jjui
         lazyjj
 
         # GIT
-        glab # gitlab cli
-        tig
+        # glab # gitlab cli
+        # tig
 
         # docker
-        dive # explore layer in docker image
-        ctop # top-like interface for containers
+        # dive # explore layer in docker image
+        # ctop # top-like interface for containers
 
         # dev tools
         zig
         dep-tree # visualize complexities of a codebase
         protobuf_32
         act # run github actions locally
-        kubernetes-helm # package manager for kubernetes
+        # kubernetes-helm # package manager for kubernetes
         minikube
         # ollama
         # uv # pip replacement (in rust)
@@ -233,7 +275,6 @@ in
         # pgcli # for postgres
         clang-tools
         lldb_19
-        nettools
         just # project-level command runner
         # icu76 # unicode/globalization
         lefthook # git hooks manager (like husky)
@@ -241,38 +282,38 @@ in
         # claude-code # agentic coding tool in terminal
         cloudflared
         # n8n
+        # calcure # tui calendar + task manager
+        # silicon # Create beautiful image of your source code
+        # asciinema_3 # record terminal session
+        # vhs # generate gifs with code
+        # k6 # load testing
+
+        ## data manipulation
         jql # query json from cli
         yq-go # YAML, TOML, JSON and XML processor
         dasel # select/put/delete data from files
         hexyl # hex viewer
-        serpl # global search and replace
-        dust # faster du
-        duf # better df
-        # calcure # tui calendar + task manager
-        silicon # Create beautiful image of your source code
-        asciinema_3 # record terminal session
-        vhs # generate gifs with code
-        k6 # load testing
 
         # db
         sqlite
         postgresql
         sqlc
-        turso-cli
+        # turso-cli
 
         # other
         mdbook # create book from md files
         mdbook-linkcheck # check links
-        ttyper # terminal typing test
-        lychee # broken links checker
-        puffin # personal finance dashboard
+        # ttyper # terminal typing test
+        # lychee # broken links checker
+        # puffin # personal finance dashboard
+        pocket-tts
 
         # visuals
         chafa
         onefetch # git repo
-        fastfetch
         cbonsai
         rust-stakeholder # troll: impressive-looking nonsense terminal output
+
         # macchina
         # asciiquarium-transparent
         # cowsay
@@ -282,23 +323,24 @@ in
         ### combo (ie fortune | ponysay | lolcat)
 
         # elixir_1_18
-        go
-        go-swag # API docs
-        delve # go debugger
-        air # live reload for go
-        pkgsite # generate docs for go
-        errcheck # checks unchecked erros in go
+
+        # go
+        # go-swag # API docs
+        # delve # go debugger
+        # air # live reload for go
+        # pkgsite # generate docs for go
+        # errcheck # checks unchecked erros in go
 
         sqlc # generate type-safe code from SQL
         goose # db migration tool
 
-        ghc
-        ghcid
-        stack # stack has own version of ghc?
-        haskell-language-server
-        hlint
+        # ghc
+        # ghcid
+        # stack # stack has own version of ghc?
+        # haskell-language-server
+        # hlint
 
-        haskellPackages.cabal-install
+        # haskellPackages.cabal-install
       ]
       ++ lib.optionals stdenv.isDarwin [
         # for mac-specific packages

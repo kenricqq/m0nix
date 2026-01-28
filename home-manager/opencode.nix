@@ -24,24 +24,6 @@
     opencode = {
       enable = true;
       enableMcpIntegration = true;
-      agents = {
-        animation = ./ai/agents/animation.md;
-        btca = ./ai/agents/btca.md;
-        quality_control = ./ai/agents/quality_control.md;
-
-        code-reviewer = ''
-          # Code Reviewer Agent
-
-          You are a senior software engineer specializing in code reviews.
-          Focus on code quality, security, and maintainability.
-
-          ## Guidelines
-          - Review for potential bugs and edge cases
-          - Check for security vulnerabilities
-          - Ensure code follows best practices
-          - Suggest improvements for readability and performance
-        '';
-      };
       commands = {
         changelog = ''
           # Update Changelog Command
@@ -58,7 +40,8 @@
         '';
       };
       # think of this as global AGENTS.md
-      rules = ./ai/AGENTS.md;
+      # rules = ./ai/AGENTS.md;
+      # rules = symlinked...
       settings = {
         theme = "opencode";
         autoshare = false;
@@ -76,14 +59,12 @@
             "rm *" = "deny";
             "npm *" = "deny";
           };
-          "permission" = {
-            "skill" = {
-              "*" = "allow";
-              "pr-review" = "allow";
-              "internal-*" = "deny";
-              "experimental-*" = "ask";
-            };
-          };
+          # "skill" = {
+          #   "*" = "allow";
+          #   "pr-review" = "allow";
+          #   "internal-*" = "deny";
+          #   "experimental-*" = "ask";
+          # };
           "webfetch" = "allow";
         };
         # built-in agents
@@ -99,40 +80,6 @@
             };
           };
         };
-      };
-      skills = {
-        git-release = ''
-          ---
-          name: git-release
-          description: Create consistent releases and changelogs
-          ---
-
-          ## What I do
-
-          - Draft release notes from merged PRs
-          - Propose a version bump
-          - Provide a copy-pasteable `gh release create` command
-
-          ## When to use me
-
-          Use this when you are preparing a tagged release.
-          Ask clarifying questions if the target versioning scheme is unclear.
-        '';
-        git-2 = ''
-          ---
-          name: git-release
-          description: Create consistent releases and changelogs
-          ---
-
-          ## What I do
-
-          - Draft release notes from merged PRs
-          - Propose a version bump
-          - Provide a copy-pasteable `gh release create` command
-        '';
-
-        # A skill can also be a directory containing SKILL.md and other files.
-        # data-analysis = ./skills/data-analysis;
       };
       tools = {
         # database-query = ''

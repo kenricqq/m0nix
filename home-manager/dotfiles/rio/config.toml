@@ -14,12 +14,12 @@ args = []
 width = 600
 height = 400
 mode = "Windowed"
-opacity = 0.5
+opacity = 0.95
 blur = true
 decorations = "Buttonless"
 
 [cursor]
-blinking = true
+blinking = false
 blinking-interval = 530
 
 [fonts]

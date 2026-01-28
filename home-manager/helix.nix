@@ -20,15 +20,17 @@
 
       ## Markup & Config
       tinymist # typst
+      typstyle
       markdown-oxide
       mpls # markdown live preview
       # marksman               # Markdown LSP
       taplo # TOML
       simple-completion-language-server # snippets
       kdlfmt # kdl (config for zellij)
+      # starpls # starlark
 
       ## Programming Languages
-      beamMinimal27Packages.elixir-ls # Elixir
+      # beamMinimal27Packages.elixir-ls # Elixir
 
       glsl_analyzer
 
@@ -36,7 +38,6 @@
       golangci-lint-langserver # Go linter
       gotools # for goimports (formatter)
 
-      zig
       zls
 
       python312Packages.python-lsp-server
@@ -46,13 +47,12 @@
       # nixd # Nix
       # nixfmt # nix official
 
-      beamMinimal27Packages.elixir-ls # elixir-ls
       lua-language-server
       rust-analyzer
       sqls # SQL
       sqruff # SQL formatter
       python313Packages.sqlparse
-      haskellPackages.fourmolu # haskell
+      # haskellPackages.fourmolu # haskell
       # stylish-haskell # haskell (alt)
 
       ## Web & Front‑end
@@ -90,6 +90,13 @@
     # extraConfig = builtins.readFile ./language.toml;
     languages = {
       language = [
+        {
+          name = "starlark";
+          auto-format = true;
+          file-types = [
+            "rules"
+          ];
+        }
         {
           name = "bash";
           auto-format = true;
@@ -431,6 +438,11 @@
       ];
 
       language-server = {
+        tinymist = {
+          config = {
+            formatterMode = "typstyle";
+          };
+        };
         zk-lsp = {
           command = "zk";
           args = [ "lsp" ];
@@ -465,42 +477,6 @@
             "--no-auto"
           ];
         };
-        # stylelint-ls = {
-        #   command = "stylelint-lsp";
-        #   args = [ "--stdio" ];
-        #   config = {
-        #     stylelintplus = {
-        #       autoFixOnSave = true;
-        #       autoFixOnFormat = true;
-        #       config = {
-        #         extends = [
-        #           "stylelint-config-standard-scss"
-        #         ];
-        #         rules = {
-        #           function-no-unknown = [
-        #             true
-        #             { ignoreFunctions = [ "theme" ]; }
-        #           ];
-        #           at-rule-no-unknown = [
-        #             true
-        #             {
-        #               ignoreAtRules = [
-        #                 "apply"
-        #                 "screen"
-        #                 "tailwind"
-        #                 "config"
-        #                 "layer"
-        #                 "variants"
-        #                 "custom-variant"
-        #                 "responsive"
-        #               ];
-        #             }
-        #           ];
-        #         };
-        #       };
-        #     };
-        #   };
-        # };
         biome = {
           command = "biome";
           args = [ "lsp-proxy" ];
@@ -673,6 +649,12 @@
           normal = "block";
           select = "underline";
         };
+        gutters = [
+          "diagnostics"
+          "line-numbers"
+          "spacer"
+          "diff"
+        ];
         end-of-line-diagnostics = "hint";
         file-picker = {
           hidden = false;

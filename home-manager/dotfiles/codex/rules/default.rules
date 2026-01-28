@@ -1,0 +1,34 @@
+# Prompt before running commands with the prefix `gh pr view` outside the sandbox.
+prefix_rule(
+    # The prefix to match.
+    pattern = ["gh", "pr", "view"],
+
+    # The action to take when Codex requests to run a matching command.
+    decision = "prompt",
+
+    # Optional rationale for why this rule exists.
+    justification = "Viewing PRs is allowed with approval",
+
+    # `match` and `not_match` are optional "inline unit tests" where you can
+    # provide examples of commands that should (or should not) match this rule.
+    match = [
+        "gh pr view 7888",
+        "gh pr view --repo openai/codex",
+        "gh pr view 7888 --json title,body,comments",
+    ],
+    not_match = [
+        # Does not match because the `pattern` must be an exact prefix.
+        "gh pr --repo openai/codex view 7888",
+    ],
+)
+
+prefix_rule(pattern=["jj", "bookmark", "set", "--allow-backwards", "-r", "main@origin", "main", "kt"], decision="allow")
+prefix_rule(pattern=["nix", "flake", "lock", "--update-input", "nixpkgs-bun"], decision="allow")
+prefix_rule(pattern=["nix", "eval", "--raw", "--impure", "--expr", "(builtins.getFlake (toString ./.)).inputs.nixpkgs-bun.outPath"], decision="allow")
+prefix_rule(pattern=["sudo", "lsof", "-nP", "-iTCP:4516", "-sTCP:LISTEN"], decision="allow")
+prefix_rule(pattern=["ps", "-ef"], decision="allow")
+prefix_rule(pattern=["lsof", "-nP", "-iTCP", "-sTCP:LISTEN"], decision="allow")
+prefix_rule(pattern=["/bin/zsh", "-lc", "PATH=\"/etc/profiles/per-user/kenrictee/bin:$PATH\" btca"], decision="allow")
+prefix_rule(pattern=["python3", "skills/.system/skill-installer/scripts/install-skill-from-github.py", "--repo", "openai/skills", "--path", "skills/.experimental/create-plan", "skills/.experimental/unit-test", "skills/.experimental/integration"], decision="allow")
+prefix_rule(pattern=["python3", "skills/.system/skill-installer/scripts/install-skill-from-github.py", "--repo", "openai/skills", "--path", "skills/.experimental/create-plan", "skills/.experimental/codex-readiness-unit-test", "skills/.experimental/codex-readiness-integration-test"], decision="allow")
+prefix_rule(pattern=["python3", "skills/.system/skill-installer/scripts/install-skill-from-github.py", "--repo", "openai/skills", "--path", "skills/.experimental/codex-readiness-unit-test", "skills/.experimental/codex-readiness-integration-test"], decision="allow")

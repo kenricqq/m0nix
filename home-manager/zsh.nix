@@ -63,6 +63,9 @@ in
 
     # We’ll do our own compinit so we can pass -C and custom dump
     enableCompletion = true;
+    shellAliases = {
+      "-" = "cd -";
+    };
     completionInit = ''
       autoload -Uz compinit
       dump="${cache}/zsh/zcompdump-$ZSH_VERSION"
@@ -80,7 +83,7 @@ in
       {
         name = "fast-syntax-highlighting";
         src = pkgs.zsh-fast-syntax-highlighting;
-        file = "share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
+        file = "share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh";
       }
       # {
       #   name = "you-should-use";
@@ -96,12 +99,16 @@ in
 
     envExtra = ''
       # export STARSHIP_CACHE="${cache}/starship"
+      # source ${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh
+      typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
     '';
 
     initContent = lib.mkMerge [
       (lib.mkOrder 50 ''
         typeset -g POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+        typeset -g POWERLEVEL9K_INSTANT_PROMPT_COMMAND_LINES=0
         typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
         if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
           source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
         fi

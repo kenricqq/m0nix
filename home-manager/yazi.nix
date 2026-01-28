@@ -3,17 +3,17 @@
 {
   programs.yazi = {
     enable = true;
-    plugins = {
-      piper = pkgs.yaziPlugins.piper;
-      diff = pkgs.yaziPlugins.diff;
-      smart-filter = pkgs.yaziPlugins.smart-filter;
-      smart-enter = pkgs.yaziPlugins.smart-enter;
-      lazygit = pkgs.yaziPlugins.lazygit;
-      chmod = pkgs.yaziPlugins.chmod;
-      full-border = pkgs.yaziPlugins.full-border;
-      no-status = pkgs.yaziPlugins.no-status;
-      toggle-pane = pkgs.yaziPlugins.toggle-pane;
-      mediainfo = pkgs.yaziPlugins.mediainfo;
+    plugins = with pkgs.yaziPlugins; {
+      piper = piper;
+      diff = diff;
+      smart-filter = smart-filter;
+      smart-enter = smart-enter;
+      lazygit = lazygit;
+      chmod = chmod;
+      full-border = full-border;
+      no-status = no-status;
+      toggle-pane = toggle-pane;
+      mediainfo = mediainfo;
       # utils = ./yazi_plugins/utils.yazi;
     };
     # initLua = "./dotfiles/yazi_init.lua";
@@ -169,10 +169,10 @@
         # max_height = 1000;
       };
       tasks = {
-        image_bound = [
-          6000
-          6000
-        ];
+        # image_bound = [
+        #   6000
+        #   6000
+        # ];
       };
       plugin = {
         prepend_previewers = [

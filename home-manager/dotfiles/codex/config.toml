@@ -1,22 +1,56 @@
 model = "gpt-5.2-codex"
-model_reasoning_effort = "high"
+model_reasoning_effort = "medium"
 network_access = true
 notify = ["python3", "./notify.py"]
 approval_policy = "on-request"
 sandbox_mode = "workspace-write"
+model_verbosity = "low"
+project_root_markers = [".git", ".jj"]
+
+[history]
+persistence = "save-all"
+max_bytes = 5242880
+
+[tui]
+# Examples: true (default) | false | ["agent-turn-complete", "approval-requested"]
+notifications = true
+
+[feedback]
+enabled = false
+
+[analytics]
+enabled = false
+
+[profiles.deep-review]
+model = "gpt-5-pro"
+model_reasoning_effort = "high"
+approval_policy = "on-request"
+
+[mcp_servers.chrome-devtools]
+args = ["chrome-devtools-mcp@latest"]
+command = "bunx"
+
+[mcp_servers.svelte]
+args = ["-y", "@sveltejs/mcp"]
+command = "bunx"
+
+[shell_environment_policy]
+include_only = ["PATH", "HOME"]
+
+[features]
+unified_exec = true
+shell_snapshot = true
+collab = true
+steer = true
 web_search_request = true
 
-[mcp_servers.Context7]
-args = ["-y", "@upstash/context7-mcp"]
-command = "bunx"
+# [mcp_servers.Context7]
+# args = ["-y", "@upstash/context7-mcp"]
+# command = "bunx"
 
 # [mcp_servers.autumn-docs]
 # transport = "http"
 # url = "https://docs.useautumn.com/mcp"
-
-# [mcp_servers.chrome-devtools]
-# args = ["-y", "chrome-devtools-mcp@latest"]
-# command = "bunx"
 
 # [mcp_servers.convex]
 # args = ["-y", "convex@latest", "mcp", "start"]
@@ -43,7 +77,6 @@ command = "bunx"
 # args = ["@playwright/mcp@latest"]
 # command = "bunx"
 
-
 # [mcp_servers.sentry]
 # args = ["-y", "mcp-remote@latest", "https://mcp.sentry.dev/mcp"]
 # command = "bunx"
@@ -58,13 +91,3 @@ command = "bunx"
 #   "codex",
 # ]
 # command = "uvx"
-
-# [mcp_servers.shadcn-ui-mcp-server]
-# args = ["@jpisnice/shadcn-ui-mcp-server", "--framework", "svelte"]
-# command = "bunx"
-
-[mcp_servers.svelte]
-args = ["-y", "@sveltejs/mcp"]
-command = "bunx"
-
-[notice]

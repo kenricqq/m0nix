@@ -51,6 +51,7 @@ When the user says "use btca", use btca before you answer the question. It will 
 
 Run:
 
-- bun cli ask -t <tech> -q "<question>"
+- btca ask -r <resource> -q "<question>"
+  - ex. btca ask -r svelte -q "How does the $state rune work?"
 
-Available <tech>: svelte, tailwindcss, runed, neverthrow, motion 
+Available <resource>: svelte, tailwindcss, runed, neverthrow, motion, jj

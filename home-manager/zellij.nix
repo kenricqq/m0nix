@@ -29,9 +29,9 @@ in
   programs.zellij = {
     enable = true;
     # enableZshIntegration = true;
-    enableFishIntegration = true;
-    attachExistingSession = true;
-    exitShellOnExit = true;
+    # enableFishIntegration = true;
+    # attachExistingSession = true;
+    # exitShellOnExit = true;
   };
 
   home.packages = [

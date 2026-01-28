@@ -38,7 +38,7 @@ end
 zoxide init fish | source
 
 if status is-interactive
-    export ZELLIJ_AUTO_ATTACH=true
+    # export ZELLIJ_AUTO_ATTACH=true
 
-    eval (zellij setup --generate-auto-start fish | string collect)
+    # eval (zellij setup --generate-auto-start fish | string collect)
 end

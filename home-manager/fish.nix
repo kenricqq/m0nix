@@ -1,5 +1,5 @@
 {
-  # config,
+  config,
   # lib,
   ...
 }:
@@ -14,6 +14,26 @@
     };
 
     functions = {
+      fish_jj_prompt = ''
+        # If jj isn't installed, there's nothing we can do
+        # Return 1 so the calling prompt can deal with it
+        if not command -sq jj
+            return 1
+        end
+        set -l info "$(
+            jj log 2>/dev/null --no-graph --ignore-working-copy --color=always --revisions @ \
+                --template '
+                    separate(" ",
+                        if(conflict, label("conflict", "×")),
+                    )
+                '
+        )"
+        or return 1
+        if test -n "$info"
+            printf ' %s' $info
+        end
+      '';
+
       __fish_command_not_found_handler = {
         body = "__fish_default_command_not_found_handler $argv[1]";
         onEvent = "fish_command_not_found";
@@ -212,6 +232,10 @@
       '';
     };
 
+    shellInit = ''
+      source ${config.home.profileDirectory}/etc/profile.d/hm-session-vars.fish
+    '';
+
     # interactiveShellInit = builtins.readFile ./dotfiles/fish/config.fish;
     interactiveShellInit = ''
       set -gx EDITOR hx
@@ -280,7 +304,8 @@
         expansion = "--color";
       };
       gs = "git status";
-      lg = "lazygit";
+
+      "-" = "cd -";
 
       update = "nix flake update && dhm";
     };
@@ -289,8 +314,6 @@
     #   cat = "bat";
     #   cd = "z";
     # };
-
-    shellInit = "";
 
     shellInitLast = "";
   };

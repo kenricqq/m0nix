@@ -103,7 +103,6 @@
     # better ls
     eza = {
       enable = true;
-      enableZshIntegration = true;
       colors = "auto";
       extraOptions = [
         "--group-directories-first"
@@ -217,37 +216,36 @@
     # fzf cheatsheet for cli, can wrap tldr
     navi = {
       enable = true;
-      enableZshIntegration = true;
     };
-    newsboat = {
-      enable = true;
-      autoFetchArticles = {
-        enable = true;
-        onCalendar = "daily";
-      };
-      autoReload = true;
-      autoVacuum = {
-        enable = true;
-        onCalendar = "weekly";
-      };
-      extraConfig = ''
+    # newsboat = {
+    #   enable = true;
+    #   autoFetchArticles = {
+    #     enable = true;
+    #     onCalendar = "daily";
+    #   };
+    #   autoReload = true;
+    #   autoVacuum = {
+    #     enable = true;
+    #     onCalendar = "weekly";
+    #   };
+    #   extraConfig = ''
 
-      '';
-      maxItems = 10;
-      queries = {
-        foo = "rssurl =~ \"example.com\"";
-      };
-      urls = [
-        {
-          tags = [
-            "foo"
-            "bar"
-          ];
-          title = "Example";
-          url = "http://example.com";
-        }
-      ];
-    };
+    #   '';
+    #   maxItems = 10;
+    #   queries = {
+    #     foo = "rssurl =~ \"example.com\"";
+    #   };
+    #   urls = [
+    #     {
+    #       tags = [
+    #         "foo"
+    #         "bar"
+    #       ];
+    #       title = "Example";
+    #       url = "http://example.com";
+    #     }
+    #   ];
+    # };
     nh = {
       enable = true;
       clean = {
@@ -256,9 +254,9 @@
       };
       flake = "${path.nix}/flake.nix";
     };
-    pandoc = {
-      enable = true;
-    };
+    # pandoc = {
+    #   enable = true;
+    # };
     # command suggestion/autofix
     # pay-respects = {
     #   enable = true;
@@ -354,7 +352,6 @@
     # general purpose fuzzy finder
     television = {
       enable = true;
-      enableZshIntegration = true;
       channels = {
         git-diff = {
           metadata = {
@@ -409,7 +406,6 @@
     };
     zoxide = {
       enable = true;
-      # enableZshIntegration = true;
     };
 
     # borg # Deduplicating archiver with compression and authenticated encryption.

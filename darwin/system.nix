@@ -331,6 +331,8 @@
     NSGlobalDomain = {
       _HIHideMenuBar = true;
       "com.apple.swipescrolldirection" = true;
+      # enables cmd+ctrl to move any window
+      NSWindowShouldDragOnGesture = true;
     };
     spaces = {
       spans-displays = false;

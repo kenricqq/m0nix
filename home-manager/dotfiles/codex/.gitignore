@@ -5,6 +5,14 @@
 !/prompts/
 !/prompts/**
 
+!/rules/
+!/rules/**
+
+!/skills/
+!/skills/**
+
+/skills/**/*.py
+
 !/workflows
 !/workflows/**
 

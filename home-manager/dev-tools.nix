@@ -1,40 +1,40 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   programs = {
     # awscli = {
     #   enable = true;
     # };
-    broot = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-        modal = true;
-        verbs = [
-          {
-            invocation = "p";
-            execution = ":parent";
-          }
-          {
-            invocation = "edit";
-            shortcut = "e";
-            execution = "$EDITOR {file}";
-          }
-          {
-            invocation = "create {subpath}";
-            execution = "$EDITOR {directory}/{subpath}";
-          }
-          {
-            invocation = "view";
-            execution = "less {file}";
-          }
-          {
-            invocation = "blop {name}\\.{type}";
-            execution = "mkdir {parent}/{type} && ${pkgs.neovim}/bin/nvim {parent}/{type}/{name}.{type}";
-            from_shell = true;
-          }
-        ];
-      };
-    };
+    # broot = {
+    #   enable = true;
+    #   enableZshIntegration = true;
+    #   settings = {
+    #     modal = true;
+    #     verbs = [
+    #       {
+    #         invocation = "p";
+    #         execution = ":parent";
+    #       }
+    #       {
+    #         invocation = "edit";
+    #         shortcut = "e";
+    #         execution = "$EDITOR {file}";
+    #       }
+    #       {
+    #         invocation = "create {subpath}";
+    #         execution = "$EDITOR {directory}/{subpath}";
+    #       }
+    #       {
+    #         invocation = "view";
+    #         execution = "less {file}";
+    #       }
+    #       {
+    #         invocation = "blop {name}\\.{type}";
+    #         execution = "mkdir {parent}/{type} && ${pkgs.neovim}/bin/nvim {parent}/{type}/{name}.{type}";
+    #         from_shell = true;
+    #       }
+    #     ];
+    #   };
+    # };
     bun = {
       enable = true;
       settings = {
@@ -111,6 +111,8 @@
     };
     delta = {
       enable = true;
+      enableGitIntegration = true;
+      enableJujutsuIntegration = true;
       options = {
         decorations = {
           commit-decoration-style = "bold yellow box ul";
@@ -154,48 +156,64 @@
       };
       telemetry.mode = "off";
     };
+    jjui = {
+      enable = true;
+      configDir = "${config.home.homeDirectory}/.jjui";
+      settings = {
+        revisions = {
+          revset = "";
+          template = "builtin_log_compact";
+        };
+      };
+    };
     jujutsu = {
       enable = true;
-    };
-    k9s = {
-      enable = true;
-      aliases = {
-        # Use pp as an alias for Pod
-        pp = "v1/pods";
-      };
-      hotKeys = {
-        shift-0 = {
-          shortCut = "Shift-0";
-          description = "Viewing pods";
-          command = "pods";
-        };
-      };
-      plugins = {
-        # Defines a plugin to provide a `ctrl-l` shortcut to
-        # tail the logs while in pod view.
-        fred = {
-          shortCut = "Ctrl-L";
-          description = "Pod logs";
-          scopes = [ "po" ];
-          command = "kubectl";
-          background = false;
-          args = [
-            "logs"
-            "-f"
-            "$NAME"
-            "-n"
-            "$NAMESPACE"
-            "--context"
-            "$CLUSTER"
-          ];
-        };
-      };
       settings = {
-        k9s = {
-          refreshRate = 2;
+        user = {
+          # email = "jdoe@example.org";
+          # name = "John Doe";
         };
       };
     };
+    # k9s = {
+    #   enable = true;
+    #   aliases = {
+    #     # Use pp as an alias for Pod
+    #     pp = "v1/pods";
+    #   };
+    #   hotKeys = {
+    #     shift-0 = {
+    #       shortCut = "Shift-0";
+    #       description = "Viewing pods";
+    #       command = "pods";
+    #     };
+    #   };
+    #   plugins = {
+    #     # Defines a plugin to provide a `ctrl-l` shortcut to
+    #     # tail the logs while in pod view.
+    #     fred = {
+    #       shortCut = "Ctrl-L";
+    #       description = "Pod logs";
+    #       scopes = [ "po" ];
+    #       command = "kubectl";
+    #       background = false;
+    #       args = [
+    #         "logs"
+    #         "-f"
+    #         "$NAME"
+    #         "-n"
+    #         "$NAMESPACE"
+    #         "--context"
+    #         "$CLUSTER"
+    #       ];
+    #     };
+    #   };
+    #   settings = {
+    #     k9s = {
+    #       refreshRate = 2;
+    #     };
+    #   };
+    # };
     lazygit = {
       enable = true;
       settings = {

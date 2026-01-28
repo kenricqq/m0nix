@@ -46,6 +46,7 @@ in
     systemPackages = with pkgs; [
       nodejs_24
       fish
+      bun
 
       # backup
       # duplicati

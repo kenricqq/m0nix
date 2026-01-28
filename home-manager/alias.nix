@@ -25,18 +25,33 @@ let
     t = "zsh $SCRIPTS/tgpt.zsh";
     olr = "zsh $SCRIPTS/ollama.zsh";
 
-    # util / scripts functions
+    # scripts functions
     ku = "$EDITOR $SCRIPTS/keyboard.zsh";
     zu = "$EDITOR $SCRIPTS/utils.zsh";
     rb = "$EDITOR $SCRIPTS/rofi-beats";
     be = "$EDITOR $HOME/.config/btca/btca.json";
     links = "$EDITOR $SCRIPTS/golinks.yaml";
+
+    # utils
     venv = "source $(fd -HI -td .venv \"$(git rev-parse --show-toplevel)\" | head -n 1)/bin/activate";
     music = "mpd && rmpc";
     mdo = "mdbook serve -o";
-    weather = "curl wttr.in/Santa+Cruz";
+    whtr = "curl wttr.in/Santa+Cruz";
     wsh = "which $SHELL";
     rustbook = "zellij --layout rustbook";
+    airport = "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport";
+    mergepdf = "gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf";
+    # Lock the screen (when going AFK)
+    afk = "/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend";
+    # path = "echo -e \${PATH//:/\\n}";
+    path = "echo \"$PATH\" | tr ':' '\\n'";
+    localip = "ipconfig getifaddr en0";
+    ip4 = "dig -4 +short TXT o-o.myaddr.l.google.com @ns1.google.com";
+    ip6 = "dig -6 +short TXT o-o.myaddr.l.google.com @ns1.google.com";
+    du1 = "du -d 1 .";
+
+    emptytrash = "sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'";
+    cleanup = "find . -type f -name '*.DS_Store' -ls -delete";
 
     ## ----- ##
     # alias magic='kt && sudo zsh m1_backup/backup.zsh'
@@ -47,46 +62,59 @@ let
   };
 
   remapAliases = {
+    ".." = "cd ..";
+    "..." = "cd ../..";
+    "...." = "cd ../../..";
+    "....." = "cd ../../../..";
+
     a = "asciinema";
     c = "codex";
     cd = "z";
-    cdi = "zi";
+    ci = "zi";
     cl = "clear";
     clip = "pbcopy";
     curl = "curlie";
     df = "duf";
     du = "dust";
-    ex = "exit";
+    e = "exit";
     ff = "fastfetch";
     jq = "gojq";
-    l = "ls -lah";
     lg = "lazygit";
     lj = "lazyjj";
-    ll = "ls -l";
-    ls = "eza";
-    lt = "ls -T -L=2 -l --icons --git";
-    mp = "multipass";
     oc = "opencode";
     ps = "procs";
+    python = "python3";
+    py = "python3";
     r = "rust";
     rg = "rga";
     sd = "sed";
-    timer = "timr-tui";
     y = "yy";
     zed = "zed-preview";
     ze = "zellij";
     zel = "zellij --layout";
+
+    # ls
+    l = "ls -lah";
+    ll = "ls -l";
+    ls = "eza";
+    lt = "ls -T -L=2 -l --icons --git";
+
+    # utils
+    mp = "multipass";
   };
 
   navAliases = {
+    # general
+    desk = "cd ~/Desktop";
+    hm = "cd $HM";
     kt = "cd ~/Documents/KTQQ";
     nx = "cd $NX";
-    hm = "cd $HM";
     sand = "cd ~/Sandbox";
-    code = "cd ~/code/$(ls ~/code | fzf)";
-    coder = "cd ~/code/$(ls ~/code | fzf) && hx .";
+    sc = "cd ~/Documents/school";
+
+    # projects / notes
     notes = "cd ~/Documents/notes";
-    sc = "cd ~/school";
+    dev = "cd ~/dev/$(ls ~/dev | fzf) && hx .";
     # obs = "selected=$(fd -t d -d 1 . \"\$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents\" --exec basename | fzf) && cd \"\$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/\$selected\"";
     # hob = "selected=$(fd -t d -d 1 . \"\$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents\" --exec basename | fzf) && cd \"\$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/\$selected\" && hx .";
     # gob = "fd -t d -d 1 . \"\$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents\" --exec basename | fzf | xargs -I {} open \"obsidian://open?vault={}\"";
@@ -138,12 +166,11 @@ let
     yzco = "yazi.nix";
     zco = "zsh.nix";
     zenco = "zen.nix";
-    zexco = "zellij.nix";
+    zeco = "zellij.nix";
 
     clico = "cli-tools.nix";
     devco = "dev-tools.nix";
     meco = "media-tools.nix";
-    aico = "ai";
 
     # Apps
     kco = "kitty.nix";
@@ -156,10 +183,11 @@ let
     # Dotfiles
     sbco = "sketchybar";
     aco = "aerospace/aerospace.toml";
+    aico = "ai";
     cco = "codex";
     ghco = "ghostty/config";
     rco = "rio/config.toml";
-    zeco = "zellij";
+    zelco = "zellij";
     fhco = "fish";
     glco = "glance/glance.yml";
     zkco = "zk/config.toml";
@@ -176,6 +204,7 @@ let
       ba = "add";
       bi = "install";
       br = "run";
+      bl = "pm list";
     };
     cargo = {
       ca = "add";
