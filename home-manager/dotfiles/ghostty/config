@@ -1,5 +1,8 @@
-# theme = Nightfox
-theme = Kanagawa Dragon
+theme = Dracula
+# theme = Atelier Sulphurpool
+# theme = Atom One Dark
+# theme = Kanagawa Dragon
+# theme = Kanagawa Wave
 
 # background = 282c34
 # foreground = ffffff
@@ -10,31 +13,31 @@ theme = Kanagawa Dragon
 # background-image-fit = contain
 
 # custom-shader = shaders/starfield-colors.glsl
-custom-shader = shaders/cursor_blaze.glsl
+# custom-shader = shaders/cursor_blaze.glsl
 
 shell-integration = zsh
 shell-integration-features = true
 
 # env = SHELL=/bin/fish
 # initial-command = "/etc/profiles/per-user/$USER/bin/fish -lc 'exec zellij attach -c home'"
- # command = "/etc/profiles/per-user/$USER/bin/fish -lc 'exec zesh cn $(zesh l | fzf)'"
-initial-command = "/etc/profiles/per-user/$USER/bin/fish -il"
+# command = "/etc/profiles/per-user/$USER/bin/nu -l -c 'zesh cn (^zesh l | fzf | str trim)'"
+# initial-command = "/etc/profiles/per-user/$USER/bin/fish -il"
 # command = "/etc/profiles/per-user/$USER/bin/fish -il"
 
 # contain (def), cover, stretch, none
 background-image-fit = cover
-background-opacity = 0.97
+background-opacity = 0.99
 background-blur = true
 unfocused-split-opacity = 0.7
 # unfocused-split-fill = #000000
-split-divider-color = #F0F00F
+# split-divider-color = #F0F00F
 
 # cursor
 cursor-style-blink = false
 mouse-hide-while-typing = true
 
-macos-titlebar-style = hidden
-# macos-titlebar-style = tabs
+# macos-titlebar-style = hidden
+macos-titlebar-style = tabs
 macos-window-buttons = hidden
 macos-titlebar-proxy-icon = hidden
 # official (default), blueprint, chalkboard, microchip, glass, holographic, paper, retro, xray
@@ -53,20 +56,19 @@ window-inherit-working-directory = true
 window-save-state = always
 
 # Empty values reset the configuration to the default value
-font-family = "0xProto Nerd Font Mono"
-# font-family = "SpaceMono Nerd Font Mono"
-## Krypton (Mech sans)/Radon (Handwriting)/Xenon (serif)/Argon (sans 1)/Neon (sans 2)
-# font-family = "Monaspace Neon"
+# font-family = "0xProto Nerd Font Mono"
+# font-family = "IosevkaTermSlab NFM"
+font-family = "Maple Mono NF CN"
+# font-family = "Maple Mono Normal NF CN"
 # font-family = "IosevkaTerm NFM"
-# font-family = "Source Code Pro"
-# font-family = "JetBrainsMono Nerd Font Mono"
-font-size = 15
+
+font-size = 13
 
 adjust-cell-height = 15%
 minimum-contrast = 3
 
 quick-terminal-position = center
-quick-terminal-size = 50%,500px
+quick-terminal-size = 60%,700px
 quick-terminal-animation-duration = 0
 
 right-click-action = copy-or-paste
@@ -76,17 +78,17 @@ confirm-close-surface = false
 quit-after-last-window-closed = false
 
 # keybind = global:cmd+shift+grave_accent=toggle_quick_terminal
-keybind = global:alt+enter=toggle_quick_terminal
+keybind = global:cmd+alt+enter=toggle_quick_terminal
 keybind = cmd+\=new_split:right
 keybind = cmd+shift+\=new_split:down
 
 keybind = cmd+shift+f=write_scrollback_file:open
 
 # keyboard scroll
-keybind = ctrl+shift+k=scroll_page_lines:-30
-keybind = ctrl+shift+j=scroll_page_lines:30
-# keybind = ctrl+shift+d=scroll_page_down
-# keybind = ctrl+shift+u=scroll_page_up
+keybind = cmd+shift+u=scroll_page_lines:-15
+keybind = cmd+shift+d=scroll_page_lines:15
+# keybind = cmd+shift+d=scroll_page_down
+# keybind = cmd+shift+u=scroll_page_up
 
 # goto split
 keybind = cmd+shift+h=goto_split:left
@@ -105,12 +107,12 @@ keybind = cmd+shift+f=toggle_window_float_on_top
 
 keybind = ctrl+l=clear_screen
 
-# # disable
+# disable for zellij (conflicts with ghostty)
 # keybind = cmd+d=unbind
 # keybind = ctrl+h=unbind
 # keybind = ctrl+j=unbind
 # keybind = ctrl+k=unbind
-# keybind = ctrl+l=unbind
+keybind = ctrl+l=unbind
 # keybind = ctrl+shift+h=unbind
 # keybind = ctrl+shift+l=unbind
 # keybind = ctrl+tab=unbind

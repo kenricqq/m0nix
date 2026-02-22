@@ -1,0 +1,66 @@
+{
+	"$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+	"version": 4,
+	"blocks": [
+		{
+			"type": "rprompt",
+			"segments": [
+				{
+					"type": "time",
+					"style": "plain",
+					"foreground": "#00C5C7",
+					"options": { "time_format": "15:04:05" },
+					"template": " {{ .CurrentDate | date .Format }} "
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"type": "path",
+					"style": "plain",
+					"foreground": "#77E4F7",
+					"options": {
+						"style": "folder"
+					},
+					"template": "{{ .Path }} "
+				},
+
+				{
+					"type": "jujutsu",
+					"style": "plain",
+					"foreground": "#43D426",
+					"foreground_templates": [
+						"{{ if and (contains .ClosestBookmarks \"‹\") (contains .ClosestBookmarks \"›\") }}#FF5555{{ end }}",
+						"{{ if contains .ClosestBookmarks \"‹\" }}#F89CFA{{ end }}",
+						"{{ if contains .ClosestBookmarks \"›\" }}#35B5FF{{ end }}"
+					],
+					"options": {
+						"fetch_ahead_counter": true,
+						"ahead_icon": "›",
+						"fetch_status": true,
+						"ignore_working_copy": false,
+						"change_id_min_len": 4
+					},
+					"template": "{{ .ClosestBookmarks }} {{ .ChangeID }}{{ if .Working.Changed }} {{ .Working.String }}{{ end }} "
+				},
+
+				{
+					"type": "git",
+					"style": "plain",
+					"foreground": "#FFE700",
+					"template": "{{ if not (glob \".jj\") }}{{ .HEAD }} {{ end }}"
+				},
+
+				{
+					"type": "text",
+					"style": "plain",
+					"foreground": "#43D426",
+					"template": "❯ "
+				}
+			]
+		}
+	]
+}

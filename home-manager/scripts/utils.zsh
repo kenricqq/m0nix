@@ -15,6 +15,18 @@ function zpipe () {
   fi
 }
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+
+ za() {
+  z "$@" && ls -F
+ }
+
 ah() {
   local q="$*"
   alias | sed -E 's/^alias[[:space:]]+([^[:space:]]+)[[:space:]]+/\1|/' \

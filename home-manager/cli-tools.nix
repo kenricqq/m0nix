@@ -1,37 +1,27 @@
 {
+  config,
   pkgs,
   path,
   ...
 }:
+let
+  inherit (path)
+    home
+    ;
+in
 {
-  # services = {
-  #   mpd = {
-  #     enable = true;
-  #     dataDir = "${config.home.homeDirectory}/.mpd"; # Default: "$XDG_DATA_HOME/mpd"
-  #     extraArgs = [
-  #       "--verbose"
-  #     ];
-  #     extraConfig = ''
-  #       bind_to_address "127.0.0.1"
-  #       port            "6600"
-
-  #       audio_output {
-  #         type "osx"
-  #         name "CoreAudio"
-  #         # Optional: pin to a specific device (see step 6)
-  #         device "Built-in Output"
-  #         mixer_type "software"   # lets mpc set volume
-  #       }
-  #     '';
-  #     musicDirectory = "${config.home.homeDirectory}/Music";
-  #     # network = {
-  #     #   listenAddress = "any"; # Default: "127.0.0.1"
-  #     #   port = 6600; # Default: 6600
-  #     # };
-  #     # playlistDirectory = ""; # Default: "\${dataDir}/playlists"
-  #   };
-  # };
   programs = {
+    numbat = {
+      enable = true;
+      settings = {
+        exchange-rates = {
+          fetching-policy = "on-first-use";
+        };
+        intro-banner = "short";
+        prompt = "> ";
+      };
+    };
+
     # shell history
     atuin = {
       enable = true;
@@ -44,17 +34,6 @@
         invert = false;
         keymap_mode = "vim-insert"; # auto
         style = "auto";
-      };
-    };
-    # resource monitor / process manager
-    btop = {
-      enable = true;
-      settings = {
-        color_theme = "Default";
-        theme_background = false;
-        # default "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty"
-        presets = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty";
-        vim_keys = true;
       };
     };
     # display file contents
@@ -94,11 +73,40 @@
     # environment switcher
     direnv = {
       enable = true;
-      mise = {
-        enable = true;
-      };
+      enableZshIntegration = true;
+      mise.enable = true;
       nix-direnv.enable = true;
       silent = true;
+    };
+    mise = {
+      enable = true;
+      globalConfig = {
+        settings = {
+          disable_tools = [ "node" ];
+          experimental = true;
+          verbose = false;
+        };
+
+        tasks = {
+          dev = "bun run dev";
+          # Global: [tasks.test] = "npm test"
+          # Project: [tasks.test] = "yarn test"
+        };
+
+        tool_alias = {
+          node.versions = {
+            my_custom_node = "20";
+          };
+        };
+
+        tools = {
+          node = "lts";
+          python = [
+            "3.10"
+            "3.11"
+          ];
+        };
+      };
     };
     # better ls
     eza = {
@@ -188,64 +196,35 @@
       ];
     };
     # json processor
-    jq = {
-      enable = true;
-      colors = {
-        null = "1;30";
-        false = "0;31";
-        true = "0;32";
-        numbers = "0;36";
-        strings = "0;33";
-        arrays = "1;35";
-        objects = "1;37";
-        objectKeys = "1;34";
-      };
-    };
-    # jq playground
-    jqp = {
-      enable = true;
-      settings = {
-        theme = {
-          chromaStyleOverrides = {
-            kc = "#009900 underline";
-          };
-          name = "monokai";
-        };
-      };
-    };
+    # jq = {
+    #   enable = true;
+    #   colors = {
+    #     null = "1;30";
+    #     false = "0;31";
+    #     true = "0;32";
+    #     numbers = "0;36";
+    #     strings = "0;33";
+    #     arrays = "1;35";
+    #     objects = "1;37";
+    #     objectKeys = "1;34";
+    #   };
+    # };
+    # # jq playground
+    # jqp = {
+    #   enable = true;
+    #   settings = {
+    #     theme = {
+    #       chromaStyleOverrides = {
+    #         kc = "#009900 underline";
+    #       };
+    #       name = "monokai";
+    #     };
+    #   };
+    # };
     # fzf cheatsheet for cli, can wrap tldr
     navi = {
       enable = true;
     };
-    # newsboat = {
-    #   enable = true;
-    #   autoFetchArticles = {
-    #     enable = true;
-    #     onCalendar = "daily";
-    #   };
-    #   autoReload = true;
-    #   autoVacuum = {
-    #     enable = true;
-    #     onCalendar = "weekly";
-    #   };
-    #   extraConfig = ''
-
-    #   '';
-    #   maxItems = 10;
-    #   queries = {
-    #     foo = "rssurl =~ \"example.com\"";
-    #   };
-    #   urls = [
-    #     {
-    #       tags = [
-    #         "foo"
-    #         "bar"
-    #       ];
-    #       title = "Example";
-    #       url = "http://example.com";
-    #     }
-    #   ];
-    # };
     nh = {
       enable = true;
       clean = {
@@ -283,26 +262,6 @@
       enable = true;
     };
     # terminal music player
-    rmpc = {
-      enable = true;
-      # config = ''
-      #   (
-      #       address: "127.0.0.1:6600",
-      #       password: None,
-      #       theme: None,
-      #       cache_dir: None,
-      #       on_song_change: None,
-      #       volume_step: 5,
-      #       max_fps: 30,
-      #       scrolloff: 0,
-      #       wrap_navigation: false,
-      #       enable_mouse: true,
-      #       enable_config_hot_reload: true,
-      #       select_current_song_on_change: false,
-      #       browser_song_sort: [Disc, Track, Artist, Title],
-      #   )
-      # '';
-    };
     # cli todo manager
     # taskwarrior = {
     #   enable = true;
@@ -413,4 +372,7 @@
 
     # rlone # cloud storage sync files
   };
+  home.packages = with pkgs; [
+    ouch # (de)compression
+  ];
 }

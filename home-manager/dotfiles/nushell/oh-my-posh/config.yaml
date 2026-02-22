@@ -1,0 +1,10 @@
+type: jujutsu
+style: powerline
+powerline_symbol: 
+foreground: "#193549"
+background: "#ffeb3b"
+options:
+  fetch_status: true
+  ignore_working_copy: false
+  fetch_ahead_counter: true
+  ahead_icon: ⇡

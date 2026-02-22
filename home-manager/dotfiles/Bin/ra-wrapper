@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MOUNT="/Volumes/MemoriTarget"
+TARGET="$MOUNT/memori-tauri-target"
+
+# point this at wherever the sparsebundle lives
+BUNDLE="/Volumes/X31/MemoriTarget.sparsebundle"
+
+# If not mounted, try to mount it (and if it fails, just fall back to local)
+if ! mount | grep -q " on $MOUNT "; then
+  if [[ -e "$BUNDLE" ]]; then
+    # -nobrowse avoids Finder popping open; -mountpoint forces the path
+    hdiutil attach -nobrowse -mountpoint "$MOUNT" "$BUNDLE" >/dev/null 2>&1 || true
+  fi
+fi
+
+if mount | grep -q " on $MOUNT "; then
+  export CARGO_TARGET_DIR="$TARGET"
+  mkdir -p "$CARGO_TARGET_DIR"
+fi
+
+exec rust-analyzer "$@"

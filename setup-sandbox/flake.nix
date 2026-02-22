@@ -35,10 +35,11 @@
               bun
               helix
               yazi
+              nushell
             ];
 
             shellHook = ''
-              echo "$(hx --version)"
+              exec nu
             '';
 
             env = {

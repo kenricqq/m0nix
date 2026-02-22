@@ -3,6 +3,7 @@
 {
   programs.yazi = {
     enable = true;
+    enableZshIntegration = true;
     plugins = with pkgs.yaziPlugins; {
       piper = piper;
       diff = diff;
@@ -14,6 +15,8 @@
       no-status = no-status;
       toggle-pane = toggle-pane;
       mediainfo = mediainfo;
+      jjui = jjui;
+      vcs-files = vcs-files;
       # utils = ./yazi_plugins/utils.yazi;
     };
     # initLua = "./dotfiles/yazi_init.lua";
@@ -119,8 +122,8 @@
       };
       mgr = {
         show_hidden = false;
-        # sort_by = "mtime";
-        sort_by = "alphabetical";
+        sort_by = "mtime";
+        # sort_by = "alphabetical";
         sort_dir_first = true;
         sort_reverse = true;
         ratio = [
@@ -177,32 +180,69 @@
       plugin = {
         prepend_previewers = [
           {
+            url = "*.tar*";
+            run = "faster-piper --rely-on-preloader --format=url";
+          }
+          {
+            url = "*.txt.gz";
+            run = "faster-piper --rely-on-preloader";
+          }
+          {
+            url = "*.csv";
+            run = "faster-piper --rely-on-preloader";
+          }
+          {
+            url = "*.md";
+            run = "faster-piper --rely-on-preloader";
+          }
+          {
+            url = "*/";
+            run = "faster-piper --rely-on-preloader";
+          }
+          {
+            mime = "application/sqlite3";
+            run = "faster-piper --rely-on-preloader";
+          }
+          {
+            url = "*/.hex";
+            run = "faster-piper --rely-on-preloader";
+          }
+          {
             mime = "{audio,video,image}/*";
             run = "mediainfo";
           }
-          {
-            name = "*.md";
-            run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
-          }
-          {
-            name = "*.csv";
-            run = "piper -- bat -p --color=always \"$1\"";
-          }
-          {
-            name = "*/";
-            run = "piper -- eza -TL=3 --color=always --icons=always --group-directories-first --no-quotes \"$1\"";
-          }
-          {
-            name = "*.tar*";
-            run = "piper --format=url -- tar tf \"$1\"";
-          }
-          # hex
-          {
-            name = "*.hex";
-            run = "piper -- hexyl --border=none --terminal-width=$w \"$1\"";
-          }
         ];
         prepend_preloaders = [
+          {
+            url = "*.tar*";
+            # run = "piper --format=url -- tar tf \"$1\"";
+            run = "faster-piper --format=url -- tar tf \"$1\"";
+          }
+          {
+            url = "*.txt.gz";
+            run = "faster-piper -- gzip -dc \"$1\"";
+          }
+          {
+            url = "*.csv";
+            run = "faster-piper -- bat -p --color=always \"$1\"";
+          }
+          {
+            url = "*.md";
+            run = "faster-piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dracula -- \"$1\"";
+          }
+          {
+            url = "*/";
+            run = "faster-piper -- eza -TL=3 --color=always --icons=always --group-directories-first --no-quotes \"$1\"";
+          }
+          {
+            mime = "application/sqlite3";
+            run = "faster-piper -- sqlite3 \"$1\" \".schema --indent\"";
+          }
+          # hexyl as fallback previewer instead of file
+          {
+            url = "*/.hex";
+            run = "faster-piper -- hexyl --border=none --terminal-width=$w \"$1\"";
+          }
           {
             mime = "{audio,video,image}/*";
             run = "mediainfo";

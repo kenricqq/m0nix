@@ -1,0 +1,27 @@
+# Curated list only. `ws` will only show these.
+[[workspace]]
+id = "sandbox"
+path = "~/dev/learning/World Of AI"
+layout = "compact"
+aliases = ["sbx", "codex"]
+
+[[workspace]]
+id = "mono"
+path = "~/dev/work/mono"
+layout = "compact"
+aliases = ["monorepo", "core"]
+
+[[workspace]]
+id = "infra"
+path = "~/dev/work/infra"
+aliases = ["ops", "platform"]
+
+[[workspace]]
+id = "web"
+path = "~/dev/work/web"
+aliases = ["frontend", "ui"]
+
+[[workspace]]
+id = "research"
+path = "~/dev/work/research"
+aliases = ["lab"]

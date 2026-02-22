@@ -1,6 +1,10 @@
 {
-	"rust snippet": {
-		"prefix": "rust",
-		"body": ["```rs", "$0", "```"]
-	}
+  "rust snippet": {
+    "prefix": "rs",
+    "body": [
+      "```rs",
+      "$1",
+      "```"
+    ]
+  }
 }

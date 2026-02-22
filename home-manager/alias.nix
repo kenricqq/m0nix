@@ -1,10 +1,4 @@
 let
-  # NX = "$NX";
-  # DW = "${NX}/darwin";
-  # HM = "${NX}/home-manager";
-  # DOT = "${HM}/dotfiles";
-  # SCRIPTS = "${HM}/scripts";
-
   baseAliases = {
     # Show All Aliases
     all = "awk '/^[[:space:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:space:]]*=/ { gsub(/^[[:space:]]+/, \"\"); gsub(/[[:space:]]*;$/, \"\"); print }' $HM/alias.nix | sort | fzf | cut -d ' ' -f1";
@@ -16,17 +10,7 @@ let
     snip = "$EDITOR $HM/snippets";
     log = "$EDITOR /var/log/keystroke.log";
 
-    # Make
-    ma = "make";
-    mf = "make format";
-    mc = "make clean";
-
-    # Scripts
-    t = "zsh $SCRIPTS/tgpt.zsh";
-    olr = "zsh $SCRIPTS/ollama.zsh";
-
     # scripts functions
-    ku = "$EDITOR $SCRIPTS/keyboard.zsh";
     zu = "$EDITOR $SCRIPTS/utils.zsh";
     rb = "$EDITOR $SCRIPTS/rofi-beats";
     be = "$EDITOR $HOME/.config/btca/btca.json";
@@ -34,7 +18,6 @@ let
 
     # utils
     venv = "source $(fd -HI -td .venv \"$(git rev-parse --show-toplevel)\" | head -n 1)/bin/activate";
-    music = "mpd && rmpc";
     mdo = "mdbook serve -o";
     whtr = "curl wttr.in/Santa+Cruz";
     wsh = "which $SHELL";
@@ -49,9 +32,14 @@ let
     ip4 = "dig -4 +short TXT o-o.myaddr.l.google.com @ns1.google.com";
     ip6 = "dig -6 +short TXT o-o.myaddr.l.google.com @ns1.google.com";
     du1 = "du -d 1 .";
+    zoa = "zoxide add"; # boost a directory ranking; run multiple times to get it high
+    ze = "zesh cn $(zesh l | fzf)";
+    zc = "zesh cn";
+    restart = "pids=$(lsof -t -nP -iTCP:6600 -sTCP:LISTEN -a -c mpd | sort -u); [[ -n \"$pids\" ]] && kill $pids && mpd";
 
-    emptytrash = "sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'";
-    cleanup = "find . -type f -name '*.DS_Store' -ls -delete";
+    et = "sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"; # empty trash
+    cleanup = "fd . -type f -name '*.DS_Store' -ls -delete";
+    docs = "hx $NX/docs_db"; # upgrade -> keybind open floating pane in zellij
 
     ## ----- ##
     # alias magic='kt && sudo zsh m1_backup/backup.zsh'
@@ -77,7 +65,10 @@ let
     df = "duf";
     du = "dust";
     e = "exit";
+    ei = "eilmeldung";
     ff = "fastfetch";
+    j = "just";
+    jh = "just --help";
     jq = "gojq";
     lg = "lazygit";
     lj = "lazyjj";
@@ -88,10 +79,10 @@ let
     r = "rust";
     rg = "rga";
     sd = "sed";
-    y = "yy";
+    yy = "y";
     zed = "zed-preview";
-    ze = "zellij";
-    zel = "zellij --layout";
+    zel = "zellij";
+    zell = "zellij --layout";
 
     # ls
     l = "ls -lah";
@@ -113,22 +104,21 @@ let
     sc = "cd ~/Documents/school";
 
     # projects / notes
+
+    wsco = "cd $DOT/nushell/zellij-workspaces.toml";
     notes = "cd ~/Documents/notes";
     dev = "cd ~/dev/$(ls ~/dev | fzf) && hx .";
-    # obs = "selected=$(fd -t d -d 1 . \"\$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents\" --exec basename | fzf) && cd \"\$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/\$selected\"";
-    # hob = "selected=$(fd -t d -d 1 . \"\$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents\" --exec basename | fzf) && cd \"\$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/\$selected\" && hx .";
-    # gob = "fd -t d -d 1 . \"\$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents\" --exec basename | fzf | xargs -I {} open \"obsidian://open?vault={}\"";
   };
 
   nixAliases = {
-    dhm = "cd $NX && yq eval 'keys | .[] | select(. != \"sops\")' secrets/secrets.yaml > secrets.list && sudo darwin-rebuild switch --flake . && rm secrets.list && fish -c 'fisher update'";
-    dhmp = "cd $NX && sudo darwin-rebuild switch --flake . --impure";
-    darling = "cd $NX && sudo darwin-rebuild switch --flake . && sudo zsh ~/Documents/KTQQ/m1_backup/backup.zsh && nix store optimise && nix-collect-garbage";
-    nfu = "cd $NX && sudo nix flake update";
+    # dhm = "cd $NX && yq eval 'keys | .[] | select(. != \"sops\")' secrets/secrets.yaml > secrets.list && sudo darwin-rebuild switch --flake . && rm secrets.list && fish -c 'fisher update' && cd -";
+    dhm = "cd $NX && sudo darwin-rebuild switch --flake . && cd -";
+
+    # dhmp = "cd $NX && sudo darwin-rebuild switch --flake . --impure";
+    nfu = "cd $NX && sudo nix flake update && sudo darwin-rebuild switch --flake . && cd -";
     nso = "nix store optimise";
     nca = "nh clean all";
     ndr = "cd $NX && nh darwin switch . && terminal-notifier -message 'darwin-rebuild done!' -sound default";
-    clean = "nix-collect-garbage && terminal-notifier -message 'cleaning done!' -sound default";
     search = "nh search --limit 3";
     repair = "sudo nix-store --verify --repair";
     update = "cd $NX && nix flake update";
@@ -144,6 +134,7 @@ let
     # System
     bco = "homebrew.nix";
     darwin = "configuration.nix";
+    foco = "fonts.nix";
     sysco = "system.nix";
   };
 
@@ -156,40 +147,42 @@ let
     # cco = "codex.nix";
     fco = "fish.nix";
     hco = "helix.nix";
-    lco = "lazygit.nix";
+    lsco = "lsp.nix";
+    lgco = "lazygit.nix";
+    nuco = "nushell.nix";
+    ohco = "oh-my-posh.nix";
     oco = "opencode.nix";
     pco = "python.nix";
     paco = "paths.nix";
     sco = "starship.nix";
     shco = "ssh.nix";
     stco = "streamlink.nix";
+    vco = "vcs.nix";
     yzco = "yazi.nix";
-    zco = "zsh.nix";
-    zenco = "zen.nix";
     zeco = "zellij.nix";
+    zenco = "zen.nix";
+    zco = "zsh.nix";
 
     clico = "cli-tools.nix";
+    dbco = "db-tools.nix";
     devco = "dev-tools.nix";
+    knco = "knowledge-tools.nix";
     meco = "media-tools.nix";
+    pfco = "performance-tools.nix";
+    vsco = "visual-tools.nix";
 
-    # Apps
-    kco = "kitty.nix";
-    wco = "wezterm.nix";
-    vco = "vscode.nix";
-    chco = "chromium.nix";
   };
 
   dotFiles = {
     # Dotfiles
-    sbco = "sketchybar";
-    aco = "aerospace/aerospace.toml";
     aico = "ai";
     cco = "codex";
     ghco = "ghostty/config";
     rco = "rio/config.toml";
     zelco = "zellij";
-    fhco = "fish";
+    # fhco = "fish";
     glco = "glance/glance.yml";
+    yzxco = "yazelix/yazelix.toml";
     zkco = "zk/config.toml";
   };
 
@@ -214,6 +207,7 @@ let
       ci = "init";
       cn = "new";
       cr = "run";
+      ct = "test";
       cu = "update";
     };
     rustup = {
@@ -242,15 +236,11 @@ let
       gb = "build";
       gr = "run";
     };
-    just = {
-      j = "";
-      jh = "--list";
-    };
     jj = {
       # Daily flow
       ja = "abandon";
       jc = "commit -m"; # short for `jj describe; jj new`
-      jd = "describe";
+      jd = "describe -m";
       je = "edit";
       jl = "log";
       jla = "log -r ::";
@@ -261,6 +251,7 @@ let
       ju = "undo"; # undo last command
 
       # Bookmarks
+      jb = "bookmark";
       jbs = "bookmark set"; # create or move bookmark
       jbl = "bookmark list";
       jbr = "bookmark rename";
@@ -285,6 +276,13 @@ let
       ut = "tree"; # tree view for dep
       uu = "sync --upgrade";
     };
+    zig = {
+      zb = "build";
+      zf = "format";
+      zi = "init";
+      zr = "run";
+      zt = "test";
+    };
   };
 
   # Aliases pointing to editable config files
@@ -308,3 +306,12 @@ baseAliases
 // mkEditorAliases "$HM" hmFiles
 // mkEditorAliases "$DOT" dotFiles
 // mkToolAliases toolCommandAliases
+
+## Extras ##
+
+# kco = "kitty.nix";
+# wco = "wezterm.nix";
+# vsco = "vscode.nix";
+# chco = "chromium.nix";
+# sbco = "sketchybar";
+# aco = "aerospace/aerospace.toml";

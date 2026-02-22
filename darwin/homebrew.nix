@@ -13,20 +13,31 @@
     taps = [
       "FelixKratz/formulae" # sketchybar/borders
       "nikitabobko/tap" # aerospace
-      "unhappychoice/tap"
-    ]; # ];
+      "BarutSRB/tap"
+      {
+        name = "christo-auer/eilmeldung";
+        clone_target = "https://github.com/christo-auer/eilmeldung.git";
+        force_auto_update = true;
+      }
+    ];
     brews = [
       "humanlog"
-      "gittype"
+      "python@3.14"
+
+      "postgresql@18"
+      "eilmeldung"
 
       # "podman"
       # "kanata"
       # "docker-compose"
-      # {
-      #   name = "uv";
-      #   args = [ "HEAD" ];
-      # }
-      "uv"
+      {
+        name = "deno";
+        args = [ "HEAD" ];
+      }
+      {
+        name = "uv";
+        args = [ "HEAD" ];
+      }
       # "tgpt"
       # "espeak-ng" # for kokoro stt
       "sevenzip"
@@ -62,10 +73,11 @@
       # "visual-studio-code"
       "ghostty@tip"
       "rio"
-      # "zed@preview"
+      "zed@preview"
       "orbstack" # lightweight docker containers
       "wispr-flow"
       "superhuman"
+      "omniwm"
       # "legcord" # discord desktop client
       "yaak" # api client
       # "signal"
@@ -81,7 +93,8 @@
       # "reikey" # key tap monitor
 
       ## TOOLS
-      "aerospace"
+      # "aerospace"
+      "rectangle"
       # "alt-tab" # app switcher w/ screenshot preview
       "raycast" # app launcher
       "activitywatch"
@@ -103,7 +116,7 @@
       # NOTES
       # "obsidian"
       # "excalidrawz"
-      # "todoist-app"
+      "todoist-app"
 
       # browsers
       # "tor-browser"
@@ -115,24 +128,12 @@
       "proton-pass"
 
       # fonts
-      # "font-space-mono-nerd-font"
-      # "font-3270-nerd-font"
 
-      # "font-commit-mono-nerd-font"
-      "font-iosevka-term-nerd-font"
-      #
-      "font-0xproto-nerd-font"
-      # "font-monaspace"
-      # "font-jetbrains-mono-nerd-font"
-      #
-      # "font-source-code-pro"
       # "font-sf-mono"
       "font-sf-pro"
 
       # serif fonts
-      # "font-eb-garamond" # text
       # "font-ibarra-real-nova" # text
-      # "font-source-serif-4" # text
       # "font-dm-serif-display" # title / headings
 
       # "font-sketchybar-app-font"

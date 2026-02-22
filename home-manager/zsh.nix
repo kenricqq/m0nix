@@ -22,6 +22,8 @@ let
     path = "${path.home}/.config/zsh/secrets/${name}";
     mode = "0400";
   });
+
+  shellAliases = import ./alias.nix;
 in
 {
   sops = {
@@ -50,6 +52,7 @@ in
   programs.zsh = {
     enable = true;
     autocd = true;
+    shellAliases = shellAliases;
     defaultKeymap = "viins";
     autosuggestion = {
       enable = true;
@@ -63,9 +66,6 @@ in
 
     # We’ll do our own compinit so we can pass -C and custom dump
     enableCompletion = true;
-    shellAliases = {
-      "-" = "cd -";
-    };
     completionInit = ''
       autoload -Uz compinit
       dump="${cache}/zsh/zcompdump-$ZSH_VERSION"
@@ -180,6 +180,17 @@ in
         if [[ -n "$HOMEBREW_PREFIX" ]]; then
           export DYLD_FALLBACK_LIBRARY_PATH="$HOMEBREW_PREFIX/lib''${DYLD_FALLBACK_LIBRARY_PATH:+:$DYLD_FALLBACK_LIBRARY_PATH}"
         fi
+
+        # pocket-tts completion
+        #compdef pocket-tts
+        _pocket_tts_completion() {
+          eval "$(
+            env _TYPER_COMPLETE_ARGS="''${words[1,CURRENT]}" \
+                _POCKET_TTS_COMPLETE=complete_zsh \
+                pocket-tts
+          )"
+        }
+        compdef _pocket_tts_completion pocket-tts
       '')
     ];
   };

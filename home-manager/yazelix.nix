@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  programs.yazelix = {
+    enable = true;
+  };
+}

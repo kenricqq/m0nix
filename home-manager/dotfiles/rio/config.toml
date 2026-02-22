@@ -1,5 +1,5 @@
 hide-cursor-when-typing = true
-padding-x = 30
+padding-x = 50
 padding-y = [0, 10]
 option-as-alt = 'left'
 confirm-before-quit = false
@@ -23,26 +23,27 @@ blinking = false
 blinking-interval = 530
 
 [fonts]
-size = 15
+size = 20
 
 [fonts.regular]
 # family = "JetBrains Mono"
-family = "0xProto Nerd Font Mono"
+# family = "0xProto Nerd Font Mono"
+family = "IosevkaTermSlab Nerd Font Mono"
 style = "Normal"
 weight = 400
 
 [fonts.bold]
-family = "0xProto Nerd Font Mono"
+family = "IosevkaTermSlab Nerd Font Mono"
 style = "Normal"
 weight = 800
 
 [fonts.italic]
-family = "0xProto Nerd Font Mono"
+family = "Maple Mono NF CN"
 style = "Italic"
 weight = 400
 
 [fonts.bold-italic]
-family = "0xProto Nerd Font Mono"
+family = "Maple Mono NF CN"
 style = "Italic"
 weight = 800
 
@@ -51,16 +52,41 @@ mode = "Bookmark"
 unfocused-split-opacity = 0.8
 
 [colors]
-cursor = '#00af87'
-background = '#171717'
-foreground = '#C5C8C6'
+# cursor = '#00af87'
+# background = '#171717'
+# foreground = '#C5C8C6'
 # cursor = '#F38BA3'
-tabs = '#443d40'
+# tabs = '#443d40'
 # tabs-active = '#F38BA3'
 # green = '#0BA95B'
 # red = '#ED203D'
 # blue = '#12B5E5'
 # yellow = '#FCBA28'
+
+### Dracula ###
+background = '#1e1f29'
+foreground = '#f8f8f2'
+selection-background = '#44475a'
+selection-foreground = '#ffffff'
+cursor = '#bbbbbb'
+black = '#000000'
+red = '#ff5555'
+green = '#50fa7b'
+yellow = '#f1fa8c'
+blue = '#bd93f9'
+magenta = '#ff79c6'
+cyan = '#8be9fd'
+white = '#bbbbbb'
+light_black = '#555555'
+light_red = '#ff5555'
+light_green = '#50fa7b'
+light_yellow = '#f1fa8c'
+light_blue = '#bd93f9'
+light_magenta = '#ff79c6'
+light_cyan = '#8be9fd'
+light_white = '#ffffff'
+### --- ###
+
 
 [bindings]
 # super is basically mac's command

@@ -5,3 +5,5 @@
 **/*.flakehub*
 **/*.direnv*
 
+**/_archive
+

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   programs.helix = {
@@ -9,73 +9,8 @@
       "!.gitignore"
       "!.env*"
     ];
-    extraPackages = with pkgs; [
-      ### Language Servers
-
-      ## Shell
-      # bash-language-server
-      fish-lsp
-      zsh-completions
-      zk
-
-      ## Markup & Config
-      tinymist # typst
-      typstyle
-      markdown-oxide
-      mpls # markdown live preview
-      # marksman               # Markdown LSP
-      taplo # TOML
-      simple-completion-language-server # snippets
-      kdlfmt # kdl (config for zellij)
-      # starpls # starlark
-
-      ## Programming Languages
-      # beamMinimal27Packages.elixir-ls # Elixir
-
-      glsl_analyzer
-
-      gopls
-      golangci-lint-langserver # Go linter
-      gotools # for goimports (formatter)
-
-      zls
-
-      python312Packages.python-lsp-server
-      pyright
-      pylyzer # static code analyzer (rust)
-
-      # nixd # Nix
-      # nixfmt # nix official
-
-      lua-language-server
-      rust-analyzer
-      sqls # SQL
-      sqruff # SQL formatter
-      python313Packages.sqlparse
-      # haskellPackages.fourmolu # haskell
-      # stylish-haskell # haskell (alt)
-
-      ## Web & Front‑end
-      emmet-language-server
-      astro-language-server
-      svelte-language-server
-      typescript-language-server
-      tailwindcss-language-server
-      vscode-langservers-extracted # HTML / CSS / JSON / ESLint
-      # efm-langserver # Formatter (wraps Prettier)
-      prettier
-      biome # formatter
-      dprint
-      # uwu-colors # color swatches
-
-      # grammar / spellcheck
-      harper
-      ltex-ls-plus # for md / tex
-      typos-lsp
-
-      # ai
-      lsp-ai
-    ];
+    # extraPackages = with pkgs; [
+    # ];
 
     # [[language]]
     # name = "mylang"
@@ -87,7 +22,9 @@
     # formatter = { command = "mylang-formatter" , args = ["--stdin"] }
     # language-servers = [ "mylang-lsp" ]
 
+    ## -- Languages Config -- ##
     # extraConfig = builtins.readFile ./language.toml;
+
     languages = {
       language = [
         {
@@ -192,11 +129,10 @@
           auto-format = true;
 
           language-servers = [
-            "pyright"
             "ruff"
-            "pylsp"
-            "lsp-ai"
-            # "pylyzer"
+            "ty"
+
+            # "lsp-ai"
           ];
           formatter = {
             command = "bash";
@@ -243,14 +179,10 @@
         }
         {
           name = "rust";
-          # auto-format = true;
-          # formatter = {
-          #   command = "bash";
-          #   args = [
-          #     "-c"
-          #     "rustfmt | dx fmt -f -"
-          #   ];
-          # };
+          auto-format = true;
+          formatter = {
+            command = "rustfmt";
+          };
           language-servers = [
             "rust-analyzer"
             "scls"
@@ -289,7 +221,7 @@
             "mpls"
             "zk-lsp"
             # "marksman"
-            # "harper-ls"
+            "harper-ls"
             # "ltex-ls-plus"
             "scls"
           ];
@@ -302,88 +234,155 @@
             end = "-->";
           };
           formatter = {
-            command = "dprint";
+            command = "biome";
             args = [
-              "fmt"
-              "svelte"
-              "--stdin"
+              "format"
+              "--stdin-file-path"
+              "buffer.svelte"
             ];
           };
           language-servers = [
-            # "biome"
+            "biome"
+            "tsgo"
             "svelteserver"
             "tailwindcss-ls"
 
             "scls"
-
-            # "emmet-lsp"
-            "typescript-language-server"
           ];
         }
         {
           name = "typescript";
           auto-format = true;
+          formatter = {
+            command = "biome";
+            args = [
+              "format"
+              "--stdin-file-path"
+              "buffer.svelte"
+            ];
+          };
           language-servers = [
-            {
-              name = "typescript-language-server";
-              except-features = [ "format" ];
-            }
             "biome"
-
-            # "scls"
-            # "emmet-lsp"
+            "tsgo"
+            "scls"
           ];
         }
         {
           name = "javascript";
           auto-format = true;
+          formatter = {
+            command = "biome";
+            args = [
+              "format"
+              "--stdin-file-path"
+              "buffer.js"
+            ];
+          };
           language-servers = [
-            {
-              name = "typescript-language-server";
-              except-features = [ "format" ];
-            }
             "biome"
+            "tsgo"
+            "scls"
           ];
         }
         {
           name = "tsx";
           auto-format = true;
+          formatter = {
+            command = "biome";
+            args = [
+              "format"
+              "--stdin-file-path"
+              "buffer.tsx"
+            ];
+          };
           language-servers = [
-            {
-              name = "typescript-language-server";
-              except-features = [ "format" ];
-            }
             "biome"
-
+            "tsgo"
             "scls"
-            "emmet-lsp"
           ];
         }
         {
           name = "jsx";
           auto-format = true;
-          # formatter = {
-          #   command = "biome";
-          #   args = [
-          #     "format"
-          #     "--stdin-file-path"
-          #     "buffer.jsx"
-          #   ];
-          # };
+          formatter = {
+            command = "biome";
+            args = [
+              "format"
+              "--stdin-file-path"
+              "buffer.jsx"
+            ];
+          };
           language-servers = [
-            {
-              name = "typescript-language-server";
-              except-features = [ "format" ];
-            }
             "biome"
-
+            "tsgo"
             "scls"
-            "emmet-lsp"
           ];
         }
         {
+          name = "html";
+          auto-format = true;
+          formatter = {
+            command = "biome";
+            args = [
+              "format"
+              "--stdin-file-path"
+              "buffer.html"
+            ];
+          };
+          language-servers = [
+            "biome"
+            "tailwindcss-ls"
+            "scls"
+          ];
+        }
+        {
+          name = "css";
+          auto-format = true;
+          formatter = {
+            command = "biome";
+            args = [
+              "format"
+              "--stdin-file-path"
+              "buffer.css"
+            ];
+          };
+          language-servers = [
+            "tailwindcss-ls"
+            "scls"
+            "biome"
+          ];
+        }
+
+        {
           name = "json";
           auto-format = true;
+          formatter = {
+            command = "biome";
+            args = [
+              "format"
+              "--stdin-file-path"
+              "buffer.json"
+            ];
+          };
+          language-servers = [
+            {
+              name = "vscode-json-language-server";
+              except-features = [ "format" ];
+            }
+            "biome"
+          ];
+        }
+        {
+          name = "jsonc";
+          auto-format = true;
+          formatter = {
+            command = "biome";
+            args = [
+              "format"
+              "--stdin-file-path"
+              "buffer.jsonc"
+            ];
+          };
           language-servers = [
             {
               name = "vscode-json-language-server";
@@ -404,40 +403,97 @@
             ];
           };
         }
-        {
-          name = "html";
-          language-servers = [
-            "biome"
-            "vscode-html-language-server"
-            "tailwindcss-ls"
-            "scls"
-          ];
-        }
-        {
-          name = "css";
-          file-types = [
-            "css"
-          ];
-          auto-format = true;
-          formatter = {
-            command = "biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "buffer.css"
-            ];
-          };
-          language-servers = [
-            # "vscode-css-language-server"
-            "emmet-ls"
-            "tailwindcss-ls"
-            "scls"
-            "biome"
-          ];
-        }
       ];
 
+      ## -- Language Servers Config -- ##
+
       language-server = {
+        # Python
+        ty = {
+          command = "ty";
+          args = [
+            "server"
+          ];
+        };
+        ruff = {
+          command = "ruff";
+          args = [ "server" ];
+        };
+        tsgo = {
+          command = "tsgo";
+          args = [
+            "--lsp"
+            "--stdio"
+          ];
+          config.typescript = {
+            "suggest" = {
+              "completeFunctionCalls" = true;
+            };
+            "tsserver" = {
+              "enableTracing" = true;
+              "pluginPaths" = [
+                "typescript-plugin-css-modules"
+                "./node_modules"
+              ];
+              "experimental" = {
+                "enableProjectDiagnostics" = true;
+              };
+            };
+            "inlayHints" = {
+              "parameterTypes"."enabled" = true;
+              "variableTypes"."enabled" = true;
+              "propertyDeclarationTypes"."enabled" = true;
+              "functionLikeReturnTypes" = true;
+              "enumMemberValues"."enabled" = true;
+              "parameterNames"."enabled" = "all";
+            };
+            "format" = {
+              "enable" = false;
+              "semicolons" = "remove";
+            };
+            "preferences" = {
+              "importModuleSpecifier" = "non-relative";
+              "importModuleSpecifierEnding" = "auto";
+            };
+            "updateImportsOnFileMove"."enabled" = "always";
+          };
+        };
+        nixd = {
+          command = "nixd";
+          args = [ "--semantic-tokens=true" ];
+          config.nixd =
+            let
+              darwinOpts = ''
+                (let
+                  flake = builtins.getFlake (toString ./.);
+                  names = builtins.attrNames flake.darwinConfigurations;
+                  name =
+                    if names == [ ] then
+                      throw "nixd: no darwinConfigurations found in flake"
+                    else
+                      builtins.head names;
+                in
+                  (builtins.getAttr name flake.darwinConfigurations).options)
+              '';
+            in
+            {
+              formatting.command = [ "${lib.getExe pkgs.nixfmt}" ];
+              options = {
+                nix-darwin.expr = darwinOpts;
+                home-manager.expr = "${darwinOpts}.home-manager.users.type.getSubOptions []";
+              };
+            };
+        };
+
+        vscode-css-language-server = {
+          command = "vscode-css-language-server";
+          args = [ "--stdio" ];
+          config = {
+            css.lint.unknownAtRules = "ignore";
+            scss.lint.unknownAtRules = "ignore";
+            less.lint.unknownAtRules = "ignore";
+          };
+        };
         tinymist = {
           config = {
             formatterMode = "typstyle";
@@ -479,7 +535,9 @@
         };
         biome = {
           command = "biome";
-          args = [ "lsp-proxy" ];
+          args = [
+            "lsp-proxy"
+          ];
           display-messages = true;
         };
         lsp-ai = {
@@ -509,31 +567,6 @@
               }
             ];
           };
-        };
-
-        # Python
-        pylsp = {
-          config.pylsp.plugins = {
-            flake8.enabled = false;
-            autopep8.enabled = false;
-            mccabe.enabled = false;
-            pycodestyle.enabled = false;
-            pyflakes.enabled = false;
-            pylint.enabled = false;
-            yapf.enabled = false;
-            ruff.enabled = false;
-          };
-        };
-        pyright.config.python.analysis = {
-          typeCheckingMode = "basic";
-        };
-        ruff = {
-          command = "ruff";
-          args = [ "server" ];
-        };
-        pylyzer = {
-          command = "pylyzer";
-          args = [ "--server" ];
         };
 
         # Astro
@@ -567,6 +600,7 @@
 
         rust-analyzer = {
           config = {
+            cargo.targetDir = true;
             check.command = "clippy";
             cargo.features = "all";
           };
@@ -627,10 +661,111 @@
       };
 
     };
+    themes = {
+      kanagawa_pro_focus = {
+        inherits = "kanagawa";
+
+        "ui.virtual.inlay-hint" = {
+          fg = "hintMuted";
+          modifiers = [ "dim" ];
+        };
+        "ui.virtual.inlay-hint.parameter" = {
+          fg = "hintMuted";
+          modifiers = [
+            "dim"
+            "italic"
+          ];
+        };
+        "ui.virtual.inlay-hint.type" = {
+          fg = "hintMuted";
+          modifiers = [ "dim" ];
+        };
+
+        "ui.gutter" = {
+          fg = "gutterFgSoft";
+          bg = "gutterBgSoft";
+        };
+        "ui.gutter.selected" = {
+          fg = "gutterFgSoft";
+          bg = "gutterBgSoft";
+        };
+        "ui.linenr" = {
+          fg = "gutterFgSoft";
+          bg = "gutterBgSoft";
+        };
+        "ui.linenr.selected" = {
+          fg = "gold";
+          bg = "gutterBgSoft";
+          modifiers = [ "bold" ];
+        };
+
+        "ui.cursorline" = {
+          bg = "lineSoft";
+        };
+        "ui.cursorline.primary" = {
+          bg = "lineSoft";
+        };
+
+        "ui.virtual.indent-guide" = {
+          fg = "indentGuide";
+        };
+        "ui.virtual.whitespace" = {
+          fg = "whitespaceSoft";
+        };
+
+        "punctuation" = {
+          fg = "punctSoft";
+        };
+        "operator" = {
+          fg = "punctSoft";
+        };
+        "attribute" = {
+          fg = "attrSoft";
+        };
+
+        "function" = {
+          fg = "funcBright";
+          modifiers = [ "bold" ];
+        };
+        "function.method" = {
+          fg = "funcBright";
+          modifiers = [ "bold" ];
+        };
+        "type" = {
+          fg = "typeBright";
+        };
+        "variable.parameter" = {
+          fg = "paramSoft";
+        };
+
+        palette = {
+          gold = "#FFD54A";
+          hintMuted = "#626982";
+          gutterBgSoft = "#242735";
+          gutterFgSoft = "#707894";
+          lineSoft = "#272B3D";
+          indentGuide = "#3F445C";
+          whitespaceSoft = "#393E54";
+          punctSoft = "#8389A4";
+          attrSoft = "#D19784";
+          funcBright = "#93C5E6";
+          typeBright = "#89B4FA";
+          paramSoft = "#D5D9EF";
+        };
+      };
+      kanagawa_pro = {
+        inherits = "kanagawa";
+      };
+    };
     settings = {
-      theme = "nightfox";
-      # theme = "horizon-dark";
       # theme = "kanagawa";
+      theme = "focus_nova";
+      # theme = "kanagawa_pro_focus";
+      # theme = "dracula";
+      # theme = "material_palenight";
+      # theme = "carbonfox";
+      # theme = "everforest_dark";
+      # theme = "horizon-dark";
       # voxed, ao, horizon-dark, gruvbox_dark_hard, ayu_evolve, tokyonight, doom_acario_dark, kaolin_valley_dark, ayu_dark, material_deep_ocean, monokai_pro_octagon, poimandres, starlight, term16_dark, varua
       editor = {
         auto-save = {
@@ -670,7 +805,7 @@
         };
         line-number = "relative";
         lsp = {
-          display-inlay-hints = true;
+          display-inlay-hints = false;
         };
         scrolloff = 10;
         # shell = [
@@ -717,48 +852,17 @@
 
       keys = {
         normal = {
-          "C-r" = ":reset-diff-change";
-          "C-w" = {
-            "d" = "wclose";
-          };
           space = {
             "S-w" = ":write-quit";
 
-            B = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}";
-
-            C-h = [
-              ":new"
-              ":insert-output gh-dash"
-              ":buffer-close!"
-              ":redraw"
-            ];
-
-            C-s = [
-              ":new"
-              ":insert-output serpl"
-              ":buffer-close!"
-              ":redraw"
-            ];
-
             z = ":sh zed-preview .";
           };
-          "S-m" = "@mim"; # @ for macro
-          "S-d" = [
-            "search_selection"
-            "search_next"
-          ];
-          "Cmd-d" = [
-            "search_selection"
-            "select_mode"
-            "extend_search_next"
-          ];
-
-          "S-ret" = "goto_word";
 
           esc = [
             "collapse_selection"
             "keep_primary_selection"
           ];
+
           y = [
             "yank_main_selection_to_clipboard"
             "yank"
@@ -770,10 +874,6 @@
             "delete_selection"
             "yank_to_clipboard"
           ];
-          "C-;" = "flip_selections";
-
-          # C-y = ":sh zellij run -c -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh open";
-
           g = {
             j = [ "move_visual_line_down" ];
             k = [ "move_visual_line_up" ];
@@ -789,7 +889,7 @@
             "move_line_up"
             "align_view_center"
           ];
-          X = "extend_line_above";
+          X = "extend_line_up";
           "}" = [
             "goto_next_paragraph"
             "collapse_selection"
@@ -798,12 +898,29 @@
             "goto_prev_paragraph"
             "collapse_selection"
           ];
-          C-g = [
-            ":new"
-            ":insert-output lazygit"
-            ":buffer-close!"
-            ":redraw"
+
+          "*" = [
+            "move_char_right"
+            "move_prev_word_start"
+            "move_next_word_end"
+            "search_selection"
+            "search_next"
           ];
+          "#" = [
+            "move_char_right"
+            "move_prev_word_start"
+            "move_next_word_end"
+            "search_selection"
+            "search_prev"
+          ];
+
+          # C-g = [
+          #   ":new"
+          #   ":insert-output lazygit"
+          #   ":buffer-close!"
+          #   ":redraw"
+          # ];
+          "C-;" = "flip_selections";
           C-j = [
             "extend_to_line_bounds"
             "delete_selection"
@@ -815,16 +932,54 @@
             "move_line_up"
             "paste_before"
           ];
-          C-n = [
+          C-S-n = [
             "scroll_down"
             "scroll_down"
             "scroll_down"
           ];
-          C-p = [
+          C-S-p = [
             "scroll_up"
             "scroll_up"
             "scroll_up"
           ];
+
+          "A-y" =
+            ":sh nu ~/.config/yazelix/nushell/scripts/integrations/reveal_in_yazi.nu \"%{buffer_name}\"";
+
+          "C-r" = ":reset-diff-change";
+          "C-w" = {
+            "d" = "wclose";
+          };
+          "S-m" = "@mim"; # @ for macro
+          "S-d" = [
+            "search_selection"
+            "search_next"
+          ];
+          "Cmd-d" = [
+            "search_selection"
+            "select_mode"
+            "extend_search_next"
+          ];
+
+          "S-ret" = "goto_word";
+
+          # util fn
+          ret = {
+            d = ":yank-diagnostic";
+            h = ":toggle-option lsp.display-inlay-hints";
+            i = ":toggle-option file-picker.git-ignore";
+            c = ":o ~/m0nix/home-manager/helix.nix";
+            g = {
+              b = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}";
+              s = ":sh git status --porcelain";
+              l = ":sh git log --oneline -10 %{buffer_name}";
+            };
+            j = {
+              a = ":echo %sh{jj file annotate %{buffer_name} | sed -n '%{cursor_line}p'}";
+              s = ":sh jj st";
+              l = ":sh jj log";
+            };
+          };
         };
 
         select = {

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   programs = {
     # awscli = {
@@ -34,6 +34,9 @@
     #       }
     #     ];
     #   };
+    # };
+    # npm = {
+    #   enable = true;
     # };
     bun = {
       enable = true;
@@ -109,45 +112,6 @@
       #   ];
       # };
     };
-    delta = {
-      enable = true;
-      enableGitIntegration = true;
-      enableJujutsuIntegration = true;
-      options = {
-        decorations = {
-          commit-decoration-style = "bold yellow box ul";
-          file-decoration-style = "none";
-          file-style = "bold yellow ul";
-        };
-        features = "decorations";
-        whitespace-error-style = "22 reverse";
-      };
-    };
-    git = {
-      enable = true;
-      attributes = [
-        "*.pdf diff=pdf"
-      ];
-      settings = {
-        aliases = {
-          co = "checkout";
-          rao = "remote add origin";
-        };
-        core = {
-          whitespace = "trailing-space,space-before-tab";
-        };
-        url = {
-          "ssh://git@host" = {
-            insteadOf = "otherhost";
-          };
-        };
-      };
-      # difftastic = {
-      #   enable = true;
-      #   enableAsDifftool = true;
-      #   background = "dark";
-      # };
-    };
     go = {
       enable = true;
       packages = {
@@ -155,25 +119,6 @@
         # "golang.org/x/time" = builtins.fetchGit "https://go.googlesource.com/time";
       };
       telemetry.mode = "off";
-    };
-    jjui = {
-      enable = true;
-      configDir = "${config.home.homeDirectory}/.jjui";
-      settings = {
-        revisions = {
-          revset = "";
-          template = "builtin_log_compact";
-        };
-      };
-    };
-    jujutsu = {
-      enable = true;
-      settings = {
-        user = {
-          # email = "jdoe@example.org";
-          # name = "John Doe";
-        };
-      };
     };
     # k9s = {
     #   enable = true;
@@ -214,22 +159,6 @@
     #     };
     #   };
     # };
-    lazygit = {
-      enable = true;
-      settings = {
-        gui.theme = {
-          activeBorderColor = [
-            "blue"
-            "bold"
-          ];
-          inactiveBorderColor = [ "cyan" ];
-          selectedLineBgColor = [ "default" ];
-        };
-      };
-    };
-    lazysql = {
-      enable = true;
-    };
 
     # python linter + code formatter
     ruff = {
@@ -251,4 +180,30 @@
       };
     };
   };
+  home.packages = with pkgs; [
+    # Fast, Declarative, Reproducible, and Composable Developer Environments using Nix
+    devenv
+
+    dep-tree # visualize complexities of a codebase
+    just # project-level command runner
+
+    # kubernetes-helm # package manager for kubernetes
+    # minikube
+    clang-tools
+    lldb_19
+
+    # LSPs
+    svelte-language-server
+
+    # docker
+    # dive # explore layer in docker image
+    # ctop # top-like interface for containers
+
+    # dev tools
+    # protobuf_32
+    # icu76 # unicode/globalization
+    # cloudflared
+    # n8n
+    # k6 # load testing
+  ];
 }

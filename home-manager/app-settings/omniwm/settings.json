@@ -1,0 +1,1659 @@
+{
+  "animationsEnabled" : true,
+  "appRules" : [
+
+  ],
+  "appearanceMode" : "automatic",
+  "borderColorAlpha" : 1,
+  "borderColorBlue" : 0.060876858678505674,
+  "borderColorGreen" : 0.6838403305444473,
+  "borderColorRed" : 1,
+  "borderWidth" : 2,
+  "bordersEnabled" : false,
+  "defaultLayoutType" : "niri",
+  "dwindleDefaultSplitRatio" : 1,
+  "dwindleMoveToRootStable" : true,
+  "dwindleSingleWindowAspectRatio" : "fill",
+  "dwindleSmartSplit" : true,
+  "dwindleSplitWidthMultiplier" : 1,
+  "dwindleUseGlobalGaps" : true,
+  "focusFollowsMouse" : false,
+  "gapSize" : 0,
+  "gestureFingerCount" : 3,
+  "gestureInvertDirection" : true,
+  "hiddenBarEnabled" : true,
+  "hiddenBarIsCollapsed" : false,
+  "hotkeyBindings" : [
+    {
+      "binding" : {
+        "keyCode" : 18,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "switchWorkspace" : {
+          "_0" : 0
+        }
+      },
+      "id" : "switchWorkspace.0"
+    },
+    {
+      "binding" : {
+        "keyCode" : 18,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "moveToWorkspace" : {
+          "_0" : 0
+        }
+      },
+      "id" : "moveToWorkspace.0"
+    },
+    {
+      "binding" : {
+        "keyCode" : 19,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "switchWorkspace" : {
+          "_0" : 1
+        }
+      },
+      "id" : "switchWorkspace.1"
+    },
+    {
+      "binding" : {
+        "keyCode" : 19,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "moveToWorkspace" : {
+          "_0" : 1
+        }
+      },
+      "id" : "moveToWorkspace.1"
+    },
+    {
+      "binding" : {
+        "keyCode" : 20,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "switchWorkspace" : {
+          "_0" : 2
+        }
+      },
+      "id" : "switchWorkspace.2"
+    },
+    {
+      "binding" : {
+        "keyCode" : 20,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "moveToWorkspace" : {
+          "_0" : 2
+        }
+      },
+      "id" : "moveToWorkspace.2"
+    },
+    {
+      "binding" : {
+        "keyCode" : 21,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "switchWorkspace" : {
+          "_0" : 3
+        }
+      },
+      "id" : "switchWorkspace.3"
+    },
+    {
+      "binding" : {
+        "keyCode" : 21,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "moveToWorkspace" : {
+          "_0" : 3
+        }
+      },
+      "id" : "moveToWorkspace.3"
+    },
+    {
+      "binding" : {
+        "keyCode" : 23,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "switchWorkspace" : {
+          "_0" : 4
+        }
+      },
+      "id" : "switchWorkspace.4"
+    },
+    {
+      "binding" : {
+        "keyCode" : 23,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "moveToWorkspace" : {
+          "_0" : 4
+        }
+      },
+      "id" : "moveToWorkspace.4"
+    },
+    {
+      "binding" : {
+        "keyCode" : 22,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "switchWorkspace" : {
+          "_0" : 5
+        }
+      },
+      "id" : "switchWorkspace.5"
+    },
+    {
+      "binding" : {
+        "keyCode" : 22,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "moveToWorkspace" : {
+          "_0" : 5
+        }
+      },
+      "id" : "moveToWorkspace.5"
+    },
+    {
+      "binding" : {
+        "keyCode" : 26,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "switchWorkspace" : {
+          "_0" : 6
+        }
+      },
+      "id" : "switchWorkspace.6"
+    },
+    {
+      "binding" : {
+        "keyCode" : 26,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "moveToWorkspace" : {
+          "_0" : 6
+        }
+      },
+      "id" : "moveToWorkspace.6"
+    },
+    {
+      "binding" : {
+        "keyCode" : 28,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "switchWorkspace" : {
+          "_0" : 7
+        }
+      },
+      "id" : "switchWorkspace.7"
+    },
+    {
+      "binding" : {
+        "keyCode" : 28,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "moveToWorkspace" : {
+          "_0" : 7
+        }
+      },
+      "id" : "moveToWorkspace.7"
+    },
+    {
+      "binding" : {
+        "keyCode" : 25,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "switchWorkspace" : {
+          "_0" : 8
+        }
+      },
+      "id" : "switchWorkspace.8"
+    },
+    {
+      "binding" : {
+        "keyCode" : 25,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "moveToWorkspace" : {
+          "_0" : 8
+        }
+      },
+      "id" : "moveToWorkspace.8"
+    },
+    {
+      "binding" : {
+        "keyCode" : 48,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "workspaceBackAndForth" : {
+
+        }
+      },
+      "id" : "workspaceBackAndForth"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "switchWorkspaceNext" : {
+
+        }
+      },
+      "id" : "switchWorkspace.next"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "switchWorkspacePrevious" : {
+
+        }
+      },
+      "id" : "switchWorkspace.previous"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "focus" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "focus.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 38,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "focus" : {
+          "_0" : "down"
+        }
+      },
+      "id" : "focus.down"
+    },
+    {
+      "binding" : {
+        "keyCode" : 40,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "focus" : {
+          "_0" : "up"
+        }
+      },
+      "id" : "focus.up"
+    },
+    {
+      "binding" : {
+        "keyCode" : 37,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "focus" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "focus.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 48,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "focusPrevious" : {
+
+        }
+      },
+      "id" : "focusPrevious"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "focusDownOrLeft" : {
+
+        }
+      },
+      "id" : "focusDownOrLeft"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "focusUpOrRight" : {
+
+        }
+      },
+      "id" : "focusUpOrRight"
+    },
+    {
+      "binding" : {
+        "keyCode" : 126,
+        "modifiers" : 6656
+      },
+      "command" : {
+        "moveWindowToWorkspaceUp" : {
+
+        }
+      },
+      "id" : "moveWindowToWorkspaceUp"
+    },
+    {
+      "binding" : {
+        "keyCode" : 125,
+        "modifiers" : 6656
+      },
+      "command" : {
+        "moveWindowToWorkspaceDown" : {
+
+        }
+      },
+      "id" : "moveWindowToWorkspaceDown"
+    },
+    {
+      "binding" : {
+        "keyCode" : 116,
+        "modifiers" : 6656
+      },
+      "command" : {
+        "moveColumnToWorkspaceUp" : {
+
+        }
+      },
+      "id" : "moveColumnToWorkspaceUp"
+    },
+    {
+      "binding" : {
+        "keyCode" : 121,
+        "modifiers" : 6656
+      },
+      "command" : {
+        "moveColumnToWorkspaceDown" : {
+
+        }
+      },
+      "id" : "moveColumnToWorkspaceDown"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveColumnToWorkspace" : {
+          "_0" : 0
+        }
+      },
+      "id" : "moveColumnToWorkspace.0"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveColumnToWorkspace" : {
+          "_0" : 1
+        }
+      },
+      "id" : "moveColumnToWorkspace.1"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveColumnToWorkspace" : {
+          "_0" : 2
+        }
+      },
+      "id" : "moveColumnToWorkspace.2"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveColumnToWorkspace" : {
+          "_0" : 3
+        }
+      },
+      "id" : "moveColumnToWorkspace.3"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveColumnToWorkspace" : {
+          "_0" : 4
+        }
+      },
+      "id" : "moveColumnToWorkspace.4"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveColumnToWorkspace" : {
+          "_0" : 5
+        }
+      },
+      "id" : "moveColumnToWorkspace.5"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveColumnToWorkspace" : {
+          "_0" : 6
+        }
+      },
+      "id" : "moveColumnToWorkspace.6"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveColumnToWorkspace" : {
+          "_0" : 7
+        }
+      },
+      "id" : "moveColumnToWorkspace.7"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveColumnToWorkspace" : {
+          "_0" : 8
+        }
+      },
+      "id" : "moveColumnToWorkspace.8"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "move" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "move.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 38,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "move" : {
+          "_0" : "down"
+        }
+      },
+      "id" : "move.down"
+    },
+    {
+      "binding" : {
+        "keyCode" : 40,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "move" : {
+          "_0" : "up"
+        }
+      },
+      "id" : "move.up"
+    },
+    {
+      "binding" : {
+        "keyCode" : 37,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "move" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "move.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "swap" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "swap.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 37,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "swap" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "swap.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "swap" : {
+          "_0" : "up"
+        }
+      },
+      "id" : "swap.up"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "swap" : {
+          "_0" : "down"
+        }
+      },
+      "id" : "swap.down"
+    },
+    {
+      "binding" : {
+        "keyCode" : 123,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "moveToMonitor" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "moveToMonitor.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 125,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "moveToMonitor" : {
+          "_0" : "down"
+        }
+      },
+      "id" : "moveToMonitor.down"
+    },
+    {
+      "binding" : {
+        "keyCode" : 126,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "moveToMonitor" : {
+          "_0" : "up"
+        }
+      },
+      "id" : "moveToMonitor.up"
+    },
+    {
+      "binding" : {
+        "keyCode" : 124,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "moveToMonitor" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "moveToMonitor.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 123,
+        "modifiers" : 4352
+      },
+      "command" : {
+        "focusMonitor" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "focusMonitor.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 124,
+        "modifiers" : 4352
+      },
+      "command" : {
+        "focusMonitor" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "focusMonitor.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 126,
+        "modifiers" : 4352
+      },
+      "command" : {
+        "focusMonitor" : {
+          "_0" : "up"
+        }
+      },
+      "id" : "focusMonitor.up"
+    },
+    {
+      "binding" : {
+        "keyCode" : 125,
+        "modifiers" : 4352
+      },
+      "command" : {
+        "focusMonitor" : {
+          "_0" : "down"
+        }
+      },
+      "id" : "focusMonitor.down"
+    },
+    {
+      "binding" : {
+        "keyCode" : 48,
+        "modifiers" : 4352
+      },
+      "command" : {
+        "focusMonitorNext" : {
+
+        }
+      },
+      "id" : "focusMonitorNext"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "focusMonitorPrevious" : {
+
+        }
+      },
+      "id" : "focusMonitorPrevious"
+    },
+    {
+      "binding" : {
+        "keyCode" : 50,
+        "modifiers" : 4352
+      },
+      "command" : {
+        "focusMonitorLast" : {
+
+        }
+      },
+      "id" : "focusMonitorLast"
+    },
+    {
+      "binding" : {
+        "keyCode" : 123,
+        "modifiers" : 4864
+      },
+      "command" : {
+        "moveColumnToMonitor" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "moveColumnToMonitor.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 124,
+        "modifiers" : 4864
+      },
+      "command" : {
+        "moveColumnToMonitor" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "moveColumnToMonitor.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 126,
+        "modifiers" : 4864
+      },
+      "command" : {
+        "moveColumnToMonitor" : {
+          "_0" : "up"
+        }
+      },
+      "id" : "moveColumnToMonitor.up"
+    },
+    {
+      "binding" : {
+        "keyCode" : 125,
+        "modifiers" : 4864
+      },
+      "command" : {
+        "moveColumnToMonitor" : {
+          "_0" : "down"
+        }
+      },
+      "id" : "moveColumnToMonitor.down"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveWorkspaceToMonitor" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "moveWorkspaceToMonitor.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveWorkspaceToMonitor" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "moveWorkspaceToMonitor.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveWorkspaceToMonitor" : {
+          "_0" : "up"
+        }
+      },
+      "id" : "moveWorkspaceToMonitor.up"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveWorkspaceToMonitor" : {
+          "_0" : "down"
+        }
+      },
+      "id" : "moveWorkspaceToMonitor.down"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveWorkspaceToMonitorNext" : {
+
+        }
+      },
+      "id" : "moveWorkspaceToMonitor.next"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveWorkspaceToMonitorPrevious" : {
+
+        }
+      },
+      "id" : "moveWorkspaceToMonitor.previous"
+    },
+    {
+      "binding" : {
+        "keyCode" : 36,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "toggleFullscreen" : {
+
+        }
+      },
+      "id" : "toggleFullscreen"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "toggleNativeFullscreen" : {
+
+        }
+      },
+      "id" : "toggleNativeFullscreen"
+    },
+    {
+      "binding" : {
+        "keyCode" : 123,
+        "modifiers" : 6656
+      },
+      "command" : {
+        "moveColumn" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "moveColumn.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 124,
+        "modifiers" : 6656
+      },
+      "command" : {
+        "moveColumn" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "moveColumn.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 33,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "consumeWindow" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "consumeWindow.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 30,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "consumeWindow" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "consumeWindow.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 33,
+        "modifiers" : 6656
+      },
+      "command" : {
+        "expelWindow" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "expelWindow.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 30,
+        "modifiers" : 6656
+      },
+      "command" : {
+        "expelWindow" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "expelWindow.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 17,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "toggleColumnTabbed" : {
+
+        }
+      },
+      "id" : "toggleColumnTabbed"
+    },
+    {
+      "binding" : {
+        "keyCode" : 115,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "focusColumnFirst" : {
+
+        }
+      },
+      "id" : "focusColumnFirst"
+    },
+    {
+      "binding" : {
+        "keyCode" : 119,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "focusColumnLast" : {
+
+        }
+      },
+      "id" : "focusColumnLast"
+    },
+    {
+      "binding" : {
+        "keyCode" : 115,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "focusWindowTop" : {
+
+        }
+      },
+      "id" : "focusWindowTop"
+    },
+    {
+      "binding" : {
+        "keyCode" : 119,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "focusWindowBottom" : {
+
+        }
+      },
+      "id" : "focusWindowBottom"
+    },
+    {
+      "binding" : {
+        "keyCode" : 18,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "focusColumn" : {
+          "_0" : 0
+        }
+      },
+      "id" : "focusColumn.0"
+    },
+    {
+      "binding" : {
+        "keyCode" : 19,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "focusColumn" : {
+          "_0" : 1
+        }
+      },
+      "id" : "focusColumn.1"
+    },
+    {
+      "binding" : {
+        "keyCode" : 20,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "focusColumn" : {
+          "_0" : 2
+        }
+      },
+      "id" : "focusColumn.2"
+    },
+    {
+      "binding" : {
+        "keyCode" : 21,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "focusColumn" : {
+          "_0" : 3
+        }
+      },
+      "id" : "focusColumn.3"
+    },
+    {
+      "binding" : {
+        "keyCode" : 23,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "focusColumn" : {
+          "_0" : 4
+        }
+      },
+      "id" : "focusColumn.4"
+    },
+    {
+      "binding" : {
+        "keyCode" : 22,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "focusColumn" : {
+          "_0" : 5
+        }
+      },
+      "id" : "focusColumn.5"
+    },
+    {
+      "binding" : {
+        "keyCode" : 26,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "focusColumn" : {
+          "_0" : 6
+        }
+      },
+      "id" : "focusColumn.6"
+    },
+    {
+      "binding" : {
+        "keyCode" : 28,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "focusColumn" : {
+          "_0" : 7
+        }
+      },
+      "id" : "focusColumn.7"
+    },
+    {
+      "binding" : {
+        "keyCode" : 25,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "focusColumn" : {
+          "_0" : 8
+        }
+      },
+      "id" : "focusColumn.8"
+    },
+    {
+      "binding" : {
+        "keyCode" : 47,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "cycleColumnWidthForward" : {
+
+        }
+      },
+      "id" : "cycleColumnWidthForward"
+    },
+    {
+      "binding" : {
+        "keyCode" : 43,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "cycleColumnWidthBackward" : {
+
+        }
+      },
+      "id" : "cycleColumnWidthBackward"
+    },
+    {
+      "binding" : {
+        "keyCode" : 3,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "toggleColumnFullWidth" : {
+
+        }
+      },
+      "id" : "toggleColumnFullWidth"
+    },
+    {
+      "binding" : {
+        "keyCode" : 11,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "balanceSizes" : {
+
+        }
+      },
+      "id" : "balanceSizes"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "moveToRoot" : {
+
+        }
+      },
+      "id" : "moveToRoot"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "toggleSplit" : {
+
+        }
+      },
+      "id" : "toggleSplit"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "swapSplit" : {
+
+        }
+      },
+      "id" : "swapSplit"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "resizeInDirection" : {
+          "_0" : "left",
+          "_1" : true
+        }
+      },
+      "id" : "resizeGrow.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "resizeInDirection" : {
+          "_0" : "right",
+          "_1" : true
+        }
+      },
+      "id" : "resizeGrow.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "resizeInDirection" : {
+          "_0" : "up",
+          "_1" : true
+        }
+      },
+      "id" : "resizeGrow.up"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "resizeInDirection" : {
+          "_0" : "down",
+          "_1" : true
+        }
+      },
+      "id" : "resizeGrow.down"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "resizeInDirection" : {
+          "_0" : "left",
+          "_1" : false
+        }
+      },
+      "id" : "resizeShrink.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "resizeInDirection" : {
+          "_0" : "right",
+          "_1" : false
+        }
+      },
+      "id" : "resizeShrink.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "resizeInDirection" : {
+          "_0" : "up",
+          "_1" : false
+        }
+      },
+      "id" : "resizeShrink.up"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "resizeInDirection" : {
+          "_0" : "down",
+          "_1" : false
+        }
+      },
+      "id" : "resizeShrink.down"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "preselect" : {
+          "_0" : "left"
+        }
+      },
+      "id" : "preselect.left"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "preselect" : {
+          "_0" : "right"
+        }
+      },
+      "id" : "preselect.right"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "preselect" : {
+          "_0" : "up"
+        }
+      },
+      "id" : "preselect.up"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "preselect" : {
+          "_0" : "down"
+        }
+      },
+      "id" : "preselect.down"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "preselectClear" : {
+
+        }
+      },
+      "id" : "preselectClear"
+    },
+    {
+      "binding" : {
+        "keyCode" : 18,
+        "modifiers" : 4608
+      },
+      "command" : {
+        "summonWorkspace" : {
+          "_0" : 0
+        }
+      },
+      "id" : "summonWorkspace.0"
+    },
+    {
+      "binding" : {
+        "keyCode" : 19,
+        "modifiers" : 4608
+      },
+      "command" : {
+        "summonWorkspace" : {
+          "_0" : 1
+        }
+      },
+      "id" : "summonWorkspace.1"
+    },
+    {
+      "binding" : {
+        "keyCode" : 20,
+        "modifiers" : 4608
+      },
+      "command" : {
+        "summonWorkspace" : {
+          "_0" : 2
+        }
+      },
+      "id" : "summonWorkspace.2"
+    },
+    {
+      "binding" : {
+        "keyCode" : 21,
+        "modifiers" : 4608
+      },
+      "command" : {
+        "summonWorkspace" : {
+          "_0" : 3
+        }
+      },
+      "id" : "summonWorkspace.3"
+    },
+    {
+      "binding" : {
+        "keyCode" : 23,
+        "modifiers" : 4608
+      },
+      "command" : {
+        "summonWorkspace" : {
+          "_0" : 4
+        }
+      },
+      "id" : "summonWorkspace.4"
+    },
+    {
+      "binding" : {
+        "keyCode" : 22,
+        "modifiers" : 4608
+      },
+      "command" : {
+        "summonWorkspace" : {
+          "_0" : 5
+        }
+      },
+      "id" : "summonWorkspace.5"
+    },
+    {
+      "binding" : {
+        "keyCode" : 26,
+        "modifiers" : 4608
+      },
+      "command" : {
+        "summonWorkspace" : {
+          "_0" : 6
+        }
+      },
+      "id" : "summonWorkspace.6"
+    },
+    {
+      "binding" : {
+        "keyCode" : 28,
+        "modifiers" : 4608
+      },
+      "command" : {
+        "summonWorkspace" : {
+          "_0" : 7
+        }
+      },
+      "id" : "summonWorkspace.7"
+    },
+    {
+      "binding" : {
+        "keyCode" : 25,
+        "modifiers" : 4608
+      },
+      "command" : {
+        "summonWorkspace" : {
+          "_0" : 8
+        }
+      },
+      "id" : "summonWorkspace.8"
+    },
+    {
+      "binding" : {
+        "keyCode" : 49,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "openWindowFinder" : {
+
+        }
+      },
+      "id" : "openWindowFinder"
+    },
+    {
+      "binding" : {
+        "keyCode" : 15,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "raiseAllFloatingWindows" : {
+
+        }
+      },
+      "id" : "raiseAllFloatingWindows"
+    },
+    {
+      "binding" : {
+        "keyCode" : 46,
+        "modifiers" : 6144
+      },
+      "command" : {
+        "openMenuAnywhere" : {
+
+        }
+      },
+      "id" : "openMenuAnywhere"
+    },
+    {
+      "binding" : {
+        "keyCode" : 46,
+        "modifiers" : 6656
+      },
+      "command" : {
+        "openMenuPalette" : {
+
+        }
+      },
+      "id" : "openMenuPalette"
+    },
+    {
+      "binding" : {
+        "keyCode" : 4294967295,
+        "modifiers" : 0
+      },
+      "command" : {
+        "toggleHiddenBar" : {
+
+        }
+      },
+      "id" : "toggleHiddenBar"
+    },
+    {
+      "binding" : {
+        "keyCode" : 50,
+        "modifiers" : 2048
+      },
+      "command" : {
+        "toggleQuakeTerminal" : {
+
+        }
+      },
+      "id" : "toggleQuakeTerminal"
+    },
+    {
+      "binding" : {
+        "keyCode" : 37,
+        "modifiers" : 6912
+      },
+      "command" : {
+        "toggleWorkspaceLayout" : {
+
+        }
+      },
+      "id" : "toggleWorkspaceLayout"
+    },
+    {
+      "binding" : {
+        "keyCode" : 31,
+        "modifiers" : 2560
+      },
+      "command" : {
+        "toggleOverview" : {
+
+        }
+      },
+      "id" : "toggleOverview"
+    }
+  ],
+  "hotkeysEnabled" : true,
+  "menuAnywhereNativeEnabled" : true,
+  "menuAnywherePaletteEnabled" : true,
+  "menuAnywherePosition" : "centered",
+  "menuAnywhereShowShortcuts" : true,
+  "monitorBarSettings" : [
+
+  ],
+  "monitorDwindleSettings" : [
+
+  ],
+  "monitorNiriSettings" : [
+
+  ],
+  "monitorOrientationSettings" : [
+
+  ],
+  "mouseWarpEnabled" : false,
+  "mouseWarpMargin" : 1,
+  "mouseWarpMonitorOrder" : [
+
+  ],
+  "moveMouseToFocusedWindow" : true,
+  "niriAlwaysCenterSingleColumn" : false,
+  "niriCenterFocusedColumn" : "never",
+  "niriInfiniteLoop" : false,
+  "niriMaxVisibleColumns" : 2,
+  "niriMaxWindowsPerColumn" : 3,
+  "niriSingleWindowAspectRatio" : "none",
+  "outerGapBottom" : 0,
+  "outerGapLeft" : 0,
+  "outerGapRight" : 0,
+  "outerGapTop" : 0,
+  "persistentWorkspacesRaw" : "",
+  "preventSleepEnabled" : true,
+  "quakeTerminalMonitorMode" : "mouseCursor",
+  "quakeTerminalOpacity" : 1,
+  "scrollGestureEnabled" : true,
+  "scrollModifierKey" : "optionShift",
+  "scrollSensitivity" : 15.1,
+  "version" : 1,
+  "workspaceAssignmentsRaw" : "",
+  "workspaceBarBackgroundOpacity" : 0.1,
+  "workspaceBarDeduplicateAppIcons" : false,
+  "workspaceBarEnabled" : true,
+  "workspaceBarHeight" : 30,
+  "workspaceBarHideEmptyWorkspaces" : true,
+  "workspaceBarNotchAware" : false,
+  "workspaceBarPosition" : "belowMenuBar",
+  "workspaceBarShowLabels" : true,
+  "workspaceBarWindowLevel" : "floating",
+  "workspaceBarXOffset" : 0,
+  "workspaceBarYOffset" : 0,
+  "workspaceConfigurations" : [
+    {
+      "displayName" : "AI",
+      "id" : "17F133A1-18BC-478D-8A63-965C8479B25F",
+      "isPersistent" : false,
+      "layoutType" : "niri",
+      "monitorAssignment" : {
+        "type" : "any"
+      },
+      "name" : "1"
+    },
+    {
+      "displayName" : "Code",
+      "id" : "E0E14FA6-7A33-45B4-B1BD-EDD23DB542EA",
+      "isPersistent" : true,
+      "layoutType" : "niri",
+      "monitorAssignment" : {
+        "type" : "any"
+      },
+      "name" : "2"
+    }
+  ]
+}

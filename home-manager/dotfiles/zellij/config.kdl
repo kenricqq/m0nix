@@ -1,8 +1,9 @@
 simplified_ui true
 theme "nightfox"
-default_shell "fish"
+default_shell "nu"
 default_layout "compact"
 show_startup_tips false
+// mouse_mode false
 ui {
     pane_frames {
         rounded_corners true
@@ -27,13 +28,17 @@ keybinds clear-defaults=true {
     normal {
         bind "Ctrl g" {
             SwitchToMode "locked"
+ // navigate pane
         }
-        // navigate pane
         bind "Ctrl i" {
             FocusNextPane
         }
         bind "Ctrl Shift tab" {
             FocusPreviousPane
+        }
+        unbind "Ctrl l"
+        bind "Ctrl l" {
+            Write 12
         }
     }
     // pane clear-defaults=true {
@@ -349,7 +354,7 @@ keybinds clear-defaults=true {
     }
     shared_among "normal" "locked" {
         // commands
-        bind "Ctrl Shift m" {
+        bind "Ctrl Shift d" {
             Run "sudo" "darwin-rebuild" "switch" "--flake" "." {
                 cwd "$NX"
                 direction "Down"
@@ -364,13 +369,6 @@ keybinds clear-defaults=true {
         }
         bind "Ctrl Shift =" {
             Resize "Increase"
-        }
-        // swap layout
-        bind "Ctrl Shift [" {
-            PreviousSwapLayout
-        }
-        bind "Ctrl Shift ]" {
-            NextSwapLayout
         }
         // new tab
         bind "Super t" {
@@ -402,6 +400,13 @@ keybinds clear-defaults=true {
         bind "Ctrl Shift right" {
             MoveFocusOrTab "right"
         }
+        // swap layout
+        bind "Ctrl Shift [" {
+            PreviousSwapLayout
+        }
+        bind "Ctrl Shift ]" {
+            NextSwapLayout
+        }
         // navigate tab
         bind "Ctrl ]" {
             GoToNextTab
@@ -416,7 +421,9 @@ keybinds clear-defaults=true {
         bind "Ctrl Shift o" {
             MoveTab "right"
         }
-        // PANE
+        //
+        // --- PANE ---
+        //
         // close pane
         bind "Ctrl ;" {
             CloseFocus
@@ -442,8 +449,34 @@ keybinds clear-defaults=true {
             NewPane "down"
             SwitchToMode "normal"
         }
+        // new stacked split
+        bind "Ctrl Shift s" {
+            NewPane "stacked"
+            SwitchToMode "normal"
+        }
+        // move pane left
+        bind "Ctrl Alt Shift h" {
+            MovePane "Left"
+        }
+        bind "Ctrl Alt Shift l" {
+            MovePane "Right"
+        }
+        bind "Ctrl Alt Shift k" {
+            MovePane "Up"
+        }
+        bind "Ctrl Alt Shift j" {
+            MovePane "Down"
+        }
     }
     shared_except "locked" {
+        bind "Ctrl y" {
+            // LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
+            LaunchOrFocusPlugin "https://github.com/rvcas/room/releases/latest/download/room.wasm" {
+                floating true
+                ignore_case true
+                quick_jump true
+            }
+        }
         bind "Ctrl g" {
             SwitchToMode "locked"
         }
@@ -662,6 +695,7 @@ keybinds clear-defaults=true {
 // changing these requires a restart to take effect
 plugins {
     about location="zellij:about"
+    // compact-bar location="zellij:compact-bar"
     compact-bar location="zellij:compact-bar" {
         tooltip "Ctrl Shift /"
     }
@@ -682,7 +716,7 @@ plugins {
 // eg. "file:/path/to/my-plugin.wasm"
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
-
+    compact-bar
 }
 web_client {
     font "monospace"

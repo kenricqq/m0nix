@@ -14,7 +14,7 @@ layout {
             command "yazi"
         }
     }
-    tab name="Rustlings" split_direction="horizontal" cwd="/Users/kenrictee/code/learn-to-code/Rust/rustlings" {
+    tab name="Rustlings" split_direction="horizontal" cwd="/Users/kenrictee/dev/learning/Rust/rustlings" {
         pane name="rustlings" {
             size "40%"
             command "rustlings"

@@ -1,0 +1,69 @@
+{
+	"$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+	"blocks": [
+		{
+			"segments": [
+				{
+					"foreground": "#00C5C7",
+					"options": {
+						"time_format": "15:04:05"
+					},
+					"style": "plain",
+					"template": " {{ .CurrentDate | date .Format }} ",
+					"type": "time"
+				}
+			],
+			"type": "rprompt"
+		},
+		{
+			"alignment": "left",
+			"segments": [
+				{
+					"foreground": "#77E4F7",
+					"options": {
+						"style": "full"
+					},
+					"style": "plain",
+					"template": "{{ .Path }} ",
+					"type": "path"
+				},
+				{
+					"foreground": "#FFE700",
+					"style": "plain",
+					"template": "{{ .HEAD }} ",
+					"type": "git",
+					"options": {
+						"disable_with_jj": true
+					}
+				},
+				{
+					"foreground": "#FFE700",
+					"style": "plain",
+					"type": "jujutsu",
+					"template": "{{ if .ClosestBookmarks }}{{ .ClosestBookmarks }} {{ end }}{{ .ChangeID }}{{ if .Working.Changed }} {{ .Working.String }}{{ end }} ",
+					"options": {
+						"change_id_min_len": 4,
+						"fetch_ahead_counter": true,
+						"ahead_icon": "›",
+						"fetch_status": true,
+						"ignore_working_copy": true,
+						"status_formats": {
+							"Added": "+%d",
+							"Deleted": "-%d",
+							"Modified": "^%d",
+							"Moved": "^%d"
+						}
+					}
+				},
+				{
+					"foreground": "#43D426",
+					"style": "plain",
+					"template": "❯ ",
+					"type": "text"
+				}
+			],
+			"type": "prompt"
+		}
+	],
+	"version": 4
+}
