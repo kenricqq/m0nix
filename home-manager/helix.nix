@@ -233,6 +233,15 @@
             start = "<!--";
             end = "-->";
           };
+          # "formatter" = {
+          #   "command" = "prettier";
+          #   "args" = [
+          #     "--plugin"
+          #     "prettier-plugin-svelte"
+          #     "--parser"
+          #     "svelte"
+          #   ];
+          # };
           formatter = {
             command = "biome";
             args = [
@@ -243,7 +252,6 @@
           };
           language-servers = [
             "biome"
-            "tsgo"
             "svelteserver"
             "tailwindcss-ls"
 
@@ -258,7 +266,7 @@
             args = [
               "format"
               "--stdin-file-path"
-              "buffer.svelte"
+              "buffer.ts"
             ];
           };
           language-servers = [
@@ -967,7 +975,10 @@
           ret = {
             d = ":yank-diagnostic";
             h = ":toggle-option lsp.display-inlay-hints";
-            i = ":toggle-option file-picker.git-ignore";
+            i = [
+              ":toggle-option file-picker.git-ignore"
+              ":toggle-option file-picker.ignore"
+            ];
             c = ":o ~/m0nix/home-manager/helix.nix";
             g = {
               b = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}";

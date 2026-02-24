@@ -52,7 +52,7 @@
     golangci-lint-langserver # Go linter
     gotools # for goimports (formatter)
 
-    # zls
+    zls
 
     ty # python (by astral)
 
@@ -78,7 +78,7 @@
     # efm-langserver # Formatter (wraps Prettier)
     prettier
     # biome # formatter
-    dprint
+    # dprint
     # uwu-colors # color swatches
 
     # grammar / spellcheck

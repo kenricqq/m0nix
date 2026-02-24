@@ -181,7 +181,7 @@ in
         fg = "#d4d4d4";
         "fg+" = "#d4d4d4";
       };
-      defaultCommand = "fd --type f";
+      defaultCommand = "fd --hidden --follow --exclude .git";
       defaultOptions = [
         "--height 50%"
         "--border"
@@ -347,21 +347,6 @@ in
       settings = {
         tick_rate = 50;
       };
-    };
-    # download yt vid/aud
-    yt-dlp = {
-      enable = true;
-      # extraConfig = ''
-      #   --update
-      #   -F
-      # '';
-      # settings = {
-      #   embed-thumbnail = true;
-      #   embed-subs = true;
-      #   sub-langs = "all";
-      #   downloader = "aria2c";
-      #   downloader-args = "aria2c:'-c -x8 -s8 -k1M'";
-      # };
     };
     zoxide = {
       enable = true;

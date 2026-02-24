@@ -57,7 +57,7 @@ in
 
   programs = {
     mpv = {
-      enable = true;
+      # enable = true;
       # bindings = {
       #   WHEEL_UP = "seek 10";
       #   WHEEL_DOWN = "seek -10";
@@ -87,9 +87,9 @@ in
     };
 
     # cli for downloading image collections
-    gallery-dl = {
-      enable = true;
-    };
+    # gallery-dl = {
+    #   enable = true;
+    # };
 
     rmpc = {
       enable = true;
@@ -111,6 +111,21 @@ in
       #   )
       # '';
     };
+    # download yt vid/aud
+    # yt-dlp = {
+    #   enable = true;
+    #   extraConfig = ''
+    #     --update
+    #     -F
+    #   '';
+    #   settings = {
+    #     embed-thumbnail = true;
+    #     embed-subs = true;
+    #     sub-langs = "all";
+    #     downloader = "aria2c";
+    #     downloader-args = "aria2c:'-c -x8 -s8 -k1M'";
+    #   };
+    # };
   };
 
   home.packages = with pkgs; [
@@ -128,6 +143,7 @@ in
     mediainfo
     imagemagick
 
-    freeze # generate images of code/terminal out
+    # charm-freeze # generate images of code/terminal out
+    termshot
   ];
 }

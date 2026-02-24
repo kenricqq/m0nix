@@ -52,6 +52,14 @@
             desc = "Show or hide the preview pane";
           }
           {
+            "on" = [
+              "F"
+              "A"
+            ];
+            "run" = "plugin fr rga";
+            "desc" = "Search file by content (rga)";
+          }
+          {
             on = "T";
             run = "plugin toggle-pane max-preview";
             desc = "Maximize or restore the preview pane";
@@ -67,7 +75,10 @@
             desc = "Diff the selected with the hovered file";
           }
           {
-            on = [ "F" ];
+            on = [
+              "F"
+              "F"
+            ];
             run = "plugin smart-filter";
             desc = "Smart filter";
           }

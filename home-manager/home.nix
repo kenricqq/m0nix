@@ -27,6 +27,7 @@ in
         ".cargo/bin"
         ".local/bin"
         ".bun/bin"
+        ".pnpm"
         ".cache/.bun/bin"
         ".nix-profile/bin"
         "go/bin"
@@ -48,6 +49,8 @@ in
       SCRIPTS = path.scripts;
       SNIPPETS_PATH = path.snippets; # for scls
       SHARE = path.share;
+
+      PNPM_HOME = "${home}/.pnpm";
 
       EDITOR = "hx";
       CODEX_HOME = "${dot}/codex";

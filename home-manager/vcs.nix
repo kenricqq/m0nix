@@ -77,6 +77,20 @@
           name = "Kenric";
           email = "kenricqq@gmail.com";
         };
+        aliases = {
+          idiff = [
+            "diff"
+            "--exclude"
+            "**/*.lock"
+            "--exclude"
+            "bindings.ts"
+          ];
+        };
+        lazyjj = {
+          # layout = "vertical";
+          layout-percent = 30; # file section
+          diff-tool = "difft";
+        };
       };
     };
     lazygit = {

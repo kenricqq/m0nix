@@ -70,7 +70,7 @@ let
     j = "just";
     jh = "just --help";
     jq = "gojq";
-    lg = "lazygit";
+    # lg = "lazygit";
     lj = "lazyjj";
     oc = "opencode";
     ps = "procs";
@@ -117,6 +117,7 @@ let
     # dhmp = "cd $NX && sudo darwin-rebuild switch --flake . --impure";
     nfu = "cd $NX && sudo nix flake update && sudo darwin-rebuild switch --flake . && cd -";
     nso = "nix store optimise";
+    nsh = "sh -c 'if [ \"$#\" -eq 0 ]; then exec nix shell; else exec nix shell \"nixpkgs#$1\"; fi' sh";
     nca = "nh clean all";
     ndr = "cd $NX && nh darwin switch . && terminal-notifier -message 'darwin-rebuild done!' -sound default";
     search = "nh search --limit 3";
@@ -199,6 +200,18 @@ let
       br = "run";
       bl = "pm list";
     };
+    pnpm = {
+      pd = "run dev";
+      pb = "run build";
+      pp = "run preview";
+      pf = "run format";
+      pu = "update";
+      pa = "add";
+      pi = "install";
+      pr = "run";
+      prm = "remove";
+      px = "dlx";
+    };
     cargo = {
       ca = "add";
       cb = "build";
@@ -241,14 +254,22 @@ let
       ja = "abandon";
       jc = "commit -m"; # short for `jj describe; jj new`
       jd = "describe -m";
+      jdf = "diff";
       je = "edit";
+      jf = "file";
       jl = "log";
       jla = "log -r ::";
       jn = "new";
-      jr = "rebase";
-      js = "status";
+      jrb = "rebase";
+      jrs = "resolve";
+      jst = "status";
+      jsp = "split";
       jsq = "squash";
       ju = "undo"; # undo last command
+
+      # Operation
+      jop = "op";
+      jopr = "op restore";
 
       # Bookmarks
       jb = "bookmark";
@@ -258,9 +279,9 @@ let
       jbt = "bookmark track";
 
       # Git bridge
-      jf = "git fetch";
-      ji = "git init";
-      jp = "git push";
+      jgf = "git fetch";
+      jgi = "git init";
+      jgp = "git push";
 
       # Config/maintenance
       jeu = "config edit --user";

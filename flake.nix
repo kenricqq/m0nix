@@ -15,6 +15,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    codex.url = "github:openai/codex";
+
     # jujutsu.url = "github:martinvonz/jj";
     zig.url = "github:mitchellh/zig-overlay";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -33,13 +35,13 @@
       url = "github:helix-editor/helix";
     };
 
-    # zen-browser = {
-    #   url = "github:0xc000022070/zen-browser-flake";
-    #   inputs = {
-    #     nixpkgs.follows = "nixpkgs";
-    #     home-manager.follows = "home-manager";
-    #   };
-    # };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
 
     zellij-src = {
       url = "github:zellij-org/zellij";
@@ -66,7 +68,7 @@
       sops-nix,
       home-manager,
       opencode,
-      # zen-browser,
+      zen-browser,
       zesh-src,
       helix,
       zig,
@@ -127,6 +129,8 @@
             };
           });
 
+          codex = inputs.codex.packages.${prev.stdenv.hostPlatform.system}.default;
+
           zjstatus = inputs.zjstatus-src.packages.${prev.stdenv.hostPlatform.system}.default;
         })
       ];
@@ -175,7 +179,7 @@
                   "yazi.nix"
                   # "yazelix.nix"
                   "zellij.nix"
-                  # "zen.nix"
+                  "zen.nix"
 
                   "nushell.nix"
                   "zsh.nix"
@@ -183,7 +187,7 @@
                   "home.nix"
                 ])
                 ++ [
-                  # zen-browser.homeModules.beta
+                  zen-browser.homeModules.beta
                   sops-nix.homeManagerModules.sops
                 ];
               extraSpecialArgs = {

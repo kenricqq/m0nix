@@ -30,6 +30,7 @@
       # "podman"
       # "kanata"
       # "docker-compose"
+      "pnpm"
       {
         name = "deno";
         args = [ "HEAD" ];
@@ -54,10 +55,13 @@
       "terminal-notifier"
       # "ollama"
       # "llvm"
-      {
-        name = "yt-dlp";
-        args = [ "HEAD" ];
-      }
+
+      "yt-dlp"
+      "mpv"
+      # {
+      #   name = "yt-dlp";
+      #   args = [ "HEAD" ];
+      # }
       # "localai" # run local llms
 
       # "surreal"
@@ -104,7 +108,7 @@
       # "secretive" # Store SSH keys in the Secure Enclave
       # "karabiner-elements"
       "iina" # open-source media player
-      "obs" # screen recording
+      # "obs" # screen recording
       # "background-music"
       # "keycastr"
       "markedit"
@@ -140,7 +144,7 @@
       "sf-symbols" # apple icons
 
       # fun
-      "roblox"
+      # "roblox"
     ];
   };
 }
