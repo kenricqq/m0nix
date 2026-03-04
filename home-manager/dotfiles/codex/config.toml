@@ -1,4 +1,4 @@
-model = "gpt-5.3-codex"
+model = "gpt-5.4"
 model_reasoning_effort = "high"
 network_access = true
 # notify = ["python3", "./notify.py"]
@@ -9,6 +9,13 @@ project_root_markers = [".git", ".jj"]
 suppress_unstable_features_warning = true
 web_search = "live"
 personality = "pragmatic"
+service_tier = "fast"
+allow_login_shell = false
+
+[shell_environment_policy]
+inherit = "all"
+experimental_use_profile = true
+include_only = ["PATH", "HOME", "USER"]
 
 [history]
 persistence = "save-all"
@@ -25,9 +32,13 @@ enabled = false
 enabled = false
 
 [profiles.deep-review]
-model = "gpt-5-pro"
+model = "gpt-5.4"
 model_reasoning_effort = "high"
 approval_policy = "on-request"
+
+[profiles.local-fast]
+model = "gpt-5.3-codex-spark"
+model_reasoning_effort = "low"
 
 [mcp_servers.chrome-devtools]
 args = ["chrome-devtools-mcp@latest"]
@@ -37,14 +48,14 @@ command = "bunx"
 args = ["-y", "@sveltejs/mcp"]
 command = "bunx"
 
-[shell_environment_policy]
-include_only = ["PATH", "HOME"]
-
 [features]
 unified_exec = true
 shell_snapshot = true
 multi_agent = true
 steer = true
+
+[projects."/Users/kenrictee/dev/projects/memori"]
+trust_level = "trusted"
 
 # [mcp_servers.Context7]
 # args = ["-y", "@upstash/context7-mcp"]

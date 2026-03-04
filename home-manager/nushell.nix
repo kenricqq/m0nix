@@ -136,7 +136,8 @@ in
 
   home.file = {
     ".config/nushell/autoload/99-aliases.nu".text = nuAliasesText;
-    ".config/nushell/modules/ws.nu".source = ./dotfiles/nushell/modules/ws.nu;
+    ".config/nushell/modules/workspaces.nu".source = ./dotfiles/nushell/modules/workspaces.nu;
+    ".config/nushell/modules/completions-jj.nu".source = ./dotfiles/nushell/modules/completions-jj.nu;
     ".config/zesh/zellij-workspaces.toml".source = ./dotfiles/nushell/zellij-workspaces.toml;
   };
 
@@ -180,7 +181,65 @@ in
         | str join $sep
       )
 
+      # def --env y [...args] {
+      # 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
+      # 	^yazi ...$args --cwd-file $tmp
+      # 	let cwd = (open $tmp)
+      # 	if $cwd != $env.PWD and ($cwd | path exists) {
+      # 		cd $cwd
+      # 	}
+      # 	rm -fp $tmp
+      # }
+
+      # custom zellij workspaces script
+      use ~/.config/nushell/modules/workspaces.nu * 
+
+      # jj util completion nushell | save -f completions-jj.nu
+      # use completions-jj.nu *  # Or `source completions-jj.nu`
+      use ~/.config/nushell/modules/completions-jj.nu * 
+
+      # catch z commands, when lazy no-space
+      $env.config = ($env.config | upsert hooks.pre_execution [
+        {||
+          let line = (commandline)
+          if ($line | str starts-with "z") and not ($line | str contains " ") and (($line | str length) > 1) {
+            commandline edit --replace --accept $"z ($line | str substring 1..)"
+          }
+        }
+      ])
+
+      # custom catcher for z, lazy no-space
+      def _accept_line_with_zoxide_fix [] {
+        let buf = (commandline)
+
+        let matches = ($buf | parse --regex '^(?<lead>\s*)(?<first>z\S+)(?<trail>\s*)$')
+
+        if ($matches | is-not-empty) {
+          let m = ($matches | first)
+          let first = $m.first
+
+          if ((which z | is-not-empty) and (which $first | is-empty)) {
+            let suffix = ($first | str substring 1..)
+            let rewritten = $"($m.lead)z ($suffix)($m.trail)"
+            commandline edit --replace --accept $rewritten
+            return
+          }
+        }
+
+        commandline edit --replace --accept $buf
+      }
+
       $env.config.keybindings ++= [
+        {
+          name: zoxide_fix_accept_line
+          modifier: none
+          keycode: enter
+          mode: [vi_insert]
+          event: {
+            send: executehostcommand
+            cmd: "_accept_line_with_zoxide_fix"
+          }
+        }
         {
           name: accept_hint_or_move_right
           modifier: control
@@ -195,18 +254,98 @@ in
         }
       ]
 
-      # def --env y [...args] {
-      # 	let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-      # 	^yazi ...$args --cwd-file $tmp
-      # 	let cwd = (open $tmp)
-      # 	if $cwd != $env.PWD and ($cwd | path exists) {
-      # 		cd $cwd
-      # 	}
-      # 	rm -fp $tmp
-      # }
+      ### --- fish-like abbreviations --- ###
+      let nu_aliases_text = ${builtins.toJSON nuAliasesText}
 
-      # custom zellij workspaces script
-      use ~/.config/nushell/modules/ws.nu * 
+      let abbreviations = (
+        $nu_aliases_text
+        | lines
+        | where {|line| $line | str trim | str starts-with "alias " }
+        | parse "alias {name} = {expansion}"
+        | reduce --fold {} {|row, acc|
+            $acc | upsert $row.name $row.expansion
+          }
+      )
+
+      $env.config = {
+        # Keybinds for fish-like abbreviations
+        keybindings: [
+          {
+            name: abbr_menu
+            modifier: none
+            keycode: enter
+            mode: [vi_normal, vi_insert]
+            event: [
+                { send: menu name: abbr_menu }
+                { send: enter }
+            ]
+          }
+          {
+            name: accept_abbr
+            modifier: control
+            keycode: char_y
+            mode: [vi_normal, vi_insert]
+            event: [
+              { send: HistoryHintComplete }]
+          }
+          {
+            name: abbr_menu
+            modifier: none
+            keycode: space
+            mode: [vi_normal, vi_insert]
+            event: [
+                { send: menu name: abbr_menu }
+                { edit: insertchar value: ' '}
+            ]
+          }
+          # End fish
+        ]
+        cursor_shape: {
+          vi_insert: line
+          vi_normal: block
+        }
+        menus: [
+          # Menu for fish like abbreviations
+          {
+            name: abbr_menu
+            only_buffer_difference: false
+            marker: none
+            type: {
+              layout: columnar
+              columns: 1
+              col_width: 20
+              col_padding: 2
+            }
+            style: {
+              text: green
+              selected_text: green_reverse
+              description_text: yellow
+            }
+            source: { |buffer, position|
+              # Extract the current word before the cursor
+              let before_cursor = ($buffer | str substring 0..$position)
+              let current_word = ($before_cursor | split row ' ' | last)
+
+              let match = $abbreviations | columns | where $it == $current_word
+              if ($match | is-empty) {
+                { value: $buffer }
+              } else {
+                # Replace only the current word, preserve rest of buffer
+                let replacement = ($abbreviations | get $match.0)
+                let word_len = ($current_word | str length | into int)
+                let before_word_end = ($position - $word_len)
+                let before_word = if $before_word_end > 0 {
+                  ($buffer | str substring 0..<$before_word_end)
+                } else {
+                  ""
+                }
+                let after_cursor = ($buffer | str substring $position..)
+                { value: ($before_word ++ $replacement ++ $after_cursor) }
+              }
+            }
+          }
+        ]
+      }
     '';
 
     # extraEnv = "";

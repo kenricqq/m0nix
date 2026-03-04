@@ -469,7 +469,7 @@ keybinds clear-defaults=true {
         }
     }
     shared_except "locked" {
-        bind "Ctrl y" {
+        bind "Ctrl Shift y" {
             // LaunchOrFocusPlugin "file:~/.config/zellij/plugins/room.wasm" {
             LaunchOrFocusPlugin "https://github.com/rvcas/room/releases/latest/download/room.wasm" {
                 floating true
@@ -496,12 +496,12 @@ keybinds clear-defaults=true {
         }
     }
     shared_except "locked" "session" {
-        bind "Ctrl o" {
+        bind "Ctrl s" {
             SwitchToMode "session"
         }
     }
     shared_except "locked" "scroll" {
-        bind "Ctrl s" {
+        bind "Ctrl z" {
             SwitchToMode "scroll"
         }
     }

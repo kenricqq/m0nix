@@ -15,6 +15,23 @@ function zpipe () {
   fi
 }
 
+_accept_line_with_zoxide_fix() {
+  local lead first trail
+
+  if [[ $BUFFER =~ '^([[:space:]]*)(z[^[:space:]]+)([[:space:]]*)$' ]]; then
+    lead=$match[1]
+    first=$match[2]
+    trail=$match[3]
+
+    if [[ $first == z?* ]] && (( $+functions[z] )) && ! whence -w -- "$first" >/dev/null 2>&1; then
+      BUFFER="${lead}z ${first#z}${trail}"
+    fi
+  fi
+
+  zle .accept-line
+}
+zle -N accept-line _accept_line_with_zoxide_fix
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	command yazi "$@" --cwd-file="$tmp"

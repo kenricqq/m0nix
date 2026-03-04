@@ -192,9 +192,6 @@
     clang-tools
     lldb_19
 
-    # LSPs
-    svelte-language-server
-
     # docker
     # dive # explore layer in docker image
     # ctop # top-like interface for containers

@@ -6,8 +6,8 @@ layout = "compact"
 aliases = ["sbx", "codex"]
 
 [[workspace]]
-id = "mono"
-path = "~/dev/work/mono"
+id = "solon"
+path = "~/dev/projects/solon.md"
 layout = "compact"
 aliases = ["monorepo", "core"]
 

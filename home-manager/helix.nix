@@ -116,32 +116,20 @@
         {
           name = "yaml";
           auto-format = true;
-          formatter = {
-            command = "prettier";
-            args = [
-              "--parser"
-              "yaml"
-            ];
-          };
+          language-servers = [
+            "oxfmt"
+          ];
         }
         {
           name = "python";
           auto-format = true;
-
+          scope = "source.python";
           language-servers = [
             "ruff"
             "ty"
 
             # "lsp-ai"
           ];
-          formatter = {
-            command = "bash";
-            args = [
-              "-c"
-              "ruff check --fix - | ruff format -"
-            ];
-          };
-          scope = "source.python";
         }
         {
           name = "nix";
@@ -180,9 +168,13 @@
         {
           name = "rust";
           auto-format = true;
-          formatter = {
-            command = "rustfmt";
-          };
+          # formatter = {
+          #   command = "bash";
+          #   args = [
+          #     "-c"
+          #     "rustfmt"
+          #   ];
+          # };
           language-servers = [
             "rust-analyzer"
             "scls"
@@ -191,15 +183,8 @@
         {
           name = "astro";
           auto-format = true;
-          formatter = {
-            command = "dprint";
-            args = [
-              "fmt"
-              "--stdin"
-              "astro"
-            ];
-          };
           language-servers = [
+            "oxlint"
             "astro-ls"
             "scls"
           ];
@@ -207,15 +192,9 @@
         {
           name = "markdown";
           auto-format = true;
-          formatter = {
-            command = "prettier";
-            args = [
-              "--parser"
-              "markdown"
-            ];
-          };
           roots = [ ".zk" ];
           language-servers = [
+            "oxfmt"
             # "typos"
             "markdown-oxide"
             "mpls"
@@ -233,44 +212,36 @@
             start = "<!--";
             end = "-->";
           };
-          # "formatter" = {
-          #   "command" = "prettier";
-          #   "args" = [
-          #     "--plugin"
-          #     "prettier-plugin-svelte"
-          #     "--parser"
-          #     "svelte"
-          #   ];
-          # };
-          formatter = {
-            command = "biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "buffer.svelte"
+          "formatter" = {
+            "command" = "prettier";
+            "args" = [
+              "--plugin"
+              "prettier-plugin-svelte"
+              "--parser"
+              "svelte"
             ];
           };
+          # formatter = {
+          #   command = "biome";
+          #   args = [
+          #     "format"
+          #     "--stdin-file-path"
+          #     "buffer.svelte"
+          #   ];
+          # };
           language-servers = [
-            "biome"
+            "oxlint"
             "svelteserver"
-            "tailwindcss-ls"
-
             "scls"
+            "tailwindcss-ls"
           ];
         }
         {
           name = "typescript";
           auto-format = true;
-          formatter = {
-            command = "biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "buffer.ts"
-            ];
-          };
           language-servers = [
-            "biome"
+            "oxfmt"
+            "oxlint"
             "tsgo"
             "scls"
           ];
@@ -278,16 +249,9 @@
         {
           name = "javascript";
           auto-format = true;
-          formatter = {
-            command = "biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "buffer.js"
-            ];
-          };
           language-servers = [
-            "biome"
+            "oxfmt"
+            "oxlint"
             "tsgo"
             "scls"
           ];
@@ -295,16 +259,9 @@
         {
           name = "tsx";
           auto-format = true;
-          formatter = {
-            command = "biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "buffer.tsx"
-            ];
-          };
           language-servers = [
-            "biome"
+            "oxfmt"
+            "oxlint"
             "tsgo"
             "scls"
           ];
@@ -312,16 +269,9 @@
         {
           name = "jsx";
           auto-format = true;
-          formatter = {
-            command = "biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "buffer.jsx"
-            ];
-          };
           language-servers = [
-            "biome"
+            "oxfmt"
+            "oxlint"
             "tsgo"
             "scls"
           ];
@@ -329,16 +279,8 @@
         {
           name = "html";
           auto-format = true;
-          formatter = {
-            command = "biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "buffer.html"
-            ];
-          };
           language-servers = [
-            "biome"
+            "oxfmt"
             "tailwindcss-ls"
             "scls"
           ];
@@ -346,57 +288,33 @@
         {
           name = "css";
           auto-format = true;
-          formatter = {
-            command = "biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "buffer.css"
-            ];
-          };
           language-servers = [
+            "oxfmt"
             "tailwindcss-ls"
             "scls"
-            "biome"
           ];
         }
 
         {
           name = "json";
           auto-format = true;
-          formatter = {
-            command = "biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "buffer.json"
-            ];
-          };
           language-servers = [
+            "oxfmt"
             {
               name = "vscode-json-language-server";
               except-features = [ "format" ];
             }
-            "biome"
           ];
         }
         {
           name = "jsonc";
           auto-format = true;
-          formatter = {
-            command = "biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "buffer.jsonc"
-            ];
-          };
           language-servers = [
+            "oxfmt"
             {
               name = "vscode-json-language-server";
               except-features = [ "format" ];
             }
-            "biome"
           ];
         }
         {
@@ -416,6 +334,18 @@
       ## -- Language Servers Config -- ##
 
       language-server = {
+        oxlint = {
+          command = "oxlint";
+          args = [
+            "--lsp"
+          ];
+        };
+        oxfmt = {
+          command = "oxfmt";
+          args = [
+            "--lsp"
+          ];
+        };
         # Python
         ty = {
           command = "ty";
@@ -607,6 +537,10 @@
         };
 
         rust-analyzer = {
+          rustfmt.extraArgs = [
+            "--edition"
+            "2024"
+          ];
           config = {
             cargo.targetDir = true;
             check.command = "clippy";
@@ -951,15 +885,22 @@
             "scroll_up"
           ];
 
-          "A-y" =
-            ":sh nu ~/.config/yazelix/nushell/scripts/integrations/reveal_in_yazi.nu \"%{buffer_name}\"";
+          C-y = [
+            ":sh rm -f /tmp/unique-file"
+            ":insert-output yazi \"%{buffer_name}\" --chooser-file=/tmp/unique-file"
+            ":sh printf \"\x1b[?1049h\x1b[?2004h\" > /dev/tty"
+            ":open %sh{cat /tmp/unique-file}"
+            ":redraw"
+          ];
 
-          "C-r" = ":reset-diff-change";
-          "C-w" = {
+          A-y = ":sh nu ~/.config/yazelix/nushell/scripts/integrations/reveal_in_yazi.nu \"%{buffer_name}\"";
+
+          C-r = ":reset-diff-change";
+          C-w = {
             "d" = "wclose";
           };
-          "S-m" = "@mim"; # @ for macro
-          "S-d" = [
+          S-m = "@mim"; # @ for macro
+          S-d = [
             "search_selection"
             "search_next"
           ];
@@ -1006,7 +947,7 @@
   };
 }
 
-## simulates CMD-D add next occurence of word
+## simulates CD-D add next occurence of word
 # [keys.normal]
 # # make sure there is only one selection, select word under cursor, set search to selection, then switch to select mode
 # "C-d" = ["keep_primary_selection", "move_prev_word_start", "move_next_word_end", "search_selection", "select_mode"]

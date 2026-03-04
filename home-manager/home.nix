@@ -27,7 +27,7 @@ in
         ".cargo/bin"
         ".local/bin"
         ".bun/bin"
-        ".pnpm"
+        # ".pnpm"
         ".cache/.bun/bin"
         ".nix-profile/bin"
         "go/bin"
@@ -64,6 +64,7 @@ in
       let
         dotfiles = builtins.listToAttrs (
           (lib.mapAttrsToList (k: v: lib.nameValuePair ".config/${k}" v) {
+            "aerospace" = "aerospace";
             "zellij" = "zellij";
             "yazelix/yazelix.toml" = "yazelix/yazelix.toml";
             "rio/config.toml" = "rio/config.toml";
@@ -72,6 +73,7 @@ in
             "Library/Application Support/com.mitchellh.ghostty" = "ghostty";
             "Library/Application Support/biome" = "biome";
             ".mpd/mpd.conf" = "mpd/mpd.conf";
+            ".tmux.conf" = "tmux/.tmux.conf";
             ".local/bin/ra-wrapper" = "Bin/ra-wrapper";
           })
         );
@@ -165,7 +167,7 @@ in
 
         # other
         mdbook # create book from md files
-        mdbook-linkcheck # check links
+        mdbook-linkcheck2 # check links
         # ttyper # terminal typing test
         # lychee # broken links checker
         # puffin # personal finance dashboard

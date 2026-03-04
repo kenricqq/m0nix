@@ -1,6 +1,8 @@
 {
   homebrew = {
     enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
     onActivation = {
       autoUpdate = true;
       cleanup = "zap";
@@ -24,7 +26,11 @@
       "humanlog"
       "python@3.14"
 
-      "postgresql@18"
+      # {
+      #   name = "postgresql@18";
+      #   restart_service = "changed";
+      #   link = true;
+      # }
       "eilmeldung"
 
       # "podman"
@@ -42,7 +48,8 @@
       # "tgpt"
       # "espeak-ng" # for kokoro stt
       "sevenzip"
-      "fisher"
+      # "fisher"
+      "container"
 
       # "sketchybar"
       # "borders"
@@ -81,7 +88,8 @@
       "orbstack" # lightweight docker containers
       "wispr-flow"
       "superhuman"
-      "omniwm"
+      # "omniwm"
+      # "glide"
       # "legcord" # discord desktop client
       "yaak" # api client
       # "signal"
@@ -89,10 +97,11 @@
       "linear-linear"
       # "amazon-q"
       "shottr" # screenshot tool
+      "t3-code"
       # "celestia" # 3D Space Simulator
 
       ## objective-see (security tools)
-      # "lulu" # firewall
+      "lulu" # firewall
       # "oversight" # mic / webcam monitor
       # "reikey" # key tap monitor
 
@@ -146,5 +155,6 @@
       # fun
       # "roblox"
     ];
+    # cargoPackages = [ "clippy" ];
   };
 }

@@ -53,6 +53,23 @@ in
     enable = true;
     autocd = true;
     shellAliases = shellAliases;
+    shellGlobalAliases = {
+      UUID = "$(uuidgen | tr -d \\n)";
+      G = "| grep";
+    };
+    zsh-abbr = {
+      enable = true;
+      abbreviations = shellAliases;
+    };
+    siteFunctions = {
+      mkcd = ''
+        mkdir --parents "$1" && cd "$1"
+      '';
+
+      delf = ''
+        find . -type f -name "$1" -delete
+      '';
+    };
     defaultKeymap = "viins";
     autosuggestion = {
       enable = true;
@@ -137,16 +154,8 @@ in
         # Accept autosuggestion with Ctrl+F (like →)
         bindkey '^F' autosuggest-accept
 
-        # Optional: cache Homebrew shellenv once; source thereafter
-        if [[ -x /opt/homebrew/bin/brew ]]; then
-          _brew_env="${brewEnv}"
-          if [[ -r "$_brew_env" ]]; then
-            source "$_brew_env"
-          else
-            mkdir -p "''${_brew_env:h}"
-            /opt/homebrew/bin/brew shellenv >| "$_brew_env"
-            source "$_brew_env"
-          fi
+        if [[ -r "${brewEnv}" ]]; then
+          source "${brewEnv}"
         fi
 
         # --- Fix A: compile NEXT TO the source and source the TEXT file ---
@@ -173,7 +182,7 @@ in
         export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
         # for espup
-        export LIBCLANG_PATH="/$HOME/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-20.1.1_20250829/esp-clang/lib"
+        export LIBCLANG_PATH="$HOME/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-20.1.1_20250829/esp-clang/lib"
 
         # for mkdocs
         # After sourcing the cached brew env earlier, prefer its variables.
@@ -191,6 +200,12 @@ in
           )"
         }
         compdef _pocket_tts_completion pocket-tts
+
+        # jj completion
+        source <(jj util completion zsh)
+
+        # ty completion
+        eval "$(ty generate-shell-completion zsh)"
       '')
     ];
   };

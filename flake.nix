@@ -15,8 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    codex.url = "github:openai/codex";
-
     # jujutsu.url = "github:martinvonz/jj";
     zig.url = "github:mitchellh/zig-overlay";
     sops-nix.url = "github:Mic92/sops-nix";
@@ -26,13 +24,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # fenix = {
+    #   url = "github:nix-community/fenix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     opencode = {
       url = "github:anomalyco/opencode";
       inputs.nixpkgs.follows = "nixpkgs-bun";
-    };
-
-    helix = {
-      url = "github:helix-editor/helix";
     };
 
     zen-browser = {
@@ -41,6 +45,17 @@
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
       };
+    };
+
+    helix.url = "github:helix-editor/helix";
+
+    codex.url = "github:openai/codex";
+
+    ## flake false: source only
+
+    ck = {
+      url = "github:BeaconBay/ck";
+      flake = false;
     };
 
     zellij-src = {
@@ -61,79 +76,22 @@
   outputs =
     {
       self,
-      nixpkgs,
       nix-index-database,
       # lix-module,
       nix-darwin,
       sops-nix,
       home-manager,
-      opencode,
+      # opencode,
       zen-browser,
       zesh-src,
-      helix,
-      zig,
+      # ck,
       ...
     }@inputs:
     let
       # inherit (inputs.nixpkgs.lib) attrValues makeOverridable optionalAttrs singleton;
       inherit (inputs.nixpkgs.lib) attrValues;
 
-      overlays = [
-        # inputs.jujutsu.overlays.default
-        zig.overlays.default
-        helix.overlays.default
-
-        (final: prev: rec {
-          #   # gh CLI on stable has bugs.
-          #   gh = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.gh;
-
-          #   # Want the latest version of these
-          #   claude-code = inputs.nixpkgs-unstable.legacyPackages.${prev.system}.claude-code;
-          # nushell = inputs.nixpkgs.legacyPackages.${prev.stdenv.hostPlatform.system}.nushell;
-
-          # zellij = prev.zellij.overrideAttrs (
-          #   _old:
-          #   let
-          #     src = inputs.zellij-src;
-          #   in
-          #   {
-          #     inherit src;
-          #     version = "main-${src.shortRev or "dirty"}";
-
-          #     cargoDeps = prev.rustPlatform.fetchCargoVendor {
-          #       inherit src;
-          #       hash = "sha256-4aKcQX4+9zoT4bFJzV6rqqw+aaj0ZUJ65xwVnIcrx18=";
-          #     };
-
-          #     doInstallCheck = false;
-          #     nativeInstallCheckInputs = [ ];
-          #   }
-          # );
-          # helix-master = helix.overlays.default;
-
-          svelte-language-server = prev.svelte-language-server.overrideAttrs (old: rec {
-            version = "0.17.28";
-
-            src = prev.fetchFromGitHub {
-              owner = "sveltejs";
-              repo = "language-tools";
-              tag = "svelte-language-server@${version}";
-              hash = "sha256-szxBTiwNpDEM/3WuGl5RtPCGbTVAjNoJtTGutE/F2eg=";
-            };
-
-            pnpmDeps = prev.fetchPnpmDeps {
-              inherit (old) pname pnpmWorkspaces;
-              inherit version src;
-              fetcherVersion = 2;
-              hash = "sha256-v2X2WOEdrDwGO2q9IEjONpHeDFqVp3jGFYYjZ5uFLSE=";
-            };
-          });
-
-          codex = inputs.codex.packages.${prev.stdenv.hostPlatform.system}.default;
-
-          zjstatus = inputs.zjstatus-src.packages.${prev.stdenv.hostPlatform.system}.default;
-        })
-      ];
+      overlays = import ./overlays.nix { inherit inputs; };
 
       system = "aarch64-darwin";
     in
@@ -173,14 +131,18 @@
                   "visual-tools.nix"
                   "vcs.nix"
 
+                  "aerospace.nix"
                   "helix.nix"
                   "lsp.nix"
-                  "opencode.nix"
+                  # "opencode.nix"
                   "yazi.nix"
                   # "yazelix.nix"
+                  # "tmux.nix"
+                  # "rust.nix"
                   "zellij.nix"
                   "zen.nix"
 
+                  "bash.nix"
                   "nushell.nix"
                   "zsh.nix"
 
@@ -191,7 +153,8 @@
                   sops-nix.homeManagerModules.sops
                 ];
               extraSpecialArgs = {
-                inherit opencode zesh-src;
+                # inherit opencode zesh-src ck;
+                inherit zesh-src;
               };
             };
 

@@ -1,6 +1,14 @@
 { pkgs, ... }:
 {
   programs = {
+    # python lsp (by astral)
+    ty = {
+      enable = true;
+      settings = {
+        rules.index-out-of-bounds = "ignore";
+      };
+    };
+
     # python linter + code formatter
     ruff = {
       enable = true;
@@ -54,8 +62,6 @@
 
     zls
 
-    ty # python (by astral)
-
     nixd # Nix
     nixfmt # nix official
 
@@ -77,7 +83,7 @@
     vscode-langservers-extracted # HTML / CSS / JSON / ESLint
     # efm-langserver # Formatter (wraps Prettier)
     prettier
-    # biome # formatter
+    biome # formatter
     # dprint
     # uwu-colors # color swatches
 

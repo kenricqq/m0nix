@@ -8,6 +8,8 @@
   };
 
   home.packages = with pkgs; [
+    atlas # manage db schema as code
+
     duckdb # embeddable analytics db
     tigerbeetle # high performance transactional db
     sqlfluff

@@ -171,6 +171,9 @@ in
       enable = true;
       enableZshIntegration = true;
       enableFishIntegration = false;
+      tmux = {
+        enableShellIntegration = true;
+      };
       changeDirWidgetCommand = "fd --type d";
       changeDirWidgetOptions = [
         "--preview 'tree -C {} | head -200'"

@@ -17,7 +17,7 @@ let
     links = "$EDITOR $SCRIPTS/golinks.yaml";
 
     # utils
-    venv = "source $(fd -HI -td .venv \"$(git rev-parse --show-toplevel)\" | head -n 1)/bin/activate";
+    avenv = "source $(fd -HI -td .venv \"$(git rev-parse --show-toplevel)\" | head -n 1)/bin/activate";
     mdo = "mdbook serve -o";
     whtr = "curl wttr.in/Santa+Cruz";
     wsh = "which $SHELL";
@@ -35,11 +35,13 @@ let
     zoa = "zoxide add"; # boost a directory ranking; run multiple times to get it high
     ze = "zesh cn $(zesh l | fzf)";
     zc = "zesh cn";
-    restart = "pids=$(lsof -t -nP -iTCP:6600 -sTCP:LISTEN -a -c mpd | sort -u); [[ -n \"$pids\" ]] && kill $pids && mpd";
+    restart = "pids=$(lsof -t -nP -i TCP:6600 -sTCP:LISTEN -a -c mpd | sort -u); [[ -n \"$pids\" ]] && kill $pids && mpd";
+    port = "lsof -nP -i -sTCP:LISTEN | rg";
+    ask = "codex --ask-for-approval never --search exec --json --skip-git-repo-check --ephemeral --cd $(mktemp -d) --model gpt-5.3-codex-spark --sandbox read-only -c model_reasoning_effort=low -c history.persistence=none -c mcp_servers.svelte.enabled=false -c mcp_servers.chrome-devtools.enabled=false";
 
     et = "sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"; # empty trash
-    cleanup = "fd . -type f -name '*.DS_Store' -ls -delete";
-    docs = "hx $NX/docs_db"; # upgrade -> keybind open floating pane in zellij
+    cleanup = "fd '^\.DS_Store$' -H -t f -x rm";
+    docs = "$EDITOR $NX/docs_db"; # upgrade -> keybind open floating pane in zellij
 
     ## ----- ##
     # alias magic='kt && sudo zsh m1_backup/backup.zsh'
@@ -58,7 +60,7 @@ let
     a = "asciinema";
     c = "codex";
     cd = "z";
-    ci = "zi";
+    cdi = "zi";
     cl = "clear";
     clip = "pbcopy";
     curl = "curlie";
@@ -72,7 +74,9 @@ let
     jq = "gojq";
     # lg = "lazygit";
     lj = "lazyjj";
+    lsq = "lazysql";
     oc = "opencode";
+    pm = "pnpm";
     ps = "procs";
     python = "python3";
     py = "python3";
@@ -85,7 +89,7 @@ let
     zell = "zellij --layout";
 
     # ls
-    l = "ls -lah";
+    # l = "ls -lah";
     ll = "ls -l";
     ls = "eza";
     lt = "ls -T -L=2 -l --icons --git";
@@ -105,9 +109,9 @@ let
 
     # projects / notes
 
-    wsco = "cd $DOT/nushell/zellij-workspaces.toml";
+    wsco = "$EDITOR $DOT/nushell/zellij-workspaces.toml";
     notes = "cd ~/Documents/notes";
-    dev = "cd ~/dev/$(ls ~/dev | fzf) && hx .";
+    # dev = "cd ~/dev/$(ls ~/dev | fzf) && hx .";
   };
 
   nixAliases = {
@@ -120,15 +124,15 @@ let
     nsh = "sh -c 'if [ \"$#\" -eq 0 ]; then exec nix shell; else exec nix shell \"nixpkgs#$1\"; fi' sh";
     nca = "nh clean all";
     ndr = "cd $NX && nh darwin switch . && terminal-notifier -message 'darwin-rebuild done!' -sound default";
-    search = "nh search --limit 3";
+    # search = "nh search --limit 3";
     repair = "sudo nix-store --verify --repair";
-    update = "cd $NX && nix flake update";
     sec = "cd $NX/secrets && sops secrets.yaml";
   };
 
   # Nix Config
   nxFiles = {
     flake = "flake.nix";
+    ovco = "overlays.nix";
   };
 
   dwFiles = {
@@ -145,6 +149,7 @@ let
 
     # Shell / CLI Tools
     alco = "alias.nix";
+    baco = "bash.nix";
     # cco = "codex.nix";
     fco = "fish.nix";
     hco = "helix.nix";
@@ -158,9 +163,11 @@ let
     sco = "starship.nix";
     shco = "ssh.nix";
     stco = "streamlink.nix";
+    tco = "tmux.nix";
     vco = "vcs.nix";
     yzco = "yazi.nix";
     zeco = "zellij.nix";
+    rsco = "rust.nix";
     zenco = "zen.nix";
     zco = "zsh.nix";
 
@@ -176,6 +183,7 @@ let
 
   dotFiles = {
     # Dotfiles
+    aco = "aerospace/aerospace.toml";
     aico = "ai";
     cco = "codex";
     ghco = "ghostty/config";
@@ -187,7 +195,15 @@ let
     zkco = "zk/config.toml";
   };
 
-  toolCommandAliases = {
+  noteToolAliases = {
+    bmm = {
+      bml = "list";
+      bms = "save";
+      bmt = "tui";
+    };
+  };
+
+  devToolAliases = {
     # Dev Tools
     bun = {
       bd = "-b run dev";
@@ -201,16 +217,16 @@ let
       bl = "pm list";
     };
     pnpm = {
-      pd = "run dev";
-      pb = "run build";
-      pp = "run preview";
-      pf = "run format";
-      pu = "update";
-      pa = "add";
-      pi = "install";
-      pr = "run";
-      prm = "remove";
-      px = "dlx";
+      pmd = "dev";
+      pmb = "build";
+      pmp = "preview";
+      pmf = "format";
+      pmu = "update";
+      pma = "add";
+      pmi = "install";
+      pmr = "run";
+      pmrm = "remove";
+      pmx = "dlx";
     };
     cargo = {
       ca = "add";
@@ -267,6 +283,11 @@ let
       jsq = "squash";
       ju = "undo"; # undo last command
 
+      # Workspace
+      jw = "workspace";
+      jwa = "workspace add";
+      jwu = "workspace update-stale";
+
       # Operation
       jop = "op";
       jopr = "op restore";
@@ -288,21 +309,22 @@ let
       jbo = "backout"; # similar to git revert
     };
     uv = {
-      ue = "venv";
-      ui = "init";
-      ua = "add";
-      ur = "run";
-      ux = "tool run"; # run tool; `ux ruff`
-      us = "sync"; # sync dep with venv
-      ut = "tree"; # tree view for dep
-      uu = "sync --upgrade";
+      uve = "venv";
+      uvi = "init";
+      uva = "add";
+      uvr = "run";
+      uvx = "tool run"; # run tool; `ux ruff`
+      uvs = "sync"; # sync dep with venv
+      uvt = "tree"; # tree view for dep
+      uvu = "sync --upgrade";
     };
     zig = {
       zb = "build";
-      zf = "format";
+      zf = "fmt";
       zi = "init";
       zr = "run";
       zt = "test";
+      zv = "version";
     };
   };
 
@@ -326,7 +348,8 @@ baseAliases
 // mkEditorAliases "$DW" dwFiles
 // mkEditorAliases "$HM" hmFiles
 // mkEditorAliases "$DOT" dotFiles
-// mkToolAliases toolCommandAliases
+// mkToolAliases noteToolAliases
+// mkToolAliases devToolAliases
 
 ## Extras ##
 
@@ -335,4 +358,3 @@ baseAliases
 # vsco = "vscode.nix";
 # chco = "chromium.nix";
 # sbco = "sketchybar";
-# aco = "aerospace/aerospace.toml";
