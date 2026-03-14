@@ -3,6 +3,7 @@ https://github.com/Cloudef/zig2nix
 
 # Resources
 
+https://ziglang.org/learn/build-system/
 https://ziglang.org/documentation/master
 https://ziglang.org/documentation/master/std
 

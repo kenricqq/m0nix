@@ -206,6 +206,62 @@ in
 
         # ty completion
         eval "$(ty generate-shell-completion zsh)"
+
+        # zmx
+        if command -v zmx &> /dev/null; then
+          eval "$(zmx completions zsh)"
+        fi
+
+        if [[ -n $ZMX_SESSION ]]; then
+          export PS1="[$ZMX_SESSION] $PS1"
+        fi
+
+        function prompt_my_zmx_session() {
+          if [[ -n $ZMX_SESSION ]]; then
+            p10k segment -b '%k' -f '%f' -t "[$ZMX_SESSION]"
+          fi
+        }
+        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS+=my_zmx_session
+
+        zmx-select() {
+          local display
+          display=$(zmx list 2>/dev/null | while IFS=$'\t' read -r name pid clients created dir; do
+            name=''${name#session_name=}
+            pid=''${pid#pid=}
+            clients=''${clients#clients=}
+            dir=''${dir#started_in=}
+            printf "%-20s  pid:%-8s  clients:%-2s  %s\n" "$name" "$pid" "$clients" "$dir"
+          done)
+
+          local output query key selected session_name
+          output=$({ [[ -n "$display" ]] && echo "$display"; } | fzf \
+            --print-query \
+            --expect=ctrl-n \
+            --height=80% \
+            --reverse \
+            --prompt="zmx> " \
+            --header="Enter: select | Ctrl-N: create new" \
+            --preview='zmx history {1}' \
+            --preview-window=right:60%:follow \
+          )
+          local rc=$?
+
+          query=$(echo "$output" | sed -n '1p')
+          key=$(echo "$output" | sed -n '2p')
+          selected=$(echo "$output" | sed -n '3p')
+
+          if [[ "$key" == "ctrl-n" && -n "$query" ]]; then
+            session_name="$query"
+          elif [[ $rc -eq 0 && -n "$selected" ]]; then
+            session_name=$(echo "$selected" | awk '{print $1}')
+          elif [[ -n "$query" ]]; then
+            session_name="$query"
+          else
+            return 130
+          fi
+
+          zmx attach "$session_name"
+        }
       '')
     ];
   };

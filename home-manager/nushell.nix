@@ -231,6 +231,13 @@ in
 
       $env.config.keybindings ++= [
         {
+          name: accept_autocomplete_with_ctrl_f
+          modifier: control
+          keycode: char_f
+          mode: [vi_insert]
+          event: { send: historyhintcomplete }
+        }
+        {
           name: zoxide_fix_accept_line
           modifier: none
           keycode: enter

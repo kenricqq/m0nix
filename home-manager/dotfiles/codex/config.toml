@@ -57,6 +57,9 @@ steer = true
 [projects."/Users/kenrictee/dev/projects/memori"]
 trust_level = "trusted"
 
+[projects."/Users/kenrictee/SandBox"]
+trust_level = "trusted"
+
 # [mcp_servers.Context7]
 # args = ["-y", "@upstash/context7-mcp"]
 # command = "bunx"

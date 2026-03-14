@@ -198,6 +198,7 @@
             # "typos"
             "markdown-oxide"
             "mpls"
+            "iwe"
             "zk-lsp"
             # "marksman"
             "harper-ls"
@@ -334,6 +335,10 @@
       ## -- Language Servers Config -- ##
 
       language-server = {
+        iwe = {
+          command = "iwes";
+        };
+
         oxlint = {
           command = "oxlint";
           args = [

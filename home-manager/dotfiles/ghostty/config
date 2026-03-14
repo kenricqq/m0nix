@@ -23,6 +23,7 @@ shell-integration-features = true
 # command = "/etc/profiles/per-user/$USER/bin/nu -l -c 'zesh cn (^zesh l | fzf | str trim)'"
 # initial-command = "/etc/profiles/per-user/$USER/bin/fish -il"
 # command = "/etc/profiles/per-user/$USER/bin/fish -il"
+# command = zsh -ic 'if command -v zmx >/dev/null 2>&1 && command -v fzf >/dev/null 2>&1 && [ -z "${ZMX_SESSION:-}" ]; then zmx-select && exit; fi; exec zsh -il'
 
 # contain (def), cover, stretch, none
 background-image-fit = cover
@@ -48,7 +49,7 @@ macos-icon = chalkboard
 # start window in maximized state
 # maximize = true
 
-window-padding-x = 20
+window-padding-x = 20,0
 window-padding-y = 20,0
 window-padding-color = extend
 

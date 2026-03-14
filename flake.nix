@@ -53,7 +53,7 @@
 
     ## flake false: source only
 
-    ck = {
+    ck-src = {
       url = "github:BeaconBay/ck";
       flake = false;
     };
@@ -81,10 +81,10 @@
       nix-darwin,
       sops-nix,
       home-manager,
-      # opencode,
+      opencode,
       zen-browser,
       zesh-src,
-      # ck,
+      ck-src,
       ...
     }@inputs:
     let
@@ -153,8 +153,7 @@
                   sops-nix.homeManagerModules.sops
                 ];
               extraSpecialArgs = {
-                # inherit opencode zesh-src ck;
-                inherit zesh-src;
+                inherit opencode zesh-src ck-src;
               };
             };
 

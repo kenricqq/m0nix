@@ -2,6 +2,7 @@
   lib,
   pkgs,
   path,
+  ck-src,
   ...
 }:
 
@@ -12,6 +13,30 @@ let
     hm
     nix
     ;
+
+  # ck = pkgs.rustPlatform.buildRustPackage {
+  #   pname = "ck";
+
+  #   # Version is up to you; you can derive from the git rev if you want
+  #   version = "git-${ck-src.rev or "dev"}";
+
+  #   # Use the source from the flake input
+  #   src = ck-src;
+
+  #   # Re-use the lockfile from the repo
+  #   cargoLock.lockFile = "${ck-src}/Cargo.lock";
+
+  #   nativeBuildInputs = with pkgs; [
+  #     pkg-config
+  #   ];
+
+  #   buildInputs = with pkgs; [
+  #     onnxruntime
+  #   ];
+
+  #   ORT_LIB_LOCATION = "${pkgs.onnxruntime}/lib";
+  #   ORT_INCLUDE_LOCATION = "${pkgs.onnxruntime}/include";
+  # };
 
   # shellAliases = import ./alias.nix;
 in
@@ -124,10 +149,11 @@ in
         nix-converter # yaml <-> nix <-> toml
         toolong # log files
         ripgrep
+        # ck
         glow # preview md
         gum # shell script ui
         entr # run command on file change
-        serpl # global search and replace
+        # serpl # global search and replace
         dust # faster du
         # dua # disk usage manager tui
         dysk # better df (rs)

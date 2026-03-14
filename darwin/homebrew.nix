@@ -16,6 +16,8 @@
       "FelixKratz/formulae" # sketchybar/borders
       "nikitabobko/tap" # aerospace
       "BarutSRB/tap"
+      "rockorager/tap"
+      "neurosnap/tap"
       {
         name = "christo-auer/eilmeldung";
         clone_target = "https://github.com/christo-auer/eilmeldung.git";
@@ -23,6 +25,10 @@
       }
     ];
     brews = [
+      "lsr"
+      "flow-control"
+      "zmx"
+      "prise"
       "humanlog"
       "python@3.14"
 
@@ -97,7 +103,6 @@
       "linear-linear"
       # "amazon-q"
       "shottr" # screenshot tool
-      "t3-code"
       # "celestia" # 3D Space Simulator
 
       ## objective-see (security tools)

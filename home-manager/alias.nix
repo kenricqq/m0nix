@@ -42,6 +42,7 @@ let
     et = "sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"; # empty trash
     cleanup = "fd '^\.DS_Store$' -H -t f -x rm";
     docs = "$EDITOR $NX/docs_db"; # upgrade -> keybind open floating pane in zellij
+    cs = "ck --hybrid"; # code search
 
     ## ----- ##
     # alias magic='kt && sudo zsh m1_backup/backup.zsh'
@@ -325,6 +326,8 @@ let
       zr = "run";
       zt = "test";
       zv = "version";
+
+      zib = "build -p ~/.local"; # install binary
     };
   };
 

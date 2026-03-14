@@ -74,40 +74,40 @@ in
     direnv = {
       enable = true;
       enableZshIntegration = true;
-      mise.enable = true;
+      # mise.enable = true;
       nix-direnv.enable = true;
       silent = true;
     };
-    mise = {
-      enable = true;
-      globalConfig = {
-        settings = {
-          disable_tools = [ "node" ];
-          experimental = true;
-          verbose = false;
-        };
+    # mise = {
+    #   enable = true;
+    #   globalConfig = {
+    #     settings = {
+    #       disable_tools = [ "node" ];
+    #       experimental = true;
+    #       verbose = false;
+    #     };
 
-        tasks = {
-          dev = "bun run dev";
-          # Global: [tasks.test] = "npm test"
-          # Project: [tasks.test] = "yarn test"
-        };
+    #     tasks = {
+    #       dev = "bun run dev";
+    #       # Global: [tasks.test] = "npm test"
+    #       # Project: [tasks.test] = "yarn test"
+    #     };
 
-        tool_alias = {
-          node.versions = {
-            my_custom_node = "20";
-          };
-        };
+    #     tool_alias = {
+    #       node.versions = {
+    #         my_custom_node = "20";
+    #       };
+    #     };
 
-        tools = {
-          node = "lts";
-          python = [
-            "3.10"
-            "3.11"
-          ];
-        };
-      };
-    };
+    #     tools = {
+    #       node = "lts";
+    #       python = [
+    #         "3.10"
+    #         "3.11"
+    #       ];
+    #     };
+    #   };
+    # };
     # better ls
     eza = {
       enable = true;

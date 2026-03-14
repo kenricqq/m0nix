@@ -44,6 +44,7 @@
     typstyle
     markdown-oxide
     mpls # markdown live preview
+    iwe
     # marksman               # Markdown LSP
     taplo # TOML
     simple-completion-language-server # snippets
@@ -61,6 +62,7 @@
     gotools # for goimports (formatter)
 
     zls
+    zlint
 
     nixd # Nix
     nixfmt # nix official

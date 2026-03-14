@@ -104,6 +104,8 @@ in
 
     circumflex # browse hacker news
 
+    graphviz # graph visualization tool
+
     # (rustPlatform.buildRustPackage {
     #   pname = "ck";
 
